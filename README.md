@@ -46,8 +46,8 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |user_id|integer|null: false, foreign_key: true|
-|card_id|integer|null: false|
-|customer_id|integer|null: false|
+|card_id|string|null: false|
+|customer_id|string|null: false|
 ### Association
 - belongs_to: user
 
