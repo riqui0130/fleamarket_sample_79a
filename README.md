@@ -41,7 +41,8 @@ Things you may want to cover:
 - has_many: creditcards
 - has_many: favorites
 - has_many: destinations
-- has_many: products
+- has_many: items
+- has_many: comments
 
 ## creditcards テーブル
 |Column|Type|Options|
@@ -55,6 +56,7 @@ Things you may want to cover:
 |security_code|integer|null: false|
 ### Association
 - belongs_to: users
+<!-- 実際はPayjpを使うのでテーブルは不要かも? -->
 
 ## destinations テーブル
 |Column|Type|Options|
@@ -62,47 +64,44 @@ Things you may want to cover:
 |user_id|integer|null: false, foreign_key: true|
 |family_name|string|null: false|
 |first_name|string|null: false|
-|post_code|integer|null: false|
+|post_code|string|null: false|
 |prefecture|string|null: false|
 |city|string|null: false|
 |town|string|null: false|
 |block|string|
-|phone_number|integer|
+|phone_number|string|
 ### Association
 - belongs_to: users
 
-## products テーブル
+## items テーブル
 |Column|Type|Options|
 |------|----|-------|
 |user_id|integer|null: false, foreign_key: true|
-|product_name|string|null: false|
+|item_name|string|null: false, add_index: true|
 |description|text|null: false|
-|product_status|text|null: false|
-|shipping_fee|string|null: false|
-|ship_from|string|null: false|
-|lead_time|string|null: false|
 |price|integer|null: false|
 ### Association
 - has_many: favorites
-- has_many: brands, through: products_brands 
-- has_many: categories, through: products_categories 
+- has_many: brands, through: items_brands 
+- has_many: categories, through: items_categories 
 - has_many: pictures
 - belongs_to: users
+- has_many: comments
 
 ## categories テーブル
 |Column|Type|Options|
 |------|----|-------|
 |category|string|null: false|
 ### Association
-- has_many: products, through: products_categories
+- has_many: items, through: items_categories
 
-## products_categories テーブル
+## items_categories テーブル
 |Column|Type|Options|
 |------|----|-------|
-|product_id|integer|null: false, foreign_key: true|
+|item_id|integer|null: false, foreign_key: true|
 |category_id|integer|null: false, foreign_key: true|
 ### Association
-- belongs_to :products
+- belongs_to :items
 - belongs_to :categories
 
 ## brands テーブル
@@ -110,30 +109,40 @@ Things you may want to cover:
 |------|----|-------|
 |brand|string|null: false|
 ### Association
-- has_many: products, through: products_brands
+- has_many: items, through: items_brands
 
-## products_brands テーブル
+## items_brands テーブル
 |Column|Type|Options|
 |------|----|-------|
-|product_id|integer|null: false, foreign_key: true|
+|item_id|integer|null: false, foreign_key: true|
 |brand_id|integer|null: false, foreign_key: true|
 ### Association
-- belongs_to: products
+- belongs_to: items
 - belongs_to: brands
 
 ## pictures テーブル
 |Column|Type|Options|
 |------|----|-------|
-|product_id|integer|null: false, foreign_key: true|
+|item_id|integer|null: false, foreign_key: true|
 |picture_url|string|null: false|
 ### Association
-- belongs_to: products
+- belongs_to: items
 
 ## favorites テーブル
 |Column|Type|Options|
 |------|----|-------|
-|product_id|integer|null: false, foreign_key: true|
+|item_id|integer|null: false, foreign_key: true|
 |user_id|integer|null: false, foreign_key: true|
 ### Association
-- belongs_to: products
+- belongs_to: items
+- belongs_to: users
+
+## comments テーブル
+|Column|Type|Options|
+|------|----|-------|
+|item_id|integer|null: false, foreign_key: true|
+|user_id|integer|null: false, foreign_key: true|
+|comment|text|null: false|
+### Association
+- belongs_to: items
 - belongs_to: users
