@@ -1,2 +1,161 @@
-%h1 Items#index
-%p Find me in app/views/items/index.html.erb
+.wrapper
+  = render "header"
+
+  .Contents
+    %section.Contents__top
+      .Contents.__content
+        %h2.Contents__content-subtitle
+          %br
+          人生を変えるフリマアプリ 
+        %p.Contents__content-text
+          FURIMAは誰でもかんたんに出品・購入できる
+          %br
+          フリマアプリです
+        .Contents__content-btn
+          = link_to '#', class: 'Btn' do
+            = image_tag 'appstore.png', class: "app"
+            = image_tag "googleplay.png" , class: "app"
+
+    %section.Contents__reason
+      %h2.subtitle
+      FURIMAが選ばれる3つの理由
+    %ul.lists
+      %li.list
+        .list__pict
+          %span.number 1
+          = image_tag "pict-reason-01.jpg", class: 'intro-size'
+        %h3.list__text
+          %span.def-color 3分
+          ですぐ出品
+        %p.list__description
+          スマホで入力するだけで簡単に出品できる！
+      %li.list
+        .list__pict
+          %span.number 2
+          = image_tag "pict-reason-02.jpg", class: 'intro-size'
+        %h3.list__text
+          %span.def-color シンプル
+          で使いやすい
+        %p.list__description
+          めんどくさい入力は必要なく、検索も購入もスムーズ！！
+      %li.list
+        .list__pict
+          %span.number 3
+          = image_tag "pict-reason-03.jpg", class: 'intro-size'
+        %h3.list__text
+          手数料
+          %span.def-color 業界最安
+        %p.list__description
+          最大3%でお得に出品&amp;購入！
+
+    %section.Contents__dl
+      .inner
+      %h2.inner__subtitle 会員数日本一位
+      %p.inner__text
+        FURIMAは、フリマアプリで最も人気。
+        %br/
+        出品・購入回数も業界最多です！
+        %br/
+        ほしかったあの商品に出会えるかもしれません。
+      .inner__btn
+        = link_to '#', class: 'Btn' do
+          = image_tag "appstore.png", class: "app"
+        = link_to '#', class: 'Btn' do
+          = image_tag "googleplay.png", class: "app"
+
+    %section.Contents__feature
+      %h2.head
+      FURIMAの特徴
+    .items
+      %section.item
+        %figure.item__img
+          = image_tag "icon-01.png", class: 'feature-size'
+        %h3.item__subtitle
+          簡単に売り買い
+          %br
+          出来る
+        %p.item__detail スマホひとつで、いつでもどこでも簡単に出品・購入が可能！
+      %section.item
+        %figure.item__img
+          = image_tag "icon-03.png", class: 'feature-size'
+        %h3.item__subtitle 売上金は即日振込みに対応
+        %p.item__detail 午前9時までに振込を依頼いただければ、翌日に指定の口座に入金いたします!
+      %section.item
+        %figure.item__img
+          = image_tag "icon-04.png", class: 'feature-size'
+        %h3.item__subtitle
+          様々な支払いに
+          %br
+          対応
+        %p.item__detail お支払いは、クレジットカードだけでなく、ポイントや売上金など多彩な方法があります。
+
+    %section.Contents__category
+      %h2.head ピックアップカテゴリー
+    .product-box
+      .product-box__head
+        = link_to '#', class: 'new-product' do
+          %h3.title 新規投稿商品
+      .product-box__lists
+        .product-box__list
+          = link_to '#', class: 'new-product' do
+            %figure.product-box__img
+            .product-box__body
+              %h3.name 
+              .detail
+                %ul.price-line
+                  %li.price 
+                    円
+                  %li
+                    %i.fa.fa-star.likeIcon
+                    0
+                %p.tax （税込）
+
+    %section.Contents__brand
+      %h2.head ピックアップブランド
+    .product-box
+      .product-box__head
+        = link_to'#', class: 'new-product' do
+          %h3.title アーカイバ
+      .product-box__lists
+        .product-box__list
+          = link_to '#', class: 'new-product' do
+            %figure.product-box__img
+              = image_tag "sample1.jpeg", class: 'pickup-size'
+            .product-box__body
+              %h3.name 肉
+              .detail
+                %ul.price-line
+                  %li.price 50000円
+                  %li
+                    %i.fa.fa-star.likeIcon
+                    0
+                %p.tax （税込）
+        .product-box__list
+          = link_to '#', class:'new-product' do
+            %figure.product-box__img
+              = image_tag "sample2.jpeg", class: 'pickup-size'
+            .product-box__body
+              %h3.name 冷やし坦々麺
+              .detail
+                %ul.price-line
+                  %li.price 800円
+                  %li
+                    %i.fa.fa-star.likeIcon
+                    0
+                %p.tax （税込）
+        .product-box__list
+          = link_to '#', class: 'new-product' do
+            %figure.product-box__img
+              = image_tag "sample3.jpeg", class: 'pickup-size'
+            .product-box__body
+              %h3.name 変な魚
+              .detail
+                %ul.price-line
+                  %li.price 5円
+                  %li
+                    %i.fas.fa-star.likeIcon
+                    0
+                %p.tax （税込）
+
+  = render "banner"
+  = render "footer"

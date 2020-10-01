@@ -1,0 +1,58 @@
+.footer {
+  color: #ffffff;
+  background-color: #272727;
+  padding: 60px 0;
+  text-align: center;
+
+  .contents {
+    display: flex;
+    max-width: 840px;
+    margin: 0 auto;
+ 
+    .content {
+      display: flex;
+      width: calc(1 / 3 * 100%);
+      margin: 0 2% 0 0;
+      flex-direction: column;
+
+      &__top {
+        margin: 0 0 20px;
+        font-size: 16px;
+        font-weight: bold;
+      } 
+
+      .link-text {
+        color: #ffffff;
+        font-size: 12px;
+        line-height: 32px;
+        text-decoration: none;
+      }
+    }
+  }
+  .footer-logo {
+    width: 160px;
+    height: 46px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+}
+
+ul {
+  list-style: none;
+}
+
+div {
+  display: block;
+}
+
+div,body,ul,li,a,p,input,form {
+  padding: 0;
+  margin: 0;
+}
+
+
+body {
+  font-family: "Source Sans Pro", Helvetica, Arial, "游ゴシック体", "YuGothic", "メイリオ", "Meiryo", sans-serif;
+}
