@@ -1,0 +1,155 @@
+// Place all the styles related to the items controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+*{
+  box-sizing: border-box;
+}
+
+.main {
+  background: #f8f8f8;
+  display: block;
+  font-family: "Source Sans Pro", Helvetica, Arial, "游ゴシック体", "YuGothic", "メイリオ", "Meiryo", sans-serif;
+  .showMain{
+    text-align: center;
+    .allContents{
+      width: 700px;  
+      display: block;
+      padding: 40px;
+      margin: 0 auto;
+      .topContent{
+        background-color: #fff;
+        .itemBox{
+          padding: 24px 40px 40px;
+          .itemBox__message{
+            font-weight: bold;
+            font-size: 24px;
+            img{
+              width: 100%;
+            }
+          }
+          .itemBox__picture{
+            width: 560px;
+            margin: 0 auto;
+            .mainPic{
+              margin-top: 16px;
+              object-fit: cover;
+              height: 346px;  
+              width: 100%;
+            }
+            .subPic{
+              object-fit: cover;
+              height: 87px;  
+              width: 25%;
+              margin-top: 10px;
+            }
+
+          }
+          .itemBox__price{
+            font-size: 46px;
+            font-weight: bold;
+            margin: 24px 10px 0 0;
+          }
+          .itemBox__terms{
+            font-size: 16px;
+            margin-bottom: 24px;
+          }
+          .itemBox__detail{
+            line-height: 1.5;
+            font-size: 18px;
+            margin-bottom: 30px;
+            text-align: left;
+          }
+          .tbody{
+            width: 100%;
+            margin-bottom: 20px;
+            border-collapse: collapse;
+            border: 1px solid #f8f8f8;
+            display: table;
+            .th{
+              width: 20%;
+              background-color: #eee;
+              font-weight: 400;
+              padding: 8px;
+              border: 1px solid #dedede;
+              font-size: 14px;
+              text-align: center;
+            }
+            .td{
+              width: 61%;
+              padding: 15px 15px;
+              border: 1px solid #dedede;
+              font-size: 14px;
+              text-align: left;
+            }
+          }
+          .optionArea{
+            display: flex;
+            justify-content: space-between;
+            .optionArea__likebtn{
+              margin-right: auto;
+              padding: 6px 10px;
+              border-radius: 40px;
+              color: #3CCACE;
+              border: 1px solid #ffb340;
+            }
+            .optionArea__alertbtn{
+              padding: 6px 10px;
+              display: inline-block;
+              border-radius: 4px;
+              color: #333;
+              border: 1px solid #333;
+              text-decoration: none;
+            }
+          }
+    }}
+
+      .commentBox{
+        padding: 24px;
+        background-color: #fff;
+        margin: 10px 0;
+        text-align: center;
+        .commentBody{
+          &__input{
+            width: 100%;
+            min-height: 104px;
+            padding: 10px;
+          }
+        }
+        .notification{
+          padding: 8px;
+          font-size: 14px;
+          background-color: #f8f8f8;
+          margin: 10px 0;
+          text-align: left;
+        }
+        .button{
+          line-height: 48px;
+          background: #3CCACE;
+          border: 1px solid #3CCACE;
+          color: #fff;
+          width: 60%;
+          font-size: 18px;
+          border-radius: 100px;
+        }
+      }
+      .links{
+        display: flex;
+        justify-content: space-between;
+        .link1{
+          text-decoration: none;
+          color: #3ccace;
+        }
+      }
+      .relatedItems{
+        text-align: left;
+        margin: 24px 0 8px;
+        .link2{
+          color: #3ccace;
+          text-decoration: none;
+          font-weight: bold;
+          font-size: 22px;
+        }
+      }
+    }
+  }
+}
