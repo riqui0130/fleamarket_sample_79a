@@ -4,13 +4,13 @@
 body{
   background-color: rgb(245,245,245);
 }
-.Header{
+.Header-buy{
   height: 150px;
   display: flex;
   justify-content: center; /*左右中央揃え*/
   align-items:center;  /*上下中央揃え*/
 }
-.Contents{
+.Contents-buy{
   width:900px;
   height:1600px;
   background-color: #fff;
@@ -130,7 +130,7 @@ body{
     margin-top:100px;
   }
 }
-.Footer{
+.Footer-buy{
   background-color:rgb(245,245,245);
   height:300px;
   &__ul-box{
