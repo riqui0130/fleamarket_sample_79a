@@ -1,0 +1,72 @@
+%head
+  %meta{"charset":"UTF-8"}
+  %link{"href": "style.css", "rel": "stylesheet"}
+  %title Sample
+%body
+  .Header-buy
+    .Header-buy__logo
+      %span.image
+      = image_tag 'payment_front/logo.png', height:'40px', weight:'100px'
+  .Contents-buy
+    .Contents-buy__title
+      購入内容の確認
+    .Contents-buy__items
+      .Contents-buy__items--image
+        %span.image
+        = image_tag 'test/staff3.jpg', height:'150px', weight:'150px'
+      .Contents-buy__items--introduction
+        %p 2020年モデル限定 スーパードライビッグブルーシャツ  新品
+        .Price-block
+          送料込み(税込み)
+          ¥20,000
+    .Contents-buy__payment
+      %div 支払い金額
+      %div 〜〜円
+    .Contents-buy__creditcard
+      .Contents-buy__creditcard--btn
+        %p カードで支払う
+    .Contents-buy__distination
+      =form_with local: true do |f|
+        .Contents-buy__distination--block
+          %label 送付先名字
+          %span 必須
+          = f.text_field :name, class:'input', required: "required", placeholder: '例)山田'
+        .Contents-buy__distination--block
+          %label 送付先名前
+          %span 必須
+          = f.text_field :name, class:'input', required: "required", placeholder: '例)一郎'
+        .Contents-buy__distination--block
+          %label 郵便番号
+          %span 必須
+          = f.text_field :name, class:'input', required: "required", placeholder: '例)111-2222'
+        .Contents-buy__distination--block
+          %label 都道府県
+          %span 必須
+          =f.select :name, {北海道:1,青森県:2,岩手県:3,宮城県:4,秋田県:5,山形県:6,福島県:7,茨城県:8,栃木県:9,群馬県:10,埼玉県:11,千葉県:12,東京都:13,神奈川県:14,新潟県:15,富山県:16,石川県:17,福井県:18,山梨県:19,長野県:20,岐阜県:21,静岡県:22,愛知県:23,三重県:24,滋賀県:25,京都府:26,大阪府:27,兵庫県:28,奈良県:29,和歌山県:30,鳥取県:31,島根県:32,岡山県:33,広島県:34,山口県:35,徳島県:36,香川県:37,愛媛県:38,高知県:39,福岡県:40,佐賀県:41,長崎県:42,熊本県:43,大分県:44,宮崎県:45,鹿児島県:46,沖縄県:47}, { include_blank: '選択してください'}, { class: 'input' , required: true } 
+        .Contents-buy__distination--block
+          %label 市区町村
+          %span 必須
+          = f.text_field :name, class:'input', required: "required", placeholder: '例）大阪市'
+        .Contents-buy__distination--block
+          %label 番地
+          %span 必須
+          = f.text_field :name, class:'input', required: "required", placeholder: '例）中央区難波５丁目1-60'
+        .Contents-buy__distination--block
+          %label マンション名、部屋番号
+          %span 必須
+          = f.text_field :name, class:'input', required: "required", placeholder: '例)なんばスカイオ15階'
+        .Contents-buy__distination--block
+          %label 送付先電話番号
+          %span 必須
+          = f.text_field :name, class:'input', required: "required", placeholder: '例)090-0000-5555'
+    %input.Contents-buy__btn{:name => "", :placeholder => "", :type => "submit", :value => "購入する"}
+ 
+  .Footer-buy
+    %ul.Footer-buy__ul-box
+      %li プライバシーポリシー
+      %li フリマアプリ基本条約
+      %li 特定商取引に関する表記
+    .Footer-buy__logo
+      %span.image
+      = image_tag 'payment_front/logo-white.png', height:'40px', weight:'100px'
+      %p @Frima,inc
