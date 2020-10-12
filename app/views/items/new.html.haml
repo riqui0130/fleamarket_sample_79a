@@ -2,51 +2,51 @@
   %header.sell-header
     = link_to '/' do
       = image_tag 'http://furima.tokyo/assets/logo-d3d78326971d78b06e3d6f0ba666d025a8ad681286b4d9e00e7dbe8673bcfd23.svg', alt: 'furima', height: '49', width: '185'
-
+  
   -#メイン部分
   .main
     %section.sell-container
-      = form_with model: @item do |f|
+    = form_with model: @item, local: true do |f|
 
-        -# 画像部分
-        .sell-container__content
-          .sell-title
-            %h3.sell-title__text
-              出品画像
-              %span.sell-title__require
-                必須
-          .sell-container__content__max-sheet 最大10枚までアップロードできます
-          .sell-container__content__upload
-            .sell-container__content__upload__items
-              .sell-container__content__upload__items__box
-                %div#output-box
-                  %div#image-input{tabindex:"0"}
-                    = f.label :images, for: "item_images0", class: 'sell-container__content__upload__items__box__label', data: {label_id: 0 } do
-                      = f.file_field :images, multiple: true, class: "sell-container__content__upload__items__box__input", id: "item_images0", style: 'display: none;'
-                      %pre
-                        ドラッグアンドドロップ
-                        またはクリックしてファイルをアップロード
-          .error-messages#error-image
-        %hr
+      -# 画像部分
+      .sell-container__content
+        .sell-title
+          %h3.sell-title__text
+            出品画像
+            %span.sell-title__require
+              必須
+        .sell-container__content__max-sheet 最大10枚までアップロードできます
+        .sell-container__content__upload
+          .sell-container__content__upload__items
+            .sell-container__content__upload__items__box
+              %div#output-box
+                %div#image-input{tabindex:"0"}
+                  = f.label :images, for: "item_images0", class: 'sell-container__content__upload__items__box__label', data: {label_id: 0 } do
+                    = f.file_field :images, multiple: true, class: "sell-container__content__upload__items__box__input", id: "item_images0", style: 'display: none;'
+                    %pre
+                      ドラッグアンドドロップ
+                      またはクリックしてファイルをアップロード
+        .error-messages#error-image
+      %hr
 
-        -#商品名部分
-        .sell-container__content
-          .sell-title
-            %h3.sell-title__text
-              商品名
-              %span.sell-title__require
-                必須
-          = f.text_field :name, class:'sell-container__content__name', required: "required", placeholder: '商品名（必須 40文字まで)'
-          .error-messages#error-name
+      -#商品名部分
+      .sell-container__content
+        .sell-title
+          %h3.sell-title__text
+            商品名
+            %span.sell-title__require
+              必須
+        = f.text_field :name, class:'sell-container__content__name', required: "required", placeholder: '商品名（必須 40文字まで)'
+        .error-messages#error-name
 
-          .sell-title
-            %h3.sell-title__text
-              商品の説明
-              %span.sell-title__require
-                必須
-          = f.text_area :text, class:'sell-container__content__description', required: "required", rows: '7', maxlength: '1000', placeholder: '商品説明　（色、素材、重さ、定価、注意点など）'
-          .error-messages#error-text
-        %hr
+        .sell-title
+          %h3.sell-title__text
+            商品の説明
+            %span.sell-title__require
+              必須
+        = f.text_area :text, class:'sell-container__content__description', required: "required", rows: '7', maxlength: '1000', placeholder: '商品説明　（色、素材、重さ、定価、注意点など）'
+        .error-messages#error-text
+      %hr
 
         -# 詳細部分
         .sell-container__content
@@ -57,11 +57,8 @@
                 カテゴリー
                 %span.sell-title__require
                   必須
-            .sell-collection_select
-              = f.label :category_id, {class: 'sell-collection_select__label'} do
-                = select_tag 'card[category]' , options_for_select(["選択して下さい"])
-                -# = f.collection_serect(:name, @category_parent, :id, :name)
-                
+              .sell-collection_select
+                = f.collection_select :category_id, @category_parent_array, { prompt: "選択して下さい"}, {class: "sell-collection_select__category", id: 'parent_category'}
             .error-messages#error-category
 
             .sell-title

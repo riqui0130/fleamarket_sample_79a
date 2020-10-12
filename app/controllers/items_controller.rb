@@ -7,14 +7,13 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    @category_parent =  Category.where("ancestry is null")
   end
 
-  def category_children
+  def get_category_children
     @category_children = Category.find("#{params[:parent_id]}").children
   end
 
-  def category_grandchildren
+  def get_category_grandchildren
     @category_grandchildren = Category.find("#{params[:child_id]}").children
   end
 
@@ -31,6 +30,11 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:name, :text, :category_id, :condition_id, :deliverycost_id, :pref_id, :delivery_days_id, :price, images: []).merge(user_id: current_user.id, boughtflg_id:"1")
+  end
+
+  def category_parent_array
+    @category_parent_array = Category.where(ancestry: nil).each do |parent|
+    end
   end
   
   def buy
