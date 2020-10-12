@@ -1,6 +1,5 @@
 class Item < ApplicationRecord
-
-  extend ActiveHash::Associations::ActiveRecordExtensions
+  # extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :condition
   belongs_to_active_hash :pref
   belongs_to_active_hash :deliverycost
