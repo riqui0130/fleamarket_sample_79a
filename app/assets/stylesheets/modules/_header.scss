@@ -4,6 +4,7 @@
 
 .Header {
   padding: 0 60px;
+  background-color: #fff;
 
   &__inner {
     width: 100%;
@@ -69,7 +70,7 @@
 
   &__navi {
     display: flex;
-    margin-bottom: 10px;
+    padding-bottom: 10px;
     font-size: 14px;
   }
 
