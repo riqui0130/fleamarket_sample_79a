@@ -58,7 +58,7 @@
                 %span.sell-title__require
                   必須
               .sell-collection_select
-                = f.select :name, {}, {class: "sell-collection_select__label", id: 'parent_category'}
+                = f.select :name, {prompt: "選択してください"}, {class: "sell-collection_select__label", id: 'parent_category'}
             .error-messages#error-category
 
             .sell-title
@@ -75,7 +75,7 @@
                 %span.sell-title__require
                   必須
             .sell-collection_select
-              = f.select :name, {}, {class: "sell-collection_select__label", id: 'status'}
+              = f.collection_select :status_id, Status.all, :id, :name, {prompt: "選択してください"}, {class: "sell-collection_select__label"}
             .error-messages#error-condition
         %hr
 
@@ -90,7 +90,7 @@
                 %span.sell-title__require
                   必須
             .sell-collection_select
-              = f.select :name, {}, {class: "sell-collection_select__label", id: 'postage'}
+              = f.collection_select :postage_id, Postage.all, :id, :name, {prompt: "選択してください"}, {class: "sell-collection_select__label"}
             .error-messages#error-deliverycost
 
             .sell-title
@@ -99,7 +99,7 @@
                 %span.sell-title__require
                   必須
             .sell-collection_select
-              = f.select :name, {}, {class: "sell-collection_select__label", id: 'prefecture'}
+              = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択してください"}, {class: "sell-collection_select__label"}
             .error-messages#error-prefecture
 
             .sell-title
@@ -108,7 +108,7 @@
                 %span.sell-title__require
                   必須
             .sell-collection_select
-              = f.select :name, {}, {class: "sell-collection_select__label", id: 'shippingday'}
+              = f.collection_select :shippingday_id, ShippingDay.all, :id, :name, {prompt: "選択してください"}, {class: "sell-collection_select__label"}
             .error-messages#error-delivery_days
         %hr
 
