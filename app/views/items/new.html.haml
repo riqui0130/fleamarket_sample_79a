@@ -58,7 +58,7 @@
                 %span.sell-title__require
                   必須
               .sell-collection_select
-                = f.select :name, { prompt: "選択して下さい"}, {class: "sell-collection_select__label", id: 'parent_category'}
+                = f.select :name, {}, {class: "sell-collection_select__label", id: 'parent_category'}
             .error-messages#error-category
 
             .sell-title
@@ -75,7 +75,7 @@
                 %span.sell-title__require
                   必須
             .sell-collection_select
-              = f.select :name, { prompt: "選択して下さい"}, {class: "sell-collection_select__label", id: 'status'}
+              = f.select :name, {}, {class: "sell-collection_select__label", id: 'status'}
             .error-messages#error-condition
         %hr
 
@@ -90,7 +90,7 @@
                 %span.sell-title__require
                   必須
             .sell-collection_select
-              = f.select :name, { prompt: "選択して下さい"}, {class: "sell-collection_select__label", id: 'postage'}
+              = f.select :name, {}, {class: "sell-collection_select__label", id: 'postage'}
             .error-messages#error-deliverycost
 
             .sell-title
@@ -99,7 +99,7 @@
                 %span.sell-title__require
                   必須
             .sell-collection_select
-              = f.select :name, { prompt: "選択して下さい"}, {class: "sell-collection_select__label", id: 'prefecture'}
+              = f.select :name, {}, {class: "sell-collection_select__label", id: 'prefecture'}
             .error-messages#error-prefecture
 
             .sell-title
@@ -108,7 +108,7 @@
                 %span.sell-title__require
                   必須
             .sell-collection_select
-              = f.select :name, { prompt: "選択して下さい"}, {class: "sell-collection_select__label", id: 'shippingday'}
+              = f.select :name, {}, {class: "sell-collection_select__label", id: 'shippingday'}
             .error-messages#error-delivery_days
         %hr
 
@@ -131,7 +131,6 @@
 
         .sell-btn
           = f.submit '出品する', class:"sell-btn__a"
-        
 
   %footer.sell-footer
     %nav
