@@ -202,21 +202,21 @@
         text-align: right;
       }
     }
-    .submit-btn{
-      box-sizing: border-box;
-      margin: 0 auto;
-      width: 360px;
-      &__sell-btn{
-        background-color: #ea352d;
-        color: #fff;
-        margin-top: 24px;
-        margin-bottom: 24px;
-        width: 100%;
-        font-size: 17px;
-        height: 48px;
-        font-weight: 600;
-        border-radius: 4px;
-      }
+  }
+  .sell-btn{
+    box-sizing: border-box;
+    margin: 0 auto;
+    width: 360px;
+    &__a{
+      width: 100%;
+      background-color: #ea352d;
+      color: #fff;
+      margin-top: 24px;
+      margin-bottom: 24px;
+      font-size: 17px;
+      height: 48px;
+      font-weight: 600;
+      border-radius: 4px;
     }
   }
   .sell-footer{

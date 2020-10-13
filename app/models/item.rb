@@ -1,9 +1,9 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to_active_hash :condition
+  belongs_to_active_hash :status
   belongs_to_active_hash :prefecture
-  belongs_to_active_hash :deliverycost
-  belongs_to_active_hash :delivery_days
+  belongs_to_active_hash :postage
+  belongs_to_active_hash :shippingday
 
   validate :images_presence
   validates :name, length: { maximum: 40 }, presence: true
@@ -12,7 +12,6 @@ class Item < ApplicationRecord
   validates :status_id, presence: true
   validates :postage_id, presence: true
   validates :shipping_day_id, presence: true
-  validates :shipping_method_id, presence: true
   validates :prefecture_id, presence: true
   validates :category_id, presence: true
   validates :price,numericality: { only_integer: true,greater_than: 300, less_than: 9999999 }
