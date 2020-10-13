@@ -58,7 +58,7 @@
                 %span.sell-title__require
                   必須
               .sell-collection_select
-                = f.collection_select :category_id, Category.roots, :id, :name, {prompt: "選択してください"}, {class: "sell-collection_select__label", id: "parent_category"}
+                = f.collection_select :category_id, Category.roots, :id, :name, {prompt: "選択してください", selected: @item.category&.root_id}, {class: "sell-collection_select__label", id: "parent_category"}
             .error-messages#error-category
 
             .sell-title
