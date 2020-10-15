@@ -7,7 +7,6 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    # @item.item_images.new
     @category_parent_array = ['選択して下さい']
     @category_parent_array = Category.where(ancestry: nil)
   end

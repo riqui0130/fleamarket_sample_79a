@@ -18,4 +18,19 @@ class Item < ApplicationRecord
   validates :category_id, presence: true
   validates :price,numericality: { only_integer: true,greater_than: 300, less_than: 9999999 }
 
+  has_many_attached :images
+  belongs_to :category
+
+  #imageのバリデーション
+  def images_presence
+    if images.attached?
+      # inputに保持されているimagesがあるかを確認
+      if images.length > 10
+        errors.add(:image, '10枚まで投稿できます')
+      end
+    else
+      errors.add(:image, '画像がありません')
+    end
+  end
+
 end
