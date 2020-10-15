@@ -1,4 +1,6 @@
 class Item < ApplicationRecord
+  belongs_to :category
+  
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :status
   belongs_to_active_hash :prefecture

@@ -67,7 +67,6 @@
     width: 100%;
   }
 }
-
 .sell {
   box-sizing: border-box;
   position: relative;
@@ -90,13 +89,13 @@
     width: 100%;
     margin: 0px auto;
     background-color: rgb(255, 255, 255);
-    // 画像部分
     &__content{
       height: auto;
       padding: 40px;
       border-bottom: 1px;
       border-bottom-color: #efefef;
       border-bottom-style: solid;
+      // 画像部分
       &__max-sheet{
         margin-top: 16px;
       }
@@ -123,6 +122,35 @@
               flex-wrap: wrap;
               width: 100%;
               height: auto;
+              .preview-image{
+                box-sizing: border-box;
+                height: 150px;
+                width: 20%;
+                padding: 0px 4px;
+                margin-top: 8px;
+                &__figure{
+                  margin:0 auto;
+                  height: 118px;
+                  background-color: rgb(245, 245, 245);
+                  img{
+                    box-sizing: border-box;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                  }
+                }
+                &__button{
+                  border-top-width: 1px;
+                  border-top-color: rgb(204, 204, 204);
+                  border-top-style: solid;
+                  background-color: rgb(245, 245, 245);
+                  justify-content: space-around;
+                  display: flex;
+                  align-items: center;
+                  height: 32px;
+                  color: rgb(0, 149, 238);
+                }
+              }
               #image-input{
                 box-sizing: border-box;
                 height: 100%;
@@ -146,10 +174,8 @@
           }
         }
       }
-    }
 
-    // 商品名部分
-    &__content{
+      // 商品名部分
       &__name{
         margin-top: 16px;
         margin-bottom: 16px;

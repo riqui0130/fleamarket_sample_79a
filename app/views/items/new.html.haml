@@ -19,14 +19,12 @@
         .sell-container__content__upload
           .sell-container__content__upload__items
             .sell-container__content__upload__items__box
-              %div#output-box
+              %ul#output-box
                 %div#image-input{tabindex:"0"}
                   = f.label :images, for: "item_images0", class: 'sell-container__content__upload__items__box__label', data: {label_id: 0 } do
                     = f.file_field :images, multiple: true, class: "sell-container__content__upload__items__box__input", id: "item_images0", style: 'display: none;'
                     %pre
-                      ドラッグアンドドロップ
-                      またはクリックしてファイルをアップロード
-        .error-messages#error-image
+                    クリックしてファイルをアップロード
       %hr
 
       -#商品名部分
@@ -58,7 +56,7 @@
                 %span.sell-title__require
                   必須
               .sell-collection_select
-                = f.collection_select :category_id, Category.where(ancestry: nil), :id, :name, {prompt: "選択してください"}, {class: "sell-collection_select__label", id: "parent_category"}
+                = f.collection_select :category_id, @category_parent_array, :id, :name, {prompt: "選択して下さい"}, {class: "sell-collection_select__label", id: "parent_category"}
             .error-messages#error-category
 
             .sell-title
