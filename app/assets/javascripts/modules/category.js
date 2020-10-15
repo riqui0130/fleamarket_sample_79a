@@ -5,7 +5,7 @@ $(document).on('turbolinks:load', function(){
     return optionHtml;
   }
   // 親カテゴリー選択後のイベント
-  $('#category-select-parent').on('change', function(){
+  $('#category-parent').on('change', function(){
     let parentCategoryId = $(this).val();
     //選択された親カテゴリーのIDを取得
     if (parentCategoryId == ''){

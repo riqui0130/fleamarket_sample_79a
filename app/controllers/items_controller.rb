@@ -7,8 +7,7 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    @category_parent_array = ['選択して下さい']
-    @category_parent_array = Category.where(ancestry: nil)
+    @category_parent = Category.where(ancestry: nil)
   end
 
   def get_category_children
@@ -28,5 +27,9 @@ class ItemsController < ApplicationController
   end
 
   private
+
+  def item_params
+    # params.require(:item).permit(:name, :text, :category_id, :status_id, :postage_id, :prefecture_id, :shippingday_id, :price, images: []).merge(user_id: current_user.id)
+  end
 
 end
