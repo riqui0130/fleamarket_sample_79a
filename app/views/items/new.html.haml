@@ -74,7 +74,7 @@
                 %span.sell-title__require
                   必須
             .sell-collection_select
-              = f.collection_select :status_id, Status.all, :id, :name, {prompt: "選択してください"}, {class: "sell-collection_select__label"}
+              = f.collection_select :status_id, Status.all, :id, :name, {prompt: "選択してください"}, {class: "sell-collection_select__label", id: 'status-select'}
             .error-messages#error-status
         %hr
 
@@ -89,7 +89,7 @@
                 %span.sell-title__require
                   必須
             .sell-collection_select
-              = f.collection_select :postage_id, Postage.all, :id, :name, {prompt: "選択してください"}, {class: "sell-collection_select__label"}
+              = f.collection_select :postage_id, Postage.all, :id, :name, {prompt: "選択してください"}, {class: "sell-collection_select__label", id: 'postage-select'}
           .error-messages#error-postage
 
             .sell-title
@@ -98,7 +98,7 @@
                 %span.sell-title__require
                   必須
             .sell-collection_select
-              = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択してください"}, {class: "sell-collection_select__label"}
+              = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択してください"}, {class: "sell-collection_select__label", id: 'prefecture-select'}
             .error-messages#error-pref
 
             .sell-title
@@ -107,7 +107,7 @@
                 %span.sell-title__require
                   必須
             .sell-collection_select
-              = f.collection_select :shippingday_id, ShippingDay.all, :id, :name, {prompt: "選択してください"}, {class: "sell-collection_select__label"}
+              = f.collection_select :shippingday_id, ShippingDay.all, :id, :name, {prompt: "選択してください"}, {class: "sell-collection_select__label", id: 'shippingday-select'}
             .error-messages#error-shippingday
         %hr
 

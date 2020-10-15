@@ -135,7 +135,7 @@ $(document).on('turbolinks:load', function(){
     });
 
     //状態
-    $('#condition-select').on('blur',function(){
+    $('#status-select').on('blur',function(){
       let value = $(this).val();
       if(value == ""){
         $('#error-status').text('*選択して下さい');
@@ -147,7 +147,7 @@ $(document).on('turbolinks:load', function(){
     });
 
     //送料負担
-    $('#deliverycost-select').on('blur',function(){
+    $('#postage-select').on('blur',function(){
       let value = $(this).val();
       if(value == ""){
         $('#error-postage').text('*選択して下さい');
@@ -159,7 +159,7 @@ $(document).on('turbolinks:load', function(){
     });
 
     //発送元
-    $('#pref-select').on('blur',function(){
+    $('#prefecture-select').on('blur',function(){
       let value = $(this).val();
       if(value == ""){
         $('#error-pref').text('*選択して下さい');
@@ -171,7 +171,7 @@ $(document).on('turbolinks:load', function(){
     });
 
     //発送までの日数
-    $('#delivery_days-select').on('blur',function(){
+    $('#shippingday-select').on('blur',function(){
       let value = $(this).val();
       if(value == ""){
         $('#error-shippingday').text('*選択して下さい');
