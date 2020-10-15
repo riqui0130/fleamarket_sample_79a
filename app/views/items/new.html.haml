@@ -5,8 +5,8 @@
 
   -#メイン部分
   .main
+  = form_with model: @item, local: true do |f|
     %section.sell-container
-      = form_with local: true do |f|
 
         -# 画像部分
         .sell-container__content
