@@ -94,7 +94,7 @@
           .product-box__list
             = link_to item_path(item.id), class: 'new-product' do
               %figure.product-box__img
-                = image_tag "sample3.jpg", size: "220x150"
+                = image_tag item.pictures[0].picture_url, size: "220x150"
               .product-box__body
                 %h3.name 
                   = item.item_name
@@ -131,7 +131,7 @@
         .product-box__list
           = link_to '#', class:'new-product' do
             %figure.product-box__img
-              = image_tag "sample2.jpg", size: "220x150"
+              = image_tag "sample1.jpg", size: "220x150"
             .product-box__body
               %h3.name 冷やし坦々麺
               .detail
@@ -144,7 +144,7 @@
         .product-box__list
           = link_to '#', class: 'new-product' do
             %figure.product-box__img
-              = image_tag "sample3.jpg", size: "220x150"
+              = image_tag "sample1.jpg", size: "220x150"
             .product-box__body
               %h3.name 変な魚
               .detail
