@@ -85,7 +85,7 @@ $(document).on('turbolinks:load', function(){
     });
 
     //送信しようとした時
-    $('form').on('submit',function(){
+    $('sell-btn').on('submit',function(){
       let imageLength = $('#output-box').children('li').length;
       if(imageLength ==''){
         $('body, html').animate({ scrollTop: 0 }, 500);
@@ -133,6 +133,30 @@ $(document).on('turbolinks:load', function(){
         $(this).css('border-color','rgb(204, 204, 204)');
       }
     });
+
+    //カテゴリーのエラーハンドリング
+    // function categoryError(categorySelect){
+    //   let value = $(categorySelect).val();
+    //   if(value == ""){
+    //     $('#error-category').text('選択して下さい');
+    //     $(categorySelect).css('border-color','red');
+    //   }else{
+    //     $('#error-category').text('');
+    //     $(categorySelect).css('border-color','rgb(204, 204, 204)');
+    //   }
+    // };
+    // //親カテゴリー
+    // $('#parent-category').on('blur',function(){
+    //   categoryError('#parent-category')
+    // });
+    // //子カテゴリー
+    // $('.sell-container__content__details').on('blur', '#category-select-children', function(){
+    //   categoryError('#category-select-children')
+    // });
+    // //孫カテゴリー
+    // $('.sell-container__content__details').on('blur', '#category-select-grandchildren', function(){
+    //   categoryError('#category-select-grandchildren')
+    // });
 
     //状態
     $('#status-select').on('blur',function(){
