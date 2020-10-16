@@ -57,13 +57,7 @@
                 %span.sell-title__require
                   必須
               .sell-collection_select
-                .pulldown#partent_box
-                  = f.select :category_id, options_for_select( @category_parent_array.map{|c| [c[:name], c[:id]]}),{include_blank: "選択してください"}, { class: "parent_category_box", id: "parent_category"}
-                .pulldown.item_input__body__category__children#children_box
-                  -#親カテゴリー選択によって子カテゴリー表示
-                .pulldown.item_input__body__category__grandchildren#grandchildren_box
-                  -#子カテゴリー選択によって孫カテゴリー表示
-                  -# = f.collection_select :category_id, @category_parent_array, :id, :name, {prompt: "選択して下さい"}, {class: "sell-collection_select__category", id: "parent_category"}
+                = f.collection_select :category_id, @category_parent_array, :id, :name, {prompt: "選択して下さい"}, {class: "sell-collection_select__category", id: "parent_category"}
               .error-messages#error-category
 
             .sell-title
