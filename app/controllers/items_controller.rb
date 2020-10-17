@@ -11,4 +11,7 @@ class ItemsController < ApplicationController
     @item.pictures.build
   end
   
+  def buy
+  end
+  
 end

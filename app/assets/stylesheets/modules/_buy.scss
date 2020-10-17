@@ -1,0 +1,150 @@
+* {
+  box-sizing: border-box;
+}
+body{
+  background-color: rgb(245,245,245);
+}
+.Header-buy{
+  height: 150px;
+  display: flex;
+  justify-content: center; /*左右中央揃え*/
+  align-items:center;  /*上下中央揃え*/
+}
+.Contents-buy{
+  width:900px;
+  height:1600px;
+  background-color: #fff;
+  margin:0 auto;
+  &__title{
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+  }
+  &__items{
+    border-top: 1px solid rgb(245, 245, 245);
+    height:200px;
+    width:500px;
+    margin:0 auto;
+    margin-top:50px;
+    display: Flex;
+    &--image{
+      margin:25px;
+    }
+    &--introduction{
+      margin-top: 25px;
+      .Price-block{
+        text-align: right;
+      }
+    }
+  }
+  &__payment{
+    border-top: 1px solid rgb(245, 245, 245);
+    height:50px;
+    width:500px;
+    margin:0 auto;
+    margin-top:50px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    div{
+      height:50px;
+      font-size:25px;
+    }
+  }
+  &__creditcard{
+    border-top: 1px solid rgb(245, 245, 245);
+    height:200px;
+    width:500px;
+    margin:0 auto;
+    margin-top:50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &--btn{
+      height:50px;
+      width:300px;
+      background-color:#ccc;
+      color:white;
+      border-radius:4px;
+      border:1px solid #ccc;
+      color:gray;
+      font-size: 17px;
+      font-family: Arial, Helvetica, sans-serif;
+      P{
+        text-align: center;
+        line-height: 50px;
+      }
+
+    }
+  }
+  &__distination{
+    border-top: 1px solid rgb(245, 245, 245);
+    width:500px;
+    margin-top: 50px;
+    margin:0 auto;
+    &--block{
+      height: 40px;
+      width:500px;
+      margin-bottom: 50px;
+      label{
+        font-size:18px;
+        font-weight: 600;
+      }
+      span{
+        background-color: #ea352d;
+        margin:0 0 0 8px;
+        padding:2px 4px;
+        border-radius:2px;
+        color:#fff;
+        font-size:12px;
+        vertical-align:top;
+        border-style:solid;
+        border-width:0;
+        font-family: inherit;
+        display:inline-block;
+      }
+      .input{
+        width:100%;
+        height:50px;
+        text-rendering:auto;
+        border-radius:4px;
+        border:1px solid #ccc;
+        line-height: 1.5;
+        font-size: 16px;
+        padding-left: 10px;
+      }
+    }
+  }
+  &__btn{
+    border-top: 1px solid rgb(245, 245, 245);
+    display: block;
+    height:50px;
+    width:500px;
+    background-color:#ccc;
+    color:gray;
+    font-size: 17px;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius:4px;
+    border:1px solid transparent;
+    margin:0 auto;
+    margin-top:100px;
+  }
+}
+.Footer-buy{
+  background-color:rgb(245,245,245);
+  height:300px;
+  &__ul-box{
+    text-align: center;
+    font-size: 13px;
+    padding-top:25px;
+  }
+  &__logo{
+    text-align: center;
+    justify-content: center;
+    margin:50px 0;
+  p{
+    font-size: 15px;
+  }
+  }
+}
+
