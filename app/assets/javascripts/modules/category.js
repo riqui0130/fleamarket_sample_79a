@@ -1,34 +1,34 @@
 $(document).on('turbolinks:load', function(){
   function appendOption(category){
-    var html = `<option value="${category.id}">${category.name}</option>`;
-    return html;
+    var Html = `<option value="${category.id}">${category.name}</option>`;
+    return Html;
   }
 
   // 子カテゴリーの表示作成
-  function appendChidrenBox(insertHTML){
+  function appendChidrenBox(insertHtml){
     var childSelectHtml = '';
-    childSelectHtml = `<select class="sell-collection_select__category" id="child_category" name="item[category_id]">
+    childSelectHtml = `<select class="sell-collection_select__category__a" id="child_category" name="item[category_id]">
                           <option value>選択して下さい</option>
                           ${insertHtml}
                         </select>`;
-    $('.sell-collection_select').append(childSelectHtml);
+    $('.sell-collection_select__category').append(childSelectHtml);
   }
   // 孫カテゴリーの表示作成
-  function appendGrandchidrenBox(insertHTML){
+  function appendGrandchidrenBox(insertHtml){
     var grandchildSelectHtml = '';
-    grandchildSelectHtml = `<select class="sell-collection_select__category" id="grandchild_category" name="item[category_id]">
+    grandchildSelectHtml = `<select class="sell-collection_select__category__a" id="grandchild_category" name="item[category_id]">
                               <option value>選択して下さい</option>
                               ${insertHtml}
                             </select>`;
-    $('.sell-collection_select').append(grandchildSelectHtml);
+    $('.sell-collection_select__category').append(grandchildSelectHtml);
   }
 
     // 親カテゴリー選択後のイベント
     $('#parent_category').on('change', function(){
-      var parentCategory = document.getElementById('parent_category').value;
-      if (parentCategory != ''){
+      var parentCategoryId = document.getElementById('parent_category').value;
+      if (parentCategoryId != ''){
         $.ajax({
-          url: '/items/category_children',
+          url: '/items/get_category_children',
           type: 'GET',
           data: { parent_id: parentCategoryId },
           dataType: 'json'
@@ -40,7 +40,7 @@ $(document).on('turbolinks:load', function(){
         children.forEach(function(child){
           insertHtml += appendOption(child);
         });
-        appendChidrenBox(insertHTML);
+        appendChidrenBox(insertHtml);
       })
       .fail(function(){
         alert('カテゴリー取得に失敗しました');
@@ -51,23 +51,23 @@ $(document).on('turbolinks:load', function(){
      }
   });
   // 子カテゴリー選択後のイベント
-  $('.sell-collection_select').on('change', '#child_category', function(){
+  $('.sell-collection_select__category').on('change', '#child_category', function(){
     var childId = $('#child_category option:selected').data('category');
     if (childId != ''){
       $.ajax({
-        url: '/items/category_grandchildren',
+        url: '/items/get_category_grandchildren',
         type: 'GET',
-        data: { child_id: childrenCategoryId },
+        data: { child_id: childId },
         dataType: 'json'
       })
       .done(function(grandchildren){
         if (grandchildren.length != 0) {
           $('#grandchild_category').remove();
           var insertHtml = '';
-          category_grandchildren.forEach(function(grandchild){
+          grandchild_category.forEach(function(grandchild){
             insertHtml += categoryOption(grandchild);
           });
-          appendGrandchidrenBox(insertHTML);
+          appendGrandchidrenBox(insertHtml);
         }
       })
       .fail(function(){
