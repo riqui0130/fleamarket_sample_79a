@@ -52,12 +52,12 @@ $(document).on('turbolinks:load', function(){
   });
   // 子カテゴリー選択後のイベント
   $('#child_category').on('change', function(){
-    var childId = $('#child_category option:selected').data('category');
-    if (childId != ''){
+    var childCategoryId = document.getElementById('child_category').value;
+    if (childCategoryId != ''){
       $.ajax({
         url: '/items/get_category_grandchildren',
         type: 'GET',
-        data: { child_id: childId },
+        data: { child_id: childCategoryId },
         dataType: 'json'
       })
       .done(function(grandchildren){
