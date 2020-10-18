@@ -51,7 +51,7 @@ $(document).on('turbolinks:load', function(){
      }
   });
   // 子カテゴリー選択後のイベント
-  $('.sell-collection_select__category').on('change', '#child_category', function(){
+  $('#child_category').on('change', function(){
     var childId = $('#child_category option:selected').data('category');
     if (childId != ''){
       $.ajax({
@@ -64,8 +64,8 @@ $(document).on('turbolinks:load', function(){
         if (grandchildren.length != 0) {
           $('#grandchild_category').remove();
           var insertHtml = '';
-          grandchild_category.forEach(function(grandchild){
-            insertHtml += categoryOption(grandchild);
+          grandchildren.forEach(function(grandchild){
+            insertHtml += appendOption(grandchild);
           });
           appendGrandchidrenBox(insertHtml);
         }
@@ -74,7 +74,7 @@ $(document).on('turbolinks:load', function(){
         alert('カテゴリー取得に失敗しました');
       });
     }else{
-      $('#grandchild-category').remove();
+      $('#grandchild_category').remove();
     }
   }); 
 });
