@@ -261,9 +261,10 @@ body {
 
       &__head {
         text-align: center;
-        .new-product {
+        .product-head {
           text-decoration: none;
         }
+
         .title {
           font-weight: bold;
           color: #3CCACE;
@@ -295,6 +296,30 @@ body {
         overflow: hidden;
         margin: 0;
         z-index: auto;
+
+        .items-sold {
+          width: 0;
+          height: 0;
+          border-width: 100px 100px 0 0;
+          border-color: #db2113 transparent transparent transparent;
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 1;
+          border-style: solid;
+          &__inner {
+            top: -80px;
+            font-size: 25px;
+            position: absolute;
+            left: 0;
+            z-index: 2;
+            color: #fff;
+            transform: rotate(-45deg);
+            letter-spacing: 2px;
+            font-weight: 600;
+          }
+        }
       }
       &__body {
         background-color: white;
@@ -338,9 +363,10 @@ body {
 
       &__head {
         text-align: center;
-        .new-product {
+        .product-head {
           text-decoration: none;
         }
+
         .title {
           font-weight: bold;
           color: #3CCACE;
@@ -372,6 +398,30 @@ body {
         overflow: hidden;
         margin: 0;
         z-index: auto;
+
+        .items-sold {
+          width: 0;
+          height: 0;
+          border-width: 100px 100px 0 0;
+          border-color: #db2113 transparent transparent transparent;
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 1;
+          border-style: solid;
+          &__inner {
+            top: -80px;
+            font-size: 25px;
+            position: absolute;
+            left: 0;
+            z-index: 2;
+            color: #fff;
+            transform: rotate(-45deg);
+            letter-spacing: 2px;
+            font-weight: 600;
+          }
+        }
       }
       &__body {
         background-color: white;

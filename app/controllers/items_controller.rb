@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :set_category, only: [:new, :edit, :create, :update, :destroy]
   def index
+    @items = Item.all.limit(5)
   end
 
   def show
@@ -9,6 +10,7 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     # @item.images.new
+    @item.pictures.build
   end
 
   def get_category_children
