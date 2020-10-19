@@ -33,7 +33,7 @@ class ItemsController < ApplicationController
 
   private
 
-  def set_category 
+  def set_category
     @category_parent_array = Category.where(ancestry: nil)
   end
 

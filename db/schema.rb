@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2020_10_15_172407) do
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["ancestry"], name: "index_categories_on_ancestry"
   end
 
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -33,9 +34,9 @@ ActiveRecord::Schema.define(version: 2020_10_15_172407) do
     t.integer "price", null: false
     t.string "name", null: false
     t.text "detail", null: false
-    t.integer "condition_id", null: false
-    t.integer "delivery_days_id", null: false
-    t.integer "deliverycost_id", null: false
+    t.integer "postage_id", null: false
+    t.integer "status_id", null: false
+    t.integer "shippingday_id", null: false
     t.integer "prefecture_id", null: false
     t.string "brand"
     t.bigint "category_id", null: false
