@@ -8,6 +8,26 @@
   = form_with model: @item, local: true do |f|
     %section.sell-container
 
+      -# 画像部分
+      .sell-container__content
+        .sell-title
+          %h3.sell-title__text
+            出品画像
+            %span.sell-title__require
+              必須
+        .sell-container__content__max-sheet 最大10枚までアップロードできます
+        .sell-container__content__upload
+          .sell-container__content__upload__items
+            .sell-container__content__upload__items__box
+              %ul#output-box
+                %div#image-input{tabindex:"0"}
+                  = f.label :images, for: "item_images0", class: 'sell-container__content__upload__items__box__label', data: {label_id: 0 } do
+                    = f.file_field :images, multiple: true, class: "sell-container__content__upload__items__box__input", id: "item_images0", style: 'display: none;'
+                    %pre
+                    クリックしてファイルをアップロード
+        .error-messages#error-image
+        %hr
+
       -#商品名部分
       .sell-container__content
         .sell-title
