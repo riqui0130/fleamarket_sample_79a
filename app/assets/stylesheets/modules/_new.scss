@@ -1,3 +1,11 @@
+.error-messages{
+  color: #ff0211;
+  font-size: 14px;
+  line-height: 1.4em;
+  margin: 16px 0;
+  box-sizing: border-box;
+}
+
 .sell-title{
   align-items: center;
   margin: 0!important;
@@ -6,6 +14,7 @@
     font-size: 14px;
     font-weight: 600;
     line-height: 1.4em;
+    color: black;
   }
   &__require{
     margin-left: 8px;
@@ -54,6 +63,14 @@
     height: 48px;
   }
 }
+.sell-collection_select__category{
+  &__a{
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  height: 48px;
+  }
+}
 .sell-collection_bland{
   box-sizing: border-box;
   &__name{
@@ -67,7 +84,6 @@
     width: 100%;
   }
 }
-
 .sell {
   box-sizing: border-box;
   position: relative;
@@ -90,13 +106,13 @@
     width: 100%;
     margin: 0px auto;
     background-color: rgb(255, 255, 255);
-    // 画像部分
     &__content{
       height: auto;
       padding: 40px;
       border-bottom: 1px;
       border-bottom-color: #efefef;
       border-bottom-style: solid;
+      // 画像部分
       &__max-sheet{
         margin-top: 16px;
       }
@@ -123,6 +139,35 @@
               flex-wrap: wrap;
               width: 100%;
               height: auto;
+              .preview-image{
+                box-sizing: border-box;
+                height: 150px;
+                width: 20%;
+                padding: 0px 4px;
+                margin-top: 8px;
+                &__figure{
+                  margin:0 auto;
+                  height: 118px;
+                  background-color: rgb(245, 245, 245);
+                  img{
+                    box-sizing: border-box;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                  }
+                }
+                &__button{
+                  border-top-width: 1px;
+                  border-top-color: rgb(204, 204, 204);
+                  border-top-style: solid;
+                  background-color: rgb(245, 245, 245);
+                  justify-content: space-around;
+                  display: flex;
+                  align-items: center;
+                  height: 32px;
+                  color: rgb(0, 149, 238);
+                }
+              }
               #image-input{
                 box-sizing: border-box;
                 height: 100%;
@@ -146,10 +191,8 @@
           }
         }
       }
-    }
 
-    // 商品名部分
-    &__content{
+      // 商品名部分
       &__name{
         margin-top: 16px;
         margin-bottom: 16px;
@@ -202,21 +245,21 @@
         text-align: right;
       }
     }
-    .submit-btn{
-      box-sizing: border-box;
-      margin: 0 auto;
-      width: 360px;
-      &__sell-btn{
-        background-color: #ea352d;
-        color: #fff;
-        margin-top: 24px;
-        margin-bottom: 24px;
-        width: 100%;
-        font-size: 17px;
-        height: 48px;
-        font-weight: 600;
-        border-radius: 4px;
-      }
+  }
+  .sell-btn{
+    box-sizing: border-box;
+    margin: 0 auto;
+    width: 360px;
+    &__a{
+      width: 100%;
+      background-color: #ea352d;
+      color: #fff;
+      margin-top: 24px;
+      margin-bottom: 24px;
+      font-size: 17px;
+      height: 48px;
+      font-weight: 600;
+      border-radius: 4px;
     }
   }
   .sell-footer{

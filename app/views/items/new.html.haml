@@ -2,50 +2,30 @@
   %header.sell-header
     = link_to '/' do
       = image_tag 'http://furima.tokyo/assets/logo-d3d78326971d78b06e3d6f0ba666d025a8ad681286b4d9e00e7dbe8673bcfd23.svg', alt: 'furima', height: '49', width: '185'
-
+  
   -#メイン部分
   .main
+  = form_with model: @item, local: true do |f|
     %section.sell-container
-      = form_with local: true do |f|
 
-        -# 画像部分
-        .sell-container__content
-          .sell-title
-            %h3.sell-title__text
-              出品画像
-              %span.sell-title__require
-                必須
-          .sell-container__content__max-sheet 最大10枚までアップロードできます
-          .sell-container__content__upload
-            .sell-container__content__upload__items
-              .sell-container__content__upload__items__box
-                %ul#output-box
-                  %div#image-input{tabindex:"0"}
-                    = f.label :images, for: "item_images0", class: 'sell-container__content__upload__items__box__label', data: {label_id: 0 } do
-                      = f.file_field :images, multiple: true, class: "sell-container__content__upload__items__box__input", id: "item_images0", style: 'display: none;'
-                      %pre
-                      クリックしてファイルをアップロード
-        .error-messages#error-image
-        %hr
+      -#商品名部分
+      .sell-container__content
+        .sell-title
+          %h3.sell-title__text
+            商品名
+            %span.sell-title__require
+              必須
+        = f.text_field :name, class:'sell-container__content__name', required: "required", placeholder: '商品名（必須 40文字まで)'
+        .error-messages#error-name
 
-        -#商品名部分
-        .sell-container__content
-          .sell-title
-            %h3.sell-title__text
-              商品名
-              %span.sell-title__require
-                必須
-          = f.text_field :name, class:'sell-container__content__name', required: "required", placeholder: '商品名（必須 40文字まで)'
-          .error-messages#error-name
-
-          .sell-title
-            %h3.sell-title__text
-              商品の説明
-              %span.sell-title__require
-                必須
-          = f.text_area :text, class:'sell-container__content__description', required: "required", rows: '7', maxlength: '1000', placeholder: '商品説明　（色、素材、重さ、定価、注意点など）'
-          .error-messages#error-text
-        %hr
+        .sell-title
+          %h3.sell-title__text
+            商品の説明
+            %span.sell-title__require
+              必須
+        = f.text_area :text, class:'sell-container__content__description', required: "required", rows: '7', maxlength: '1000', placeholder: '商品説明　（色、素材、重さ、定価、注意点など）'
+        .error-messages#error-text
+      %hr
 
         -# 詳細部分
         .sell-container__content
@@ -56,9 +36,9 @@
                 カテゴリー
                 %span.sell-title__require
                   必須
-            .sell-collection_select
-              = select_tag 'card[category]', options_for_select(["選択して下さい", "レディース", "メンズ", "ベビー・キッズ", "インテリア・スマイ・小物", "本・音楽・ゲーム", "おもちゃ・ホビー・グッズ", "コスメ・香水・美容", "家電・スマホ・カメラ", "スポーツ・レジャー", "その他"])
-            .error-messages#error-category
+              .sell-collection_select__category
+                = f.collection_select :category_id, @category_parent_array, :id, :name, {prompt: "選択して下さい"}, {class: "sell-collection_select__category__a", id: "parent_category"}
+              .error-messages#error-category
 
             .sell-title
               %h3.sell-title__text
@@ -74,8 +54,8 @@
                 %span.sell-title__require
                   必須
             .sell-collection_select
-              = select_tag 'card[condition]', options_for_select(["選択して下さい", "新品・未使用", "未使用に近い", "目立った傷や汚れなし", "やや傷や汚れなし", "傷や汚れあり"])
-            .error-messages#error-condition
+              = f.collection_select :status_id, Status.all, :id, :name, {prompt: "選択してください"}, {class: "sell-collection_select__label", id: 'status-select'}
+            .error-messages#error-status
         %hr
 
         -# 配送部分
@@ -89,8 +69,8 @@
                 %span.sell-title__require
                   必須
             .sell-collection_select
-              = select_tag 'card[deliverycost]', options_for_select(["選択して下さい", "送料込み(出品者負担)", "着払い(購入者負担)"])
-            .error-messages#error-deliverycost
+              = f.collection_select :postage_id, Postage.all, :id, :name, {prompt: "選択してください"}, {class: "sell-collection_select__label", id: 'postage-select'}
+          .error-messages#error-postage
 
             .sell-title
               %h3.sell-title__text
@@ -98,7 +78,7 @@
                 %span.sell-title__require
                   必須
             .sell-collection_select
-              = select_tag 'card[pref]', options_for_select(["選択して下さい", "北海道", "青森県", "岩手県", "宮城県", "秋田県", "山形県", "福島県", "茨城県", "栃木県", "群馬県", "埼玉県", "千葉県", "東京都", "神奈川県", "新潟県", "富山県", "石川県", "福井県", "山梨県", "長野県", "岐阜県", "静岡県", "愛知県", "三重県", "滋賀県", "京都府", "大阪府", "兵庫県", "奈良県", "和歌山県", "鳥取県", "島根県", "岡山県", "広島県", "山口県", "徳島県", "香川県", "愛媛県", "高知県", "福岡県", "佐賀県", "長崎県", "熊本県", "大分県", "宮崎県", "鹿児島県", "沖縄県", "海外"])
+              = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択してください"}, {class: "sell-collection_select__label", id: 'prefecture-select'}
             .error-messages#error-pref
 
             .sell-title
@@ -107,8 +87,8 @@
                 %span.sell-title__require
                   必須
             .sell-collection_select
-              = select_tag 'card[delivery_days]', options_for_select(["選択してください", "1~2日で発送", "2~3日で発送", "4~7日で発送"])
-            .error-messages#error-delivery_days
+              = f.collection_select :shippingday_id, ShippingDay.all, :id, :name, {prompt: "選択してください"}, {class: "sell-collection_select__label", id: 'shippingday-select'}
+            .error-messages#error-shippingday
         %hr
 
         -# 価格部分
@@ -128,8 +108,8 @@
           .error-messages#error-price
         %hr
 
-          .submit-btn
-            = f.submit '出品する', class: 'submit-btn__sell-btn'
+        .sell-btn
+          = f.submit '出品する', class:"sell-btn__a"
 
   %footer.sell-footer
     %nav
