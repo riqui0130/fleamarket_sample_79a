@@ -1,9 +1,8 @@
 $(document).on('turbolinks:load', function(){
   function appendOption(category){
-    var html = `<option value="${category.id}" data-category="${category.id}">${category.name}</option>`;
+    var html = `<option value="${category.id}">${category.name}</option>`;
     return html;
   }
-
   // 子カテゴリーの表示作成
   function appendChidrenBox(inserthtml){
     var childSelectHtml = '';
@@ -22,10 +21,9 @@ $(document).on('turbolinks:load', function(){
                             </select>`;
     $('.sell-collection_select__category').append(grandchildSelectHtml);
   }
-
   // 親カテゴリー選択後のイベント
-  $('#parent-category').on('change', function(){
-    var parentCategoryId = document.getElementById('parent-category').value;
+  $('#parent_category').on('change', function(){
+    var parentCategoryId = document.getElementById('parent_category').value;
     if (parentCategoryId != ''){
       $.ajax({
         url: '/items/get_category_children',
@@ -76,5 +74,5 @@ $(document).on('turbolinks:load', function(){
     }else{
       $('#grandchild_category').remove();
     }
-  }); 
+  });
 });

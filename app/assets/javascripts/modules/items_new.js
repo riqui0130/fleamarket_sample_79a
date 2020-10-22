@@ -11,7 +11,7 @@ $(document).on('turbolinks:load', function(){
     }
   });
   // カテゴリー
-  $('#parent-category').on('blur',function(){
+  $('#parent_category').on('blur',function(){
     let value = $(this).val();
     if(value == ""){
       $('#error-category').text('*選択してください');
