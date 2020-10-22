@@ -4,7 +4,6 @@ class ItemsController < ApplicationController
   
   def index
     @items = Item.all.limit(5)
-    @item_images = ItemImage.all
   end
 
   def show
@@ -13,6 +12,8 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
   #   @item.pictures.build
+    @category_parent_array = ["選択して下さい"]
+    @category_parent_array = Category.where(ancestry: nil)
   end
 
   def get_category_children
@@ -25,7 +26,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to root_path, alert: "出品しました"
+      redirect_to root_path, active: "出品しました"
     else
       render :new, alert: "出品できません。入力必須項目を確認してください"
     end
