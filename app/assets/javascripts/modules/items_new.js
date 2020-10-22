@@ -10,6 +10,17 @@ $(document).on('turbolinks:load', function(){
       $(this).css('border-color','rgb(204, 204, 204)');
     }
   });
+  // カテゴリー
+  $('#parent-category').on('blur',function(){
+    let value = $(this).val();
+    if(value == ""){
+      $('#error-category').text('*選択してください');
+      $(this).css('border-color','red');
+    }else{
+      $('#error-category').text('');
+      $(this).css('border-color','rgb(204, 204, 204)');
+    }
+  });
   //商品説明
   $('.sell-container__content__description').on('blur',function(){
     let value = $(this).val();

@@ -1,31 +1,31 @@
 $(document).on('turbolinks:load', function(){
   function appendOption(category){
-    var Html = `<option value="${category.id}">${category.name}</option>`;
-    return Html;
+    var html = `<option value="${category.id}" data-category="${category.id}">${category.name}</option>`;
+    return html;
   }
 
   // 子カテゴリーの表示作成
-  function appendChidrenBox(insertHtml){
+  function appendChidrenBox(inserthtml){
     var childSelectHtml = '';
-    childSelectHtml = `<select class="sell-collection_select__category__a" id="category_child" name="item[category_id]">
+    childSelectHtml = `<select class="sell-collection_select__category__a" id="child_category" name="item[category_id]">
                           <option value>選択して下さい</option>
-                          ${insertHtml}
+                          ${inserthtml}
                         </select>`;
     $('.sell-collection_select__category').append(childSelectHtml);
   }
   // 孫カテゴリーの表示作成
-  function appendGrandchidrenBox(insertHtml){
+  function appendGrandchidrenBox(inserthtml){
     var grandchildSelectHtml = '';
-    grandchildSelectHtml = `<select class="sell-collection_select__category__a" id="category_grandchild" name="item[category_id]">
+    grandchildSelectHtml = `<select class="sell-collection_select__category__a" id="grandchild_category" name="item[category_id]">
                               <option value>選択して下さい</option>
-                              ${insertHtml}
+                              ${inserthtml}
                             </select>`;
     $('.sell-collection_select__category').append(grandchildSelectHtml);
   }
 
   // 親カテゴリー選択後のイベント
-  $('#category_parent').on('change', function(){
-    var parentCategoryId = document.getElementById('category_parent').value;
+  $('#parent-category').on('change', function(){
+    var parentCategoryId = document.getElementById('parent-category').value;
     if (parentCategoryId != ''){
       $.ajax({
         url: '/items/get_category_children',
@@ -34,25 +34,25 @@ $(document).on('turbolinks:load', function(){
         dataType: 'json'
       })
     .done(function(children){
-      $('#category_child').remove();
-      $('#category_grandchild').remove();
-      var insertHtml = '';
+      $('#child_category').remove();
+      $('#grandchild_category').remove();
+      var inserthtml = '';
       children.forEach(function(child){
-        insertHtml += appendOption(child);
+        inserthtml += appendOption(child);
       });
-      appendChidrenBox(insertHtml);
+      appendChidrenBox(inserthtml);
     })
     .fail(function(){
       alert('カテゴリー取得に失敗しました');
     })
     }else{
-    $('#category_child').remove(); //親カテゴリーが初期値になった時、子以下を削除する
-    $('#category_grandchild').remove();
+    $('#child_category').remove(); //親カテゴリーが初期値になった時、子以下を削除する
+    $('#grandchild_category').remove();
     }
   });
   // 子カテゴリー選択後のイベント
-  $('#category_child').on('change', function(){
-    var childCategoryId = document.getElementById('category_child').value;
+  $('#child_category').on('change', function(){
+    var childCategoryId = document.getElementById('child_category').value;
     if (childCategoryId != ''){
       $.ajax({
         url: '/items/get_category_grandchildren',
@@ -62,19 +62,19 @@ $(document).on('turbolinks:load', function(){
       })
       .done(function(grandchildren){
         if (grandchildren.length != 0) {
-          $('#category_grandchild').remove();
-          var insertHtml = '';
+          $('#grandchild_category').remove();
+          var inserthtml = '';
           grandchildren.forEach(function(grandchild){
-            insertHtml += appendOption(grandchild);
+            inserthtml += appendOption(grandchild);
           });
-          appendGrandchidrenBox(insertHtml);
+          appendGrandchidrenBox(inserthtml);
         }
       })
       .fail(function(){
         alert('カテゴリー取得に失敗しました');
       });
     }else{
-      $('#category_grandchild').remove();
+      $('#grandchild_category').remove();
     }
   }); 
 });

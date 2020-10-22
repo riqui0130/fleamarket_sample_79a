@@ -1,6 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_category, only: [:new, :edit, :create, :update, :destroy]
-  before_action :set_item, only: [:show, :edit, :update, :destroy, :purchase, :buy]
+  before_action :set_item, only:[:show, :destroy, :edit, :update, :purchase, :payment]
   
   def index
     @items = Item.all.limit(5)
