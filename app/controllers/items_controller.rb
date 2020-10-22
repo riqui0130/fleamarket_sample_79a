@@ -4,6 +4,7 @@ class ItemsController < ApplicationController
   
   def index
     @items = Item.all.limit(5)
+    @item_images = ItemImage.all
   end
 
   def show
@@ -11,7 +12,6 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    # @item.images.new
   #   @item.pictures.build
   end
 
