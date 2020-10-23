@@ -10,9 +10,13 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @item = Item.new
-    # @item.item_pictures.build
-    @category_parent_array = Category.where(ancestry: nil)
+    if user_signed_in?
+      @item = Item.new
+      # @item.item_pictures.build
+      @category_parent_array = Category.where(ancestry: nil)
+    else
+      redirect_to root_path, notice: 'ログインもしくはサインインしてください'
+    end
   end
 
   def create
