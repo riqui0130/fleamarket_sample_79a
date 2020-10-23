@@ -66,13 +66,13 @@ $(document).on('turbolinks:load', function(){
     }
   });
   //発送までの日数
-  $('#shippingday-select').on('blur',function(){
+  $('#days-select').on('blur',function(){
     let value = $(this).val();
     if(value == ""){
-      $('#error-shippingday').text('*選択して下さい');
+      $('#error-days').text('*選択して下さい');
       $(this).css('border-color','red');
     }else{
-      $('#error-shippingday').text('');
+      $('#error-days').text('');
       $(this).css('border-color','rgb(204, 204, 204)');
     }
   });

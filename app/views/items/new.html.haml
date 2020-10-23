@@ -107,8 +107,8 @@
                 %span.sell-title__require
                   必須
             .sell-collection_select
-              = f.collection_select :shippingday_id, ShippingDay.all, :id, :name, {prompt: "選択してください"}, {class: "sell-collection_select__label", id: 'shippingday-select'}
-            .error-messages#error-shippingday
+              = f.collection_select :days_id, Days.all, :id, :name, {prompt: "選択してください"}, {class: "sell-collection_select__label", id: 'days-select'}
+            .error-messages#error-days
         %hr
 
         -# 価格部分
