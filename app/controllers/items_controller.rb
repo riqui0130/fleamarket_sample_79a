@@ -24,7 +24,7 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to root_path, notice: "出品しました"
     else
-      @item = Item.new(@item_params)
+      @item = Item.new
       render :new
     end
   end
