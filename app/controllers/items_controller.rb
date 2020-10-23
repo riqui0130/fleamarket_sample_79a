@@ -12,17 +12,16 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    # @item.pictures.build
+    # @item.item_pictures.build
     @category_parent_array = Category.where(ancestry: nil)
   end
 
   def create
     @item = Item.new(item_params)
-    if @item.save
+    if @item.save!
+      item = Item.find(@item.id)
       redirect_to root_path, notice: "出品しました"
     else
-      @item = Item.new
-
       render :new, alert: "出品できません。入力必須項目を確認してください"
     end
   end
