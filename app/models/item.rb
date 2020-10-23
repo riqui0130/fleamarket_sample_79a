@@ -13,7 +13,6 @@ class Item < ApplicationRecord
   validates :postage_id, presence: true
   validates :days_id, presence: true
   validates :prefecture_id, presence: true
-  validates :category_id, presence: true
   validates :price,numericality: { only_integer: true,greater_than: 299, less_than: 9999999 }
 
   has_many :images, dependent: :destroy

@@ -10,13 +10,13 @@ class ItemsController < ApplicationController
   end
 
   def new
-    if user_signed_in?
+    # if user_signed_in?
       @item = Item.new
       # @item.item_pictures.build
       @category_parent_array = Category.where(ancestry: nil)
-    else
-      redirect_to root_path, notice: 'ログインもしくはサインインしてください'
-    end
+    # else
+    #   redirect_to root_path, notice: 'ログインもしくはサインインしてください'
+    # end
   end
 
   def create
@@ -24,7 +24,8 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to root_path, notice: "出品しました"
     else
-      render :new, alert: "出品できません。入力必須項目を確認してください"
+      @item = Item.new(@item_params)
+      render :new
     end
   end
 
