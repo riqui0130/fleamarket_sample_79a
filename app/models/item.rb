@@ -5,7 +5,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :postage
   belongs_to_active_hash :days
 
-  validate :images_presence
+  validate :item_images, presence: true
   validates :name, length: { maximum: 40 }, presence: true
   validates :detail, presence: true
   validates :price, presence: true
@@ -16,7 +16,7 @@ class Item < ApplicationRecord
   validates :category_id, presence: true
   validates :price,numericality: { only_integer: true,greater_than: 299, less_than: 9999999 }
 
-  has_many_attached :images
+  has_many :item_images, dependent: :destroy
   belongs_to :category
   has_many :pictures
   belongs_to :seller, class_name: "User", optional: true,foreign_key: "seller_id"

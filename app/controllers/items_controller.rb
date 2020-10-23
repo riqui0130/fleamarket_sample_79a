@@ -1,5 +1,4 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only:[:show, :destroy, :edit, :update, :purchase, :payment]
   before_action :set_current_user_products,only:[:p_transaction,:p_exhibiting,:p_soldout]
   before_action :set_user,only:[:p_transaction,:p_exhibiting,:p_soldout]
 
@@ -17,9 +16,8 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(item_params)
-    if @item.save!
-      item = Item.find(@item.id)
+    @item = Item.new(@item_params)
+    if @item.save
       redirect_to root_path, notice: "出品しました"
     else
       render :new, alert: "出品できません。入力必須項目を確認してください"
@@ -45,14 +43,14 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :text, :category_id, :status_id, :postage_id, :prefecture_id, :days_id, :price, images: [])
+    params.require(:item).permit(:name, :text, :category_id, :status_id, :postage_id, :prefecture_id, :days_id, :price, :images [])
   end
 
-  def set_current_user_products
+  def set_current_user_items
     if user_signed_in? 
-      @products = current_user.products.includes(:seller,:buyer,:auction,:product_images)
+      @items = current_user.items.includes(:seller,:buyer,:auction,:item_images)
     else
-      redirect_to new_user_session_path
+      redirect_to root_path
     end
   end
 
