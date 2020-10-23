@@ -19,6 +19,7 @@ class Item < ApplicationRecord
   has_many_attached :images
   belongs_to :category
   has_many :pictures
-  belongs_to :seller, class_name: "User"
-  belongs_to :buyer, class_name: "User"
+  belongs_to :seller, class_name: "User", optional: true,foreign_key: "seller_id"
+  belongs_to :buyer, class_name: "User", optional: true,foreign_key: "buyer_id"
+  belongs_to :auction, class_name: "User", optional: true,foreign_key: "auction_id"
 end

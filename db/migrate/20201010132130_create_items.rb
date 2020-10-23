@@ -13,6 +13,9 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.integer :prefecture_id, null: false
       t.string :brand
       t.references :category, null: false
+      t.references :seller, foreign_key: {to_table: :users} 
+      t.references :buyer, foreign_key: {to_table: :users}
+      t.references :auction, foreign_key: {to_table: :users}
       t.timestamps
     end
   end
