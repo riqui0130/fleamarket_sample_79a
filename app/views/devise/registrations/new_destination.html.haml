@@ -1,0 +1,57 @@
+.AccountPage
+  .AccountPage__header
+    %h1
+      = link_to "#", class: "Contents__btn" do
+        = image_tag 'logo.png', class: 'app'
+  .AccountPage__main
+    .AccountPage__container
+      %h2.AccountPage__title 商品送付先住所情報
+      .AccountPage__form
+        = form_for(@destination, url: destinations_path, method: :post) do |f|
+          = render "devise/shared/error_messages", resource: @destination
+          .AccountPage__content
+            .FormField
+              .FormField__label
+                = f.label :お名前（全角）
+                %span.FormField--require 必須
+              = f.text_field :family_name, class: 'FormField__input FormField__input--half FormField__input--half--first', placeholder: "例）山田"
+              = f.text_field :first_name, class: 'FormField__input FormField__input--half', placeholder: "例）彩"
+            .FormField
+              .FormField__label
+                = f.label :郵便番号
+                %span.FormField--require 必須
+                = f.text_field :post_code, class: 'FormField__input', placeholder: "郵便番号をハイフン(-)無しで７桁の半角数字で入力してください"
+            .FormField
+              .FormField__label
+                = f.label :都道府県
+                %span.FormField--require 必須
+                = f.text_field :prefecture, class: 'FormField__input', placeholder: "例）京都府"
+            .FormField
+              .FormField__label
+                = f.label :市区町村
+                %span.FormField--require 必須
+                = f.text_field :city, class: 'FormField__input', placeholder: "例）〇〇市"
+            .FormField
+              .FormField__label
+                = f.label :番地
+                %span.FormField--require 必須
+                = f.text_field :town, class: 'FormField__input', placeholder: "例）〇〇11-1"
+            .FormField
+              .FormField__label
+                = f.label :マンション名、部屋番号
+                = f.text_field :block, class: 'FormField__input'
+            .FormField
+              .FormField__label
+                = f.label :電話番号
+                = f.text_field :phone_number, class: 'FormField__input'
+          .AccountPage__content
+            = f.submit '登録する', class: "submit-btn", url: "destinations"
+  .AccountPage__footer
+    %ul.FooterLists
+      %li.FooterList プライバシーポリシー
+      %li.FooterList FURIMA利用規約
+      %li.FooterList 特定商取引に関する表記
+    = link_to "#", class: "FooterLogo" do
+      = image_tag 'logo-white.png', class: 'app'
+    .actions
+      = render "devise/shared/links"

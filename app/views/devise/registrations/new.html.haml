@@ -1,0 +1,66 @@
+.AccountPage
+  .AccountPage__header
+    %h1
+      = link_to "/" do
+        = image_tag 'logo.png', class: 'app'
+  .AccountPage__main
+    .AccountPage__container
+      %h2.AccountPage__title 会員情報入力
+      .AccountPage__form
+        = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+          = render "devise/shared/error_messages", resource: resource
+          .AccountPage__content
+            .FormField--first
+              .FormField__label
+                = f.label :ニックネーム
+                %span.FormField--require 必須
+                = f.text_field :nickname, class: 'FormField__input', placeholder: "例）フリマ太郎"
+            .FormField
+              .FormField__label
+                = f.label :メールアドレス
+                %span.FormField--require 必須
+                = f.email_field :email, class: 'FormField__input', placeholder: "PC・携帯どちらでも可"
+            .FormField
+              .FormField__label
+                = f.label :パスワード
+                %span.FormField--require 必須
+                = f.password_field :password, class: 'FormField__input', placeholder: "type a message", autocomplete: "off"
+            .FormField
+              .FormField__label
+                = f.label :パスワード確認
+                %span.FormField--require 必須
+                = f.password_field :password_confirmation, class: 'FormField__input',placeholder: "type a message", autocomplete: "off"
+            .FormField
+              %h3.text-left 本人確認
+              %p.single-text 安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
+            .FormField
+              .FormField__label
+                = f.label :お名前（全角）
+                %span.FormField--require 必須
+              = f.text_field :family_name, class: 'FormField__input FormField__input--half FormField__input--half--first', placeholder: "例）山田"
+              = f.text_field :first_name, class: 'FormField__input FormField__input--half', placeholder: "例）彩"
+            .FormField
+              .FormField__label
+                = f.label :お名前カナ（全角）
+                %span.FormField--require 必須
+              = f.text_field :family_name_kana, class: 'FormField__input FormField__input--half FormField__input--half--first', placeholder: "例）ヤマダ"
+              = f.text_field :first_name_kana, class: 'FormField__input FormField__input--half', placeholder: "例）アヤ"
+            .FormField
+              .FormField__label
+                = f.label :生年月日
+                %span.FormField--require 必須
+                %br
+              .FormField__birthday
+                =f.text_field :birth_day, class: 'FormField__input', placeholder: "例）20201019"
+            %p.info-text ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
+          .AccountPage__content
+            = f.submit "次へ進む", class: "form-btn", url: "destinations_path"
+  .AccountPage__footer
+    %ul.FooterLists
+      %li.FooterList プライバシーポリシー
+      %li.FooterList FURIMA利用規約
+      %li.FooterList 特定商取引に関する表記
+    = link_to "#", class: "FooterLogo" do
+      = image_tag 'logo-white.png', class: 'app'
+    .actions
+      = render "devise/shared/links"
