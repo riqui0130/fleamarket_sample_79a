@@ -21,12 +21,8 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(@item_params)
-    if @item.save
-      redirect_to root_path, notice: "出品しました"
-    else
-      @item = Item.new
-      render :new
-    end
+    redirect_to root_path, notice: "出品しました"
+
   end
 
   def i_exhibiting #出品中のアクション
