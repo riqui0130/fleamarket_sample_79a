@@ -1,0 +1,19 @@
+.AccountPage
+  .AccountPage__header
+    %h1
+      = link_to "#", class: "Contents__btn" do
+        = image_tag 'logo.png', class: 'app'
+  .AccountPage__main
+    .AccountPage__container
+      %h2.AccountPage__title 登録が完了しました
+      = link_to "トップページへ戻る", root_path
+          
+  .AccountPage__footer
+    %ul.FooterLists
+      %li.FooterList プライバシーポリシー
+      %li.FooterList FURIMA利用規約
+      %li.FooterList 特定商取引に関する表記
+    = link_to "#", class: "FooterLogo" do
+      = image_tag 'logo-white.png', class: 'app'
+    .actions
+      = render "devise/shared/links"

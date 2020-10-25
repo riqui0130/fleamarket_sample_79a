@@ -69,7 +69,8 @@ Things you may want to cover:
 ## items テーブル
 |Column|Type|Options|
 |------|----|-------|
-|user_id|integer|null: false, foreign_key: true|
+|seller_id|integer|null: false, foreign_key: true|
+|buyer_id|integer|foreign_key: true|
 |item_name|string|null: false, add_index: true|
 |description|text|null: false|
 |price|integer|null: false|
@@ -78,7 +79,8 @@ Things you may want to cover:
 - belongs_to: brand 
 - belongs_to: category 
 - has_many: pictures
-- belongs_to: user
+- belongs_to :seller, class_name: "User"
+- belongs_to :buyer, class_name: "User"
 - has_many: comments
 
 ## categories テーブル

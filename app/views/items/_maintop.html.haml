@@ -87,148 +87,56 @@
     %h2.head ピックアップカテゴリー
     .product-box
       .product-box__head
-        = link_to '#', class: 'new-product' do
+        = link_to '#', class: 'product-head' do
           %h3.title 新規投稿商品
       .product-box__lists
-        .product-box__list
-          = link_to '#', class: 'new-product' do
-            %figure.product-box__img
-              = image_tag "sample3.jpg", size: "220x150"
-            .product-box__body
-              %h3.name 魚
-              .detail
-                %ul.price-line
-                  %li.price 50000円
-                  %li
-                    %i.fa.fa-star.likeIcon
-                    0
-                %p.tax （税込）
-        .product-box__list
-          = link_to '#', class:'new-product' do
-            %figure.product-box__img
-              = image_tag "sample2.jpg", size: "220x150"
-            .product-box__body
-              %h3.name 冷やし坦々麺
-              .detail
-                %ul.price-line
-                  %li.price 800円
-                  %li
-                    %i.fa.fa-star.likeIcon
-                    0
-                %p.tax （税込）
-        .product-box__list
-          = link_to '#', class: 'new-product' do
-            %figure.product-box__img
-              = image_tag "sample3.jpg", size: "220x150"
-            .product-box__body
-              %h3.name 変な魚
-              .detail
-                %ul.price-line
-                  %li.price 5円
-                  %li
-                    %i.fas.fa-star.likeIcon
-                    0
-                %p.tax （税込）
-        
-        .product-box__list
-          = link_to '#', class: 'new-product' do
-            %figure.product-box__img
-              = image_tag "sample3.jpg", size: "220x150"
-            .product-box__body
-              %h3.name 魚
-              .detail
-                %ul.price-line
-                  %li.price 50000円
-                  %li
-                    %i.fa.fa-star.likeIcon
-                    0
-                %p.tax （税込）
-
-        .product-box__list
-          = link_to '#', class: 'new-product' do
-            %figure.product-box__img
-              = image_tag "sample3.jpg", size: "220x150"
-            .product-box__body
-              %h3.name 魚
-              .detail
-                %ul.price-line
-                  %li.price 50000円
-                  %li
-                    %i.fa.fa-star.likeIcon
-                    0
-                %p.tax （税込）
+        - @items.each do |item|
+          .product-box__list
+            = link_to item_path(item.id), class: 'new-product' do
+              %figure.product-box__img
+                = image_tag item.pictures[0].picture_url, size: "220x150"
+                - if item.buyer_id.present? 
+                  .items-sold
+                    .items-sold__inner 
+                      SOLD
+              .product-box__body
+                %h3.name 
+                  = item.item_name
+                .detail
+                  %ul.price-line
+                    %li.price 
+                      = item.price
+                      円
+                    %li
+                      %i.fa.fa-star.likeIcon
+                      0
+                  %p.tax （税込）
 
   %section.Contents__brand
     %h2.head ピックアップブランド
     .product-box
       .product-box__head
-        = link_to'#', class: 'new-product' do
+        = link_to'#', class: 'product-head' do
           %h3.title アーカイバ
       .product-box__lists
-        .product-box__list
-          = link_to '#', class: 'new-product' do
-            %figure.product-box__img
-              = image_tag "sample3.jpg", size: "220x150"
-            .product-box__body
-              %h3.name 魚
-              .detail
-                %ul.price-line
-                  %li.price 50000円
-                  %li
-                    %i.fa.fa-star.likeIcon
-                    0
-                %p.tax （税込）
-        .product-box__list
-          = link_to '#', class:'new-product' do
-            %figure.product-box__img
-              = image_tag "sample2.jpg", size: "220x150"
-            .product-box__body
-              %h3.name 冷やし坦々麺
-              .detail
-                %ul.price-line
-                  %li.price 800円
-                  %li
-                    %i.fa.fa-star.likeIcon
-                    0
-                %p.tax （税込）
-        .product-box__list
-          = link_to '#', class: 'new-product' do
-            %figure.product-box__img
-              = image_tag "sample3.jpg", size: "220x150"
-            .product-box__body
-              %h3.name 変な魚
-              .detail
-                %ul.price-line
-                  %li.price 5円
-                  %li
-                    %i.fas.fa-star.likeIcon
-                    0
-                %p.tax （税込）
-        
-        .product-box__list
-          = link_to '#', class: 'new-product' do
-            %figure.product-box__img
-              = image_tag "sample3.jpg", size: "220x150"
-            .product-box__body
-              %h3.name 魚
-              .detail
-                %ul.price-line
-                  %li.price 50000円
-                  %li
-                    %i.fa.fa-star.likeIcon
-                    0
-                %p.tax （税込）
-
-        .product-box__list
-          = link_to '#', class: 'new-product' do
-            %figure.product-box__img
-              = image_tag "sample3.jpg", size: "220x150"
-            .product-box__body
-              %h3.name 魚
-              .detail
-                %ul.price-line
-                  %li.price 50000円
-                  %li
-                    %i.fa.fa-star.likeIcon
-                    0
-                %p.tax （税込）
+        - @items.each do |item|
+          .product-box__list
+            = link_to item_path(item.id), class: 'new-product' do
+              %figure.product-box__img
+                = image_tag item.pictures[0].picture_url, size: "220x150"
+                - if item.buyer_id.present? 
+                  .items-sold
+                    .items-sold__inner 
+                      SOLD
+              .product-box__body
+                %h3.name 
+                  = item.item_name
+                .detail
+                  %ul.price-line
+                    %li.price 
+                      = item.price
+                      円
+                    %li
+                      %i.fa.fa-star.likeIcon
+                      0
+                  %p.tax （税込）
