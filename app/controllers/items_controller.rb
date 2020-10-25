@@ -9,6 +9,9 @@ class ItemsController < ApplicationController
   def show
   end
 
+  def sell
+  end
+
   def new
     # if user_signed_in?
       @item = Item.new

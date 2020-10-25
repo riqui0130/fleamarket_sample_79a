@@ -1,7 +1,6 @@
 .sellfinmain
-  .sellfinmain-container
-    %h3 出品完了しました
-    %p トップページに戻る
-      = link_to '/'
-    %p マイページ戻る
-      = link_to '/' # マイページにリンク
+  .sellfinmain__container
+    .sellfinmain__container__a
+      %h3 出品完了しました
+      %li= link_to 'トップページに戻る'
+      %li= link_to 'マイページ戻る' # マイページにリンク
