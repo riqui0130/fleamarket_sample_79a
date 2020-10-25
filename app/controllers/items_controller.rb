@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :set_current_user_products,only:[:p_transaction,:p_exhibiting,:p_soldout]
-  before_action :set_user,only:[:p_transaction,:p_exhibiting,:p_soldout]
+  before_action :set_current_user_items,only:[:i_transaction,:i_exhibiting,:i_soldout]
+  before_action :set_user,only:[:i_transaction,:i_exhibiting,:i_soldout]
 
   def index
     @items = Item.all.limit(5)
@@ -21,20 +21,20 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(@item_params)
-    redirect_to root_path, notice: "出品しました"
-
+    if @item.save
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
   def i_exhibiting #出品中のアクション
-
   end
 
   def i_transaction  #取引中のアクション
-
   end
 
   def i_soldout    #売却済みのアクション
-
   end
 
   private
