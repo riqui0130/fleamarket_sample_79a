@@ -113,4 +113,69 @@
     line-height: 32px;
     }
   }
+  ul.category1{
+    display: none;
+    line-height: 32px;
+    font-size: 14px;
+    box-sizing: border-box;
+    background-color: white;
+    width: 224px;
+    list-style: none;
+    cursor: pointer;
+    li{
+      a{
+        color: #000;
+      }
+    &:hover {
+    a {
+      color:#ffb340;
+
+        }
+      }
+    }
+  }
+  ul.category2{
+    display: none;
+    background-color: rgb(255, 255, 255);
+    display: none;
+    left: 220px;
+    position: absolute;
+    top: 32px;
+    width: 224px;
+    cursor: pointer;
+    li.child__list{
+    a{
+      color:#000;
+    }
+  }
+    li{
+      &:hover {
+      a {
+        color:#ffb340;
+          }
+        }
+      }
+    }
+    ul.category3{
+      display: none;
+      background-color: rgb(255, 255, 255);
+      display: none;
+      left: 224px;
+      position: absolute;
+      top: 0px;
+      width: 224px;
+      cursor: pointer;
+      li.grandchild__list{
+        a{
+          color:#000;
+        }
+      }
+      li{
+        &:hover {
+        a {
+          color:#ffb340;
+            }
+          }
+        }
+    }
 }

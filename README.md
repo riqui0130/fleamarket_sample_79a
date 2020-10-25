@@ -87,7 +87,7 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
-|ancestry|string|null: false, foreign_key: true|
+|ancestry|string|
 ### Association
 - has_many :items
 - has_ancestry
