@@ -85,7 +85,7 @@ $(function(){
   });
 });
 //画像を削除した時
-$(document).on('click','.preview-image__button__delete',function(){
+$(document).on('click', function(){
   let imageLength = $('#output-box').children('li').length;
   if(imageLength ==''){
     $('#error-image').text('*画像がありません');
