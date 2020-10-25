@@ -19,7 +19,11 @@
         %li.Header__left--brand
           = link_to 'ブランド', '#', class: "Header__naviBtn"
       %ul.Header__right
-        %li.Header__right--list
-          = link_to 'ログイン', '#', class: "Header__naviBtn" 
-        %li.Header__right--list
-          = link_to '新規会員登録', '#', class: "Header__naviBtn" 
+        - if user_signed_in?
+          %li.Header__right--list
+            = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "Header__naviBtn"
+        - else  
+          %li.Header__right--list
+            = link_to 'ログイン', new_user_session_path, class: "Header__naviBtn" 
+          %li.Header__right--list
+            = link_to '新規会員登録', new_user_registration_path, class: "Header__naviBtn" 

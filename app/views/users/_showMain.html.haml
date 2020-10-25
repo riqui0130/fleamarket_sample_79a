@@ -1,0 +1,25 @@
+.myPageMain
+  .myPageLeft
+    .myPageMenu
+      .Menu1
+        マイページ
+      .Menu2
+        =link_to "出品する", "#" , method: :get, class: "Menulink"
+      .Menu2
+        =link_to "本人情報編集", "#" , method: :get, class: "Menulink"
+      .Menu2
+        =link_to "カード設定", "#" , method: :get, class: "Menulink"
+      .Menu2
+        =link_to "ログアウト", users_logout_path, method: :get, class: "Menulink"
+  .myPageRight
+    .myPageShow
+      .userIcon
+        .userName
+          大日向 俊樹
+      .userStatus
+        .userSell
+          出品数 0
+        .userBuy
+          購入数 0
+        .userLike
+          いいねの数 10000
