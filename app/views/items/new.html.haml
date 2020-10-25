@@ -22,7 +22,7 @@
               %ul#output-box
                 %div#image-input{tabindex:"0"}
                   = f.label :images, for: "item_images0", class: 'sell-container__content__upload__items__box__label', data: {label_id: 0 } do
-                    = f.file_field :images, multiple: true, class: "sell-container__content__upload__items__box__input", id: "item_images0", style: 'display: none;'
+                    = f.file_field :images ,multiple: true ,class: "sell-container__content__upload__items__box__input", required: "required", id: "item_images0", style: 'display: none;'
                     %pre
                     クリックしてファイルをアップロード
         .error-messages#error-image
@@ -57,7 +57,7 @@
                 %span.sell-title__require
                   必須
               .sell-collection_select__category
-                = f.collection_select :category_id, @category_parent_array, :id, :name, {prompt: "選択して下さい"}, {class: "sell-collection_select__category__a", id: "parent_category"}
+                = f.collection_select :category_id, @category_parent_array, :id, :name, {prompt: "選択して下さい"}, {class: "sell-collection_select__category__a", id: "parent_category"}  # カテゴリ機能実装後{}内に, required: "required"をいれる
               .error-messages#error-category
 
             .sell-title
@@ -74,7 +74,7 @@
                 %span.sell-title__require
                   必須
             .sell-collection_select
-              = f.collection_select :status_id, Status.all, :id, :name, {prompt: "選択してください"}, {class: "sell-collection_select__label", id: 'status-select'}
+              = f.collection_select :status_id, Status.all, :id, :name, {prompt: "選択してください"}, {class: "sell-collection_select__label", id: 'status-select', required: "required"}
             .error-messages#error-status
         %hr
 
@@ -89,7 +89,7 @@
                 %span.sell-title__require
                   必須
             .sell-collection_select
-              = f.collection_select :postage_id, Postage.all, :id, :name, {prompt: "選択してください"}, {class: "sell-collection_select__label", id: 'postage-select'}
+              = f.collection_select :postage_id,  Postage.all, :id, :name, {prompt: "選択してください"}, {class: "sell-collection_select__label", id: 'postage-select', required: "required"}
           .error-messages#error-postage
 
             .sell-title
@@ -98,8 +98,8 @@
                 %span.sell-title__require
                   必須
             .sell-collection_select
-              = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択してください"}, {class: "sell-collection_select__label", id: 'prefecture-select'}
-            .error-messages#error-pref
+              = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択してください"}, {class: "sell-collection_select__label", id: 'prefecture-select', required: "required"}
+            .error-messages#error-prefecture
 
             .sell-title
               %h3.sell-title__text
@@ -107,7 +107,7 @@
                 %span.sell-title__require
                   必須
             .sell-collection_select
-              = f.collection_select :days_id, Days.all, :id, :name, {prompt: "選択してください"}, {class: "sell-collection_select__label", id: 'days-select'}
+              = f.collection_select :days_id, Days.all, :id, :name, {prompt: "選択してください"}, {class: "sell-collection_select__label", id: 'days-select', required: "required"}
             .error-messages#error-days
         %hr
 

@@ -1,4 +1,5 @@
-$(document).on('turbolinks:load', function(){
+// エラーハンドリング
+$(document).on('click', function(){
   //商品名
   $('.sell-container__content__name').on('blur',function(){
     let value = $(this).val();
@@ -10,6 +11,8 @@ $(document).on('turbolinks:load', function(){
       $(this).css('border-color','rgb(204, 204, 204)');
     }
   });
+});
+$(document).on('click', function(){
   // カテゴリー
   $('#parent_category').on('blur',function(){
     let value = $(this).val();
@@ -21,6 +24,8 @@ $(document).on('turbolinks:load', function(){
       $(this).css('border-color','rgb(204, 204, 204)');
     }
   });
+});
+$(document).on('click', function(){
   //商品説明
   $('.sell-container__content__description').on('blur',function(){
     let value = $(this).val();
@@ -32,6 +37,8 @@ $(document).on('turbolinks:load', function(){
       $(this).css('border-color','rgb(204, 204, 204)');
     }
   });
+});
+$(document).on('click', function(){
   //状態
   $('#status-select').on('blur',function(){
     let value = $(this).val();
@@ -43,17 +50,19 @@ $(document).on('turbolinks:load', function(){
       $(this).css('border-color','rgb(204, 204, 204)');
     }
   });
-  //送料負担
-  $('#postage-select').on('blur',function(){
-    let value = $(this).val();
-    if(value == ""){
-      $('#error-postage').text('*選択して下さい');
-      $(this).css('border-color','red');
-    }else{
-      $('#error-postage').text('');
-      $(this).css('border-color','rgb(204, 204, 204)');
-    }
-  });
+});
+//送料負担
+$('#postage-select').on('blur',function(){
+  let value = $(this).val();
+  if(value == ""){
+    $('#error-postage').text('*選択して下さい');
+    $(this).css('border-color','red');
+  }else{
+    $('#error-postage').text('');
+    $(this).css('border-color','rgb(204, 204, 204)');
+  }
+});
+$(document).on('click', function(){
   //発送元
   $('#prefecture-select').on('blur',function(){
     let value = $(this).val();
@@ -65,6 +74,8 @@ $(document).on('turbolinks:load', function(){
       $(this).css('border-color','rgb(204, 204, 204)');
     }
   });
+});
+$(document).on('click', function(){
   //発送までの日数
   $('#days-select').on('blur',function(){
     let value = $(this).val();
@@ -76,6 +87,8 @@ $(document).on('turbolinks:load', function(){
       $(this).css('border-color','rgb(204, 204, 204)');
     }
   });
+});
+$(document).on('click', function(){
   //価格
   $('.sell-container__content__price__form__box').on('blur',function(){
     let value = $(this).val();
