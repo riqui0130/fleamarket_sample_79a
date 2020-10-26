@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     resources :items do
       collection do
         get 'buy'
+        get 'sell'
       end
     end
   resources :users, only: :show
