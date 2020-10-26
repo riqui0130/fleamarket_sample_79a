@@ -16,7 +16,6 @@ Rails.application.routes.draw do
       get 'get_category_grandchildren', defaults: { format: 'json' }
     end
   end
-end
   get 'users/logout'
   resources :items, only: [:show, :new]
     resources :items do
