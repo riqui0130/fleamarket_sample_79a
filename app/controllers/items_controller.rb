@@ -59,7 +59,7 @@ class ItemsController < ApplicationController
   end
 
   def set_user
-    @user = User.find(current_user.id)
+    @current_user = User.find
   end
 
 end
