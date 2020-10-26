@@ -57,9 +57,4 @@ class ItemsController < ApplicationController
       redirect_to root_path
     end
   end
-
-  def set_user
-    @current_user = User.find
-  end
-
 end
