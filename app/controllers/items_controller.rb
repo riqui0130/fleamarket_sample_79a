@@ -57,4 +57,7 @@ class ItemsController < ApplicationController
       redirect_to root_path
     end
   end
+
+  def set_user
+  end
 end
