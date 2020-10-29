@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :set_current_user_items,only:[:i_transaction,:i_exhibiting,:i_soldout]
+  before_action :set_items, only: [:show, :edit, :update, :destroy, :set_currect_user_items]
+  before_action :set_current_user_items,only:[:edit, :update, :destroy]
 
   def index
     @items = Item.all.limit(5)
@@ -26,15 +27,6 @@ class ItemsController < ApplicationController
     else
       render :new
     end
-  end
-
-  def i_exhibiting #出品中のアクション
-  end
-
-  def i_transaction  #取引中のアクション
-  end
-
-  def i_soldout    #売却済みのアクション
   end
 
   private
