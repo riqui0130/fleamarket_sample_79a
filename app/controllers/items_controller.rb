@@ -21,11 +21,11 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(@item_params)
-    # if @item.save
+    if @item.save
       render :sell
-    # else
-    #   render :new
-    # end
+    else
+      render :new
+    end
   end
 
   def i_exhibiting #出品中のアクション
