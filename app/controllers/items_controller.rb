@@ -1,6 +1,5 @@
 class ItemsController < ApplicationController
   before_action :set_current_user_items,only:[:i_transaction,:i_exhibiting,:i_soldout]
-  before_action :set_user,only:[:i_transaction,:i_exhibiting,:i_soldout]
 
   def index
     @items = Item.all.limit(5)
@@ -54,8 +53,5 @@ class ItemsController < ApplicationController
     else
       redirect_to root_path
     end
-  end
-
-  def set_user
   end
 end
