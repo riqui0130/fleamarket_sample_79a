@@ -58,7 +58,7 @@
                 %span.sell-title__require
                   必須
             .sell-collection_select
-              = select_tag 'card[category]', options_for_select(["選択して下さい", "レディース", "メンズ", "ベビー・キッズ", "インテリア・スマイ・小物", "本・音楽・ゲーム", "おもちゃ・ホビー・グッズ", "コスメ・香水・美容", "家電・スマホ・カメラ", "スポーツ・レジャー", "その他"])
+              = f.collection_select :category_id, @parents, :id, :name, {prompt:"選択してください"}, {class:"products__condition", id:"parents_category"}
             .error-messages#error-category
 
             .sell-title

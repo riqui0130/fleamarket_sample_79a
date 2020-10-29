@@ -74,6 +74,7 @@ Things you may want to cover:
 |item_name|string|null: false, add_index: true|
 |description|text|null: false|
 |price|integer|null: false|
+|category_id|integer|null: false, foreign_key: true|
 ### Association
 - has_many :favorites
 - belongs_to :brand 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_24_154725) do
+ActiveRecord::Schema.define(version: 2020_10_28_143814) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "ancestry"
@@ -19,12 +19,6 @@ ActiveRecord::Schema.define(version: 2020_10_24_154725) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-
-  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "ancestry"
-    t.string "name", null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
   create_table "destinations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.string "family_name", null: false
@@ -39,6 +33,7 @@ ActiveRecord::Schema.define(version: 2020_10_24_154725) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_destinations_on_user_id"
   end
+
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "item_name", null: false
     t.text "description", null: false
@@ -47,6 +42,7 @@ ActiveRecord::Schema.define(version: 2020_10_24_154725) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "buyer_id"
     t.integer "seller_id", null: false
+    t.integer "category_id", null: false
   end
 
   create_table "pictures", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
