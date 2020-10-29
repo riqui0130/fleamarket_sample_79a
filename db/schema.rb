@@ -19,6 +19,13 @@ ActiveRecord::Schema.define(version: 2020_10_28_143814) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "ancestry"
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "destinations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.string "family_name", null: false
@@ -34,15 +41,31 @@ ActiveRecord::Schema.define(version: 2020_10_28_143814) do
     t.index ["user_id"], name: "index_destinations_on_user_id"
   end
 
+  create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "image", null: false
+    t.bigint "item_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_images_on_item_id"
+  end
+
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "item_name", null: false
     t.text "description", null: false
     t.integer "price", null: false
+    t.string "name", null: false
+    t.text "detail", null: false
+    t.integer "condition_id", null: false
+    t.integer "delivery_days_id", null: false
+    t.integer "deliverycost_id", null: false
+    t.integer "prefecture_id", null: false
+    t.string "brand"
+    t.bigint "category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "buyer_id"
     t.integer "seller_id", null: false
-    t.integer "category_id", null: false
+    t.index ["category_id"], name: "index_items_on_category_id"
   end
 
   create_table "pictures", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -72,4 +95,5 @@ ActiveRecord::Schema.define(version: 2020_10_28_143814) do
   end
 
   add_foreign_key "destinations", "users"
+  add_foreign_key "images", "items"
 end

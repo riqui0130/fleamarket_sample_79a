@@ -1,4 +1,7 @@
 class ItemsController < ApplicationController
+  before_action :set_items, only: [:show, :edit, :update, :destroy, :set_currect_user_items]
+  before_action :set_current_user_items,only:[:edit, :update, :destroy]
+
   def index
     @items = Item.all.limit(5)
     @parents = Category.where(ancestry: nil)
@@ -15,9 +18,14 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(item_params)
+    @item = Item.new(@item_params)
+    if @item.save
+      render :sell
+    else
+      render :new
+    end
   end
-
+  
   def get_category_children
     @category_children = Category.find_by(name: "#{params[:parent_name]}", ancestry: nil).children
   end
@@ -28,18 +36,30 @@ class ItemsController < ApplicationController
 
   private
 
-  def item_params
-    params.require(:item).permit(:name, :price, :description, :prefecture_id, :seller_id,
-    :buyer_id, :condition_id, :category_id, :size_id, :shipping_fee_id,
-     :delivery_days_id, :brand_id,
-     pictures_attributes: [:src, :_destroy, :id]).merge(seller_id: current_user.id)
+  def set_categories
+    @parents = Category.where(ancestry: nil)
+    if user_signed_in?
+      @item = Item.new
+      @item.item_pictures.build
+      @category_parent_array = Category.where(ancestry: nil)
+    else
+      redirect_to root_path, notice: 'ログインもしくはサインインしてください'
+    end
   end
 
   def set_items
-    @item = Item.includes(:seller,:category).find(params[:id])
+    @item = Item.find(params[:id])
   end
 
-  def set_categories
-    @parents = Category.where(ancestry: nil)
+  def item_params
+    params.require(:item).permit(:name, :text, :category_id, :status_id, :postage_id, :prefecture_id, :days_id, :price, :images [])
+  end
+
+  def set_current_user_items
+    if user_signed_in? 
+      @items = current_user.items.includes(:seller,:buyer,:auction,:item_images)
+    else
+      redirect_to root_path
+    end
   end
 end
