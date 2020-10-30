@@ -21,9 +21,11 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(@item_params)
+    # binding.pry
+    @item = Item.new(item_params)
+    @category_parent_array = Category.where(ancestry: nil)
     if @item.save
-      render :sell
+      render :sell, notice: '出品しました'
     else
       render :new
     end
@@ -36,7 +38,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :text, :category_id, :status_id, :postage_id, :prefecture_id, :days_id, :price, :images [])
+    params.require(:item).permit(:name, :detail, :condition_id, :delivery_days_id, :prefecture_id, :deliverycost_id, :price, :images)  #後からつける:category_id,
   end
 
   def set_current_user_items
