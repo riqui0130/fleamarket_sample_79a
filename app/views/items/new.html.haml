@@ -58,8 +58,8 @@
                 %span.sell-title__require
                   必須
               .sell-collection_select__category
-                = f.collection_select :category_id, @category_parent_array, :id, :name, {prompt: "選択して下さい"}, {class: "sell-collection_select__category__a", id: "parent_category"}  # カテゴリ機能実装後{}内に, required: "required"をいれる
-              .error-messages#error-category
+                = f.collection_select :category_id, @parents, :id, :name, {prompt:"選択してください"}, {class:"products__condition", id:"parents_category"}
+                .error-messages#error-category
 
             .sell-title
               %h3.sell-title__text
