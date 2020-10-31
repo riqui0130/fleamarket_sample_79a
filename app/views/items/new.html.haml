@@ -44,7 +44,7 @@
             商品の説明
             %span.sell-title__require
               必須
-        = f.text_area :text, class:'sell-container__content__description', required: "required", rows: '7', maxlength: '1000', placeholder: '商品説明　（色、素材、重さ、定価、注意点など）'
+        = f.text_area :detail, class:'sell-container__content__description', required: "required", rows: '7', maxlength: '1000', placeholder: '商品説明　（色、素材、重さ、定価、注意点など）'
         .error-messages#error-text
       %hr
 
@@ -75,7 +75,7 @@
                 %span.sell-title__require
                   必須
             .sell-collection_select
-              = f.collection_select :status_id, Status.all, :id, :name, {prompt: "選択してください"}, {class: "sell-collection_select__label", id: 'status-select', required: "required"}
+              = f.collection_select :condition_id, Condition.all, :id, :name, {prompt: "選択してください"}, {class: "sell-collection_select__label", id: 'condition-select', required: "required"}
             .error-messages#error-status
         %hr
 
@@ -90,7 +90,7 @@
                 %span.sell-title__require
                   必須
             .sell-collection_select
-              = f.collection_select :postage_id,  Postage.all, :id, :name, {prompt: "選択してください"}, {class: "sell-collection_select__label", id: 'postage-select', required: "required"}
+              = f.collection_select :deliverycost_id, Deliverycost.all, :id, :name, {prompt: "選択してください"}, {class: "sell-collection_select__label", id: 'deliverycost-select', required: "required"}
           .error-messages#error-postage
 
             .sell-title
@@ -108,7 +108,7 @@
                 %span.sell-title__require
                   必須
             .sell-collection_select
-              = f.collection_select :days_id, Days.all, :id, :name, {prompt: "選択してください"}, {class: "sell-collection_select__label", id: 'days-select', required: "required"}
+              = f.collection_select :delivery_days_id, DeliveryDays.all, :id, :name, {prompt: "選択してください"}, {class: "sell-collection_select__label", id: 'delivery_days-select', required: "required"}
             .error-messages#error-days
         %hr
 
@@ -130,7 +130,7 @@
         %hr
 
         .sell-btn
-          = f.submit '出品する', class:"sell-btn__a"
+          = f.submit '出品する', class:"sell-btn__a", model: @item
 
   %footer.sell-footer
     %nav

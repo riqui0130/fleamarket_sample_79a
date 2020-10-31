@@ -32,6 +32,10 @@
           = link_to 'ブランド', '#', class: "Header__naviBtn"
       %ul.Header__right
         - if user_signed_in?
+          %li.Header__right--list--nicknam
+            = current_user.nickname
+          %li.Header__right--list
+            %li= link_to 'マイページ', '/users/show'
           %li.Header__right--list
             = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "Header__naviBtn"
         - else  

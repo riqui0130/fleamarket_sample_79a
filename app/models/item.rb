@@ -1,21 +1,17 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to_active_hash :status
+  belongs_to_active_hash :condition
   belongs_to_active_hash :prefecture
-  belongs_to_active_hash :postage
-  belongs_to_active_hash :days
-
-  enum status:         ["新品、未使用","未使用に近い","目立った傷や汚れなし","やや傷や汚れあり","傷や汚れあり","全体的に状態が悪い"]
-  enum postage:  ["送料込み(出品者負担)","着払い(購入者負担)"]
-  enum days:     ["1~2日で発送","2~3日で発送","4~7日で発送"]
+  belongs_to_active_hash :deliverycost
+  belongs_to_active_hash :delivery_days
 
   validates :images, presence: true
   validates :name, length: { maximum: 40 }, presence: true
-  validates :text, presence: true
+  validates :detail, presence: true
   validates :price, presence: true
-  validates :status_id, presence: true
-  validates :postage_id, presence: true
-  validates :days_id, presence: true
+  validates :condition_id, presence: true
+  validates :deliverycost_id, presence: true
+  validates :delivery_days_id, presence: true
   validates :prefecture_id, presence: true
   validates :price, numericality: { only_integer: true,greater_than: 299, less_than: 9999999 }
 
