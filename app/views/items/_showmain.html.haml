@@ -28,9 +28,9 @@
               %th{class: "th"}
                 カテゴリー
               %td{class: "td"}
-                .p メンズ
-                .p ジャケット/アウター
-                .p ノーカラージャケット
+                = link_to @category.parent.parent.name, item_path, class: ""
+                = link_to @category.parent.name, item_path, class: ""
+                = link_to @category.name, item_path, class:""
             %tr{class: "tr"}
               %th{class: "th"}
                 ブランド
