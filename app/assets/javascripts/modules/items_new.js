@@ -14,7 +14,7 @@ $(document).on('click', function(){
 });
 $(document).on('click', function(){
   // カテゴリー
-  $('#parent_category').on('blur',function(){
+  $('#parents_category').on('blur',function(){
     let value = $(this).val();
     if(value == ""){
       $('#error-category').text('*選択してください');

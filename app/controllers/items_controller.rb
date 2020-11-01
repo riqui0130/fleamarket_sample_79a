@@ -13,20 +13,22 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @item = Item.new
-    @item.pictures.build
-    @parents = Category.where(ancestry: nil)  
+    if user_signed_in?
+      @item = Item.new
+      @item.pictures.build
+      @item.images.new
+      @parents = Category.where(ancestry: nil)  
+    else
+      redirect_to root_path
+  end
   end
 
   def create
     # binding.pry
     @item = Item.new(item_params)
-    if @item.save
+    if @item.save!
       render :sell, notice: '出品しました'
     else
-      @item = Item.new
-      @item.pictures.build
-
       render :new
     end
   end
