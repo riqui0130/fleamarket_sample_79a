@@ -4,34 +4,45 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all.limit(5)
+    @parents = Category.where(ancestry: nil)
   end
 
   def show
+    @parents = Category.where(ancestry: nil)
+    @category = Category.find(@item.category_id)
   end
 
-
   def new
-    if user_signed_in?
-      @item = Item.new
-      # @item.item_pictures.build
-      @category_parent_array = Category.where(ancestry: nil)
-    else
-      redirect_to root_path, notice: 'ログインもしくはサインインしてください'
-    end
+    @item = Item.new
+    @item.pictures.build
+    @parents = Category.where(ancestry: nil)  
   end
 
   def create
     # binding.pry
     @item = Item.new(item_params)
-    @category_parent_array = Category.where(ancestry: nil)
     if @item.save
       render :sell, notice: '出品しました'
     else
+      @item = Item.new
+      @item.pictures.build
+
       render :new
     end
   end
 
   private
+
+  def set_categories
+    @parents = Category.where(ancestry: nil)
+    if user_signed_in?
+      @item = Item.new
+      @item.item_pictures.build
+      @category_parent_array = Category.where(ancestry: nil)
+    else
+      redirect_to root_path, notice: 'ログインもしくはサインインしてください'
+    end
+  end
 
   def set_items
     @item = Item.find(params[:id])
