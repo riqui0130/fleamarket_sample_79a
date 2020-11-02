@@ -16,7 +16,7 @@ class ItemsController < ApplicationController
     if user_signed_in?
       @item = Item.new
       @item.images.build
-      @parents = Category.where(ancestry: nil)  
+      @parents = Category.where(ancestry: nil)
     else
       redirect_to root_path
   end
@@ -25,8 +25,8 @@ class ItemsController < ApplicationController
   def create
     # binding.pry
     @item = Item.new(item_params)
-    @parents = Category.where(ancestry: nil)
     if @item.save!
+      @parents = Category.where(ancestry: nil)
       render :sell
     else
       render :new
