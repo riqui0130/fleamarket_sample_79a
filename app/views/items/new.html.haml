@@ -58,17 +58,19 @@
                 %span.sell-title__require
                   必須
               .sell-collection_select__category
-                = f.collection_select :category_id, @parents, :id, :name, {prompt:"選択してください"}, {class:"products__condition", id:"parents_category"}
+                = f.collection_select :category_id, @parents, :id, :name, {prompt:"選択してください"}, {class:"products__condition", id:"parent_category"}
                 .error-messages#error-category
 
+          .sell-container__content__brand
             .sell-title
               %h3.sell-title__text
                 ブランド
                 %span.sell-title__option
                   任意
             .sell-collection_bland
-              = f.text_field :name,class:'sell-collection_bland__name', placeholder: '例）　シャネル'
+              = f.text_field :brand,class:'sell-collection_bland__name', placeholder: '例）　シャネル'
 
+          .sell-container__content__status
             .sell-title
               %h3.sell-title__text
                 商品の状態
@@ -83,7 +85,7 @@
         .sell-container__content
           %h3.sell-sub-head
             配送について
-          .sell-container__content__delivery
+          .sell-container__content__deliverycost
             .sell-title
               %h3.sell-title__text
                 配送料の負担
@@ -92,7 +94,8 @@
             .sell-collection_select
               = f.collection_select :deliverycost_id, Deliverycost.all, :id, :name, {prompt: "選択してください"}, {class: "sell-collection_select__label", id: 'deliverycost-select', required: "required"}
           .error-messages#error-postage
-
+          
+          .sell-container__content__delivery
             .sell-title
               %h3.sell-title__text
                 発送元の地域
@@ -101,7 +104,8 @@
             .sell-collection_select
               = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択してください"}, {class: "sell-collection_select__label", id: 'prefecture-select', required: "required"}
             .error-messages#error-prefecture
-
+            
+          .sell-container__content__days
             .sell-title
               %h3.sell-title__text
                 発送までの日数

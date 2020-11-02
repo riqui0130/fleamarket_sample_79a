@@ -15,9 +15,8 @@ class ItemsController < ApplicationController
   def new
     if user_signed_in?
       @item = Item.new
-      @item.pictures.build
-      @item.images.new
-      @parents = Category.where(ancestry: nil)  
+      @item.images.build
+      @parents = Category.where(ancestry: nil)
     else
       redirect_to root_path
   end
@@ -27,7 +26,8 @@ class ItemsController < ApplicationController
     # binding.pry
     @item = Item.new(item_params)
     if @item.save!
-      render :sell, notice: '出品しました'
+      @parents = Category.where(ancestry: nil)
+      render :sell
     else
       render :new
     end
@@ -39,8 +39,7 @@ class ItemsController < ApplicationController
     @parents = Category.where(ancestry: nil)
     if user_signed_in?
       @item = Item.new
-      @item.item_pictures.build
-      @category_parent_array = Category.where(ancestry: nil)
+      @item.item_images.build
     else
       redirect_to root_path, notice: 'ログインもしくはサインインしてください'
     end
@@ -51,7 +50,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :detail, :condition_id, :delivery_days_id, :prefecture_id, :deliverycost_id, :price, :images)  #後からつける:category_id,
+    params.require(:item).permit(:name, :detail, :category_id, :condition_id, :delivery_days_id, :prefecture_id, :deliverycost_id, :price, :images)  #後からつける:category_id,
   end
 
   def set_current_user_items

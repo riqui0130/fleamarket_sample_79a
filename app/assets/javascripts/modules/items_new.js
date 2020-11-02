@@ -14,7 +14,7 @@ $(document).on('click', function(){
 });
 $(document).on('click', function(){
   // カテゴリー
-  $('#parents_category').on('blur',function(){
+  $('#parent_category').on('blur',function(){
     let value = $(this).val();
     if(value == ""){
       $('#error-category').text('*選択してください');
@@ -51,16 +51,18 @@ $(document).on('click', function(){
     }
   });
 });
+$(document).on('click', function(){
 //送料負担
-$('#deliverycost-select').on('blur',function(){
-  let value = $(this).val();
-  if(value == ""){
-    $('#error-postage').text('*選択して下さい');
-    $(this).css('border-color','red');
-  }else{
-    $('#error-postage').text('');
-    $(this).css('border-color','rgb(204, 204, 204)');
-  }
+  $('#deliverycost-select').on('blur',function(){
+    let value = $(this).val();
+    if(value == ""){
+      $('#error-postage').text('*選択して下さい');
+      $(this).css('border-color','red');
+    }else{
+      $('#error-postage').text('');
+      $(this).css('border-color','rgb(204, 204, 204)');
+    }
+  });
 });
 $(document).on('click', function(){
   //発送元
