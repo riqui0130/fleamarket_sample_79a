@@ -94,8 +94,8 @@
           .product-box__list
             = link_to item_path(item.id), class: 'new-product' do
               %figure.product-box__img
-                = image_tag item.images[0].image_url, size: "220x150"
-                - if item.buyer_id.present? 
+                = image_tag item.images[0].images, size: "220x150"
+                - if item.buyer_id.present?
                   .items-sold
                     .items-sold__inner 
                       SOLD
@@ -123,7 +123,7 @@
           .product-box__list
             = link_to item_path(item.id), class: 'new-product' do
               %figure.product-box__img
-                = image_tag item.images[0].image_url, size: "220x150"
+                = image_tag item.images[0].images, size: "220x150"
                 - if item.buyer_id.present? 
                   .items-sold
                     .items-sold__inner 

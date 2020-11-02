@@ -5,7 +5,6 @@ class Item < ApplicationRecord
   belongs_to_active_hash :deliverycost
   belongs_to_active_hash :delivery_days
 
-  # validates :images, presence: true
   validates :name, length: { maximum: 40 }, presence: true
   validates :detail, presence: true
   validates :price, presence: true

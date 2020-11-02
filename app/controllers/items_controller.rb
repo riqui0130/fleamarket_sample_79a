@@ -27,6 +27,7 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     if @item.save!
       @parents = Category.where(ancestry: nil)
+      @item.images.build
       render :sell
     else
       render :new
@@ -50,7 +51,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :detail, :category_id, :condition_id, :delivery_days_id, :prefecture_id, :deliverycost_id, :price, :images)  #後からつける:category_id,
+    params.require(:item).permit(:name, :detail, :category_id, :condition_id, :delivery_days_id, :prefecture_id, :deliverycost_id, :price, :images)
   end
 
   def set_current_user_items
