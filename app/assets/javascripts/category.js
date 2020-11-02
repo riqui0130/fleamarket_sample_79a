@@ -13,7 +13,7 @@ $(function(){
                           <select>
                         </div>
                       </div>`;
-    $('.sell-collection_select__category').append(childSelectHtml);
+    $('.sell-collection_select__category__a').append(childSelectHtml);
   }
   function appendGrandchidrenBox(insertHTML){
     var grandchildSelectHtml = '';
