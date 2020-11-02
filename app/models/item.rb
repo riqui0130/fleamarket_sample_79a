@@ -16,8 +16,7 @@ class Item < ApplicationRecord
   validates :price, numericality: { only_integer: true,greater_than: 299, less_than: 9999999 }
 
   has_many :images, dependent: :destroy
-  # belongs_to :category
-  has_many :pictures
+  belongs_to :category
   belongs_to :seller, class_name: "User", optional: true,foreign_key: "seller_id"
   belongs_to :buyer, class_name: "User", optional: true,foreign_key: "buyer_id"
   belongs_to :auction, class_name: "User", optional: true,foreign_key: "auction_id"

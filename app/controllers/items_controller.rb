@@ -15,7 +15,6 @@ class ItemsController < ApplicationController
   def new
     if user_signed_in?
       @item = Item.new
-      @item.pictures.build
       @item.images.build
       @parents = Category.where(ancestry: nil)  
     else
@@ -26,9 +25,9 @@ class ItemsController < ApplicationController
   def create
     # binding.pry
     @item = Item.new(item_params)
-    @parents = Category.where(ancestry: nil)  
+    @parents = Category.where(ancestry: nil)
     if @item.save!
-      render :sell, notice: '出品しました'
+      render :sell
     else
       render :new
     end
@@ -40,7 +39,7 @@ class ItemsController < ApplicationController
     @parents = Category.where(ancestry: nil)
     if user_signed_in?
       @item = Item.new
-      @item.item_pictures.build
+      @item.item_images.build
       @category_parent_array = Category.where(ancestry: nil)
     else
       redirect_to root_path, notice: 'ログインもしくはサインインしてください'
