@@ -58,9 +58,10 @@
                 %span.sell-title__require
                   必須
               .sell-collection_select__category
-                = f.collection_select :category_id, @parents, :id, :name, {prompt:"選択してください"}, {class:"products__condition", id:"parents_category"}
+                = f.collection_select :category_id, @parents, :id, :name, {prompt:"選択してください"}, {class:"products__condition", id:"parent_category"}
                 .error-messages#error-category
 
+          .sell-container__content__brand
             .sell-title
               %h3.sell-title__text
                 ブランド
@@ -69,6 +70,7 @@
             .sell-collection_bland
               = f.text_field :brand,class:'sell-collection_bland__name', placeholder: '例）　シャネル'
 
+          .sell-container__content__status
             .sell-title
               %h3.sell-title__text
                 商品の状態
