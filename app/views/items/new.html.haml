@@ -83,7 +83,7 @@
         .sell-container__content
           %h3.sell-sub-head
             配送について
-          .sell-container__content__delivery
+          .sell-container__content__deliverycost
             .sell-title
               %h3.sell-title__text
                 配送料の負担
@@ -92,7 +92,8 @@
             .sell-collection_select
               = f.collection_select :deliverycost_id, Deliverycost.all, :id, :name, {prompt: "選択してください"}, {class: "sell-collection_select__label", id: 'deliverycost-select', required: "required"}
           .error-messages#error-postage
-
+          
+          .sell-container__content__delivery
             .sell-title
               %h3.sell-title__text
                 発送元の地域
@@ -101,7 +102,8 @@
             .sell-collection_select
               = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択してください"}, {class: "sell-collection_select__label", id: 'prefecture-select', required: "required"}
             .error-messages#error-prefecture
-
+            
+          .sell-container__content__days
             .sell-title
               %h3.sell-title__text
                 発送までの日数
