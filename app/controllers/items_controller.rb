@@ -27,7 +27,6 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     if @item.save!
       @parents = Category.where(ancestry: nil)
-      @item.images.build
       render :sell
     else
       render :new
