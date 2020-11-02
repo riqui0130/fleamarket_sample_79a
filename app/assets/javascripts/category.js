@@ -25,7 +25,7 @@ $(function(){
                                 </select>
                               </div>
                             </div>`;
-    $('.sell-collection_select__category').append(grandchildSelectHtml);
+    $('.sell-collection_select__category__a').append(grandchildSelectHtml);
   }
 
   $('#parent_category').on('change', function(){
