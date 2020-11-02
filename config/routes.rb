@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   root 'items#index'
   get 'items/sell'
   get 'items/buy'
+
   resources :items do
     collection do
       get 'get_category_children', defaults: { format: 'json' }
@@ -19,9 +20,10 @@ Rails.application.routes.draw do
   get 'users/logout'
   resources :items, only: [:show, :new, :create]
     resources :items do
-      collection do
+      member do
         get 'buy'
         get 'sell'
+        post 'buy'
       end
     end
   resources :users, only: :show

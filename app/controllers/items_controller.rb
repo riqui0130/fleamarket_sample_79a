@@ -37,14 +37,11 @@ class ItemsController < ApplicationController
 
   def i_soldout    #売却済みのアクション
   end
+
   require 'payjp'
+
   def buy
-    Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
-    charge = Payjp::Charge.create(
-    amount: 300,
-    card: params['payjp-token'],
-    currency: 'jpy'
-    )
+
   end
 
   private
@@ -54,7 +51,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :text, :category_id, :status_id, :postage_id, :prefecture_id, :days_id, :price, :images [])
+    params.require(:item).permit(:name, :text, :category_id, :status_id, :postage_id, :prefecture_id, :days_id, :price, :images[])
   end
 
   def set_current_user_items

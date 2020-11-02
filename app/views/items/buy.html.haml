@@ -24,9 +24,6 @@
       %div 〜〜円
     .Contents-buy__creditcard
       .Contents-buy__creditcard--btn
-        = form_with url: buy_items_path do
-          :plain
-            <script type="text/javascript" src="https://checkout.pay.jp" class="payjp-button" data-key="pk_test_34a577ecdcc82dbde628da65"></script>
     .Contents-buy__distination
       =form_with local: true do |f|
         .Contents-buy__distination--block
