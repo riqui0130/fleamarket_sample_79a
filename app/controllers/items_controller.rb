@@ -25,7 +25,7 @@ class ItemsController < ApplicationController
   def create
     # binding.pry
     @item = Item.new(item_params)
-    # @parents = Category.where(ancestry: nil)
+    @parents = Category.where(ancestry: nil)
     if @item.save!
       render :sell
     else
@@ -50,7 +50,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :detail, :condition_id, :delivery_days_id, :prefecture_id, :deliverycost_id, :price, :images)  #後からつける:category_id,
+    params.require(:item).permit(:name, :detail, :category_id, :condition_id, :delivery_days_id, :prefecture_id, :deliverycost_id, :price, :images)  #後からつける:category_id,
   end
 
   def set_current_user_items

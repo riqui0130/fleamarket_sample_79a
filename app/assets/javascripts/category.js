@@ -13,7 +13,7 @@ $(function(){
                           <select>
                         </div>
                       </div>`;
-    $('.sell-title__text').append(childSelectHtml);
+    $('.sell-collection_select__category__a').append(childSelectHtml);
   }
   function appendGrandchidrenBox(insertHTML){
     var grandchildSelectHtml = '';
@@ -25,7 +25,7 @@ $(function(){
                                 </select>
                               </div>
                             </div>`;
-    $('.sell-title__text').append(grandchildSelectHtml);
+    $('.sell-collection_select__category__a').append(grandchildSelectHtml);
   }
 
   $('#parent_category').on('change', function(){
