@@ -15,7 +15,7 @@ class ItemsController < ApplicationController
   def new
     if user_signed_in?
       @item = Item.new
-      @item.image.build
+      @item.images.build
       @parents = Category.where(ancestry: nil)
     else
       redirect_to root_path
