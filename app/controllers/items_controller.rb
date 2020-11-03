@@ -3,8 +3,10 @@ class ItemsController < ApplicationController
   before_action :set_current_user_items,only:[:edit, :update, :destroy]
 
   def index
-    @items = Item.all.limit(5)
+    @item = Item.all.limit(5)
     @parents = Category.where(ancestry: nil)
+    @image = Image.all
+    @item = Item.all
   end
 
   def show
@@ -15,7 +17,7 @@ class ItemsController < ApplicationController
   def new
     if user_signed_in?
       @item = Item.new
-      @item.images.build
+      @item.image.build
       @parents = Category.where(ancestry: nil)
     else
       redirect_to root_path
@@ -25,8 +27,8 @@ class ItemsController < ApplicationController
   def create
     # binding.pry
     @item = Item.new(item_params)
+    @parents = Category.where(ancestry: nil)
     if @item.save!
-      @parents = Category.where(ancestry: nil)
       render :sell
     else
       render :new
@@ -39,7 +41,7 @@ class ItemsController < ApplicationController
     @parents = Category.where(ancestry: nil)
     if user_signed_in?
       @item = Item.new
-      @item.item_images.build
+      @item.image.build
     else
       redirect_to root_path, notice: 'ログインもしくはサインインしてください'
     end
@@ -55,7 +57,7 @@ class ItemsController < ApplicationController
 
   def set_current_user_items
     if user_signed_in? 
-      @items = current_user.items.includes(:seller,:buyer,:auction,:item_images)
+      @item = current_user.items.includes(:seller,:buyer,:auction,:item_images)
     else
       redirect_to root_path
     end
