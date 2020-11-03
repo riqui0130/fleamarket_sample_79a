@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
   def index
     @item = Item.all.limit(5)
     @parents = Category.where(ancestry: nil)
-    @image = Image.all
+    @images = Image.all
     @item = Item.all
   end
 
