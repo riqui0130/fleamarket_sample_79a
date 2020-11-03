@@ -20,12 +20,11 @@
         .sell-container__content__upload
           .sell-container__content__upload__items
             .sell-container__content__upload__items__box
-              %ul#output-box
-                %div#image-input{tabindex:"0"}
-                  = f.label :image, for: "image0", class: 'sell-container__content__upload__items__box__label', data: {label_id: 0 } do
-                    = f.file_field :image,multiple: true ,class: "sell-container__content__upload__items__box__input", required: "required", id: "image0", style: 'display: none;'
-                    %pre
-                    クリックしてファイルをアップロード
+              #output-box
+                #image-input
+                  = f.label :image, for: "img-file", class: 'sell-container__content__upload__items__box__label', data: {label_id: 0 } do
+                    = f.file_field :image,name: "item[item_images_attributes]", class: "sell-container__content__upload__items__box__input", id: "img-file", style: 'display: none;'
+                    %pre クリックしてファイルをアップロード
         .error-messages#error-image
       %hr
 

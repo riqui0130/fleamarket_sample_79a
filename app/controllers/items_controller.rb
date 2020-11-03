@@ -15,7 +15,7 @@ class ItemsController < ApplicationController
   def new
     if user_signed_in?
       @item = Item.new
-      @item.images.build
+      @item.image.build
       @parents = Category.where(ancestry: nil)
     else
       redirect_to root_path
@@ -50,7 +50,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :detail, :category_id, :condition_id, :delivery_days_id, :prefecture_id, :deliverycost_id, :price, :image)
+    params.require(:item).permit(:name, :detail, :category_id, :condition_id, :delivery_days_id, :prefecture_id, :deliverycost_id, :price, item_images_attributes: [:image])
   end
 
   def set_current_user_items
