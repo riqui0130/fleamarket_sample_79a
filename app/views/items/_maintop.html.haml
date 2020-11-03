@@ -119,7 +119,7 @@
         = link_to'#', class: 'product-head' do
           %h3.title アーカイバ
       .product-box__lists
-        - @items.each do |item|
+        - @item.each do |item|
           .product-box__list
             = link_to item_path(item.id), class: 'new-product' do
               %figure.product-box__img
