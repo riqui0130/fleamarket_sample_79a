@@ -28,6 +28,14 @@ Rails.application.routes.draw do
     end
   end
   get 'users/logout'
+  resources :buy, only: [:index] do
+    collection do
+      get 'index', to: 'buy#index'
+      post 'pay', to: 'buy#pay'
+      get 'done', to: 'buy#done'
+    end
+  end
+
   resources :items, only: [:show, :new, :create]
     resources :items do
       member do
