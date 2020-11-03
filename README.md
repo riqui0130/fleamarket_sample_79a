@@ -100,11 +100,11 @@ Things you may want to cover:
 ### Association
 - has_many :items
 
-## pictures テーブル
+## images テーブル
 |Column|Type|Options|
 |------|----|-------|
 |item_id|integer|null: false, foreign_key: true|
-|picture_url|string|null: false|
+|image_url|string|null: false|
 ### Association
 - belongs_to :item
 
