@@ -1,6 +1,8 @@
+
 * {
   box-sizing: border-box;
 }
+
 body{
   background-color: rgb(245,245,245);
 }
@@ -60,8 +62,9 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: red;
     &--btn{
-      height:50px;
+      height:150px;
       width:300px;
       background-color:#ccc;
       color:white;
@@ -147,4 +150,3 @@ body{
   }
   }
 }
-
