@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'buy/index'
+  get 'buy/done'
   resources :creditcard, only: [:new, :show] do
     collection do
       post 'show', to: 'creditcard#show'
