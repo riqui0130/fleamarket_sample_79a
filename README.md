@@ -104,7 +104,7 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |item_id|integer|null: false, foreign_key: true|
-|image_url|string|null: false|
+|image|string|null: false|
 ### Association
 - belongs_to :item
 

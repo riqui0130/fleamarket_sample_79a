@@ -3,9 +3,8 @@ class ItemsController < ApplicationController
   before_action :set_current_user_items,only:[:edit, :update, :destroy]
 
   def index
-    @item = Item.all.limit(5)
+    @item = Item.all.includes(:image).limit(5)
     @parents = Category.where(ancestry: nil)
-    @image = Image.all.limit(5)
   end
 
   def show
@@ -51,7 +50,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :detail, :category_id, :condition_id, :delivery_days_id, :prefecture_id, :deliverycost_id, :price, :images)
+    params.require(:item).permit(:name, :detail, :category_id, :condition_id, :delivery_days_id, :prefecture_id, :deliverycost_id, :price, :image)
   end
 
   def set_current_user_items
