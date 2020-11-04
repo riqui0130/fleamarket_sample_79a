@@ -19,7 +19,7 @@
                 必須
           .sell-container__content__max-sheet
             .sell-container__content__max-sheet__comments
-            最大10枚までアップロードできます
+              %P 最大10枚までアップロードできます
             .upload-space
               .icon
                 #image-box
@@ -39,7 +39,7 @@
                       .js-file_group{"data-index": "#{@item.images.count}"}
                         = file_field_tag :image, name: "item[images_attributes][#{@item.images.count}][image]", class: 'js-file', id: "item_images_attributes_#{@item.images.count}_image"
                     .icon-comment
-                      %p#text カメラをクリックしてファイルをアップロード
+                      %pre カメラをクリックしてファイルをアップロード
         .error-messages#error-image
       %hr
 
