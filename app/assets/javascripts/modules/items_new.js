@@ -1,17 +1,4 @@
 // エラーハンドリング
-//画像
-$(document).on('click', function(){
-  $('.js-file').on('blur',function(){
-    let value = $(this).val();
-    if(value == ""){
-      $('#error-image').text('*画像を貼り付けてください');
-      $(this).css('border-color','red');
-    }else{
-      $('#error-image').text('');
-      $(this).css('border-color','rgb(204, 204, 204)');
-    }
-  });
-});
 $(document).on('click', function(){
   //商品名
   $('.sell-container__content__name').on('blur',function(){

@@ -10,36 +10,34 @@
 
       -# 画像部分
       .sell-container__content
-        .sell-image
-          .sell-image1
-            .sell-title
-            %h3.sell-title__text
-              出品画像
-              %span.sell-title__require
-                必須
-          .sell-container__content__max-sheet
-            .sell-container__content__max-sheet__comments
-              %P 最大10枚までアップロードできます
-            .upload-space
-              .icon
-                #image-box
-                  #previews
+        .sell-title
+          %h3.sell-title__text
+            出品画像
+            %span.sell-title__require
+              必須
+        .sell-container__content__max-sheet
+          最大10枚までアップロードできます
+          .sell-container__content__upload
+            .sell-container__content__upload__items
+              .sell-container__content__upload__items__box
+                #output-box
+                  #image-input
                     - if @item.persisted?
                       - @item.images.each_with_index do |image, i|
                         .preview
                           = image_tag image.image.url, data: { index: i }, width: "100", height: '100', class: "preview-image"
                           .js-remove 削除
-                  %label{class: "sell-container__content__upload__items__box__label", id: "image-label", for: "item_images_attributes_#{@item.images.count}_image"}
-                    = f.fields_for :images do |image|
-                      .js-file_group{"data-index" => "#{image.index}"}
-                        = image.file_field :image, class: 'js-file'
+                    %label{class: "sell-container__content__upload__items__box__label", id: "image-label", for: "item_images_attributes_#{@item.images.count}_image"}
+                      = f.fields_for :images do |image|
+                        .js-file_group{"data-index" => "#{image.index}"}
+                          = image.file_field :image, class: 'sell-container__content__upload__items__box__input'
+                        - if @item.persisted?
+                          = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'
                       - if @item.persisted?
-                        = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'
-                    - if @item.persisted?
-                      .js-file_group{"data-index": "#{@item.images.count}"}
-                        = file_field_tag :image, name: "item[images_attributes][#{@item.images.count}][image]", class: 'js-file', id: "item_images_attributes_#{@item.images.count}_image"
-                    .icon-comment
-                      %pre カメラをクリックしてファイルをアップロード
+                        .js-file_group{"data-index": "#{@item.images.count}"}
+                          = file_field_tag :image, name: "item[images_attributes][#{@item.images.count}][image]", class: 'sell-container__content__upload__items__box__input', id: "item_images_attributes_#{@item.images.count}_image"
+                      .icon-comment
+                        %pre カメラをクリックしてファイルをアップロード
         .error-messages#error-image
       %hr
 
