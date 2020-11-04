@@ -26,7 +26,7 @@ class ItemsController < ApplicationController
     # binding.pry
     @item = Item.new(item_params)
     @parents = Category.where(ancestry: nil)
-    if @item.save!
+    if @item.save
       render :sell
     else
       render :new
