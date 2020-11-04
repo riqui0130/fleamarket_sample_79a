@@ -90,18 +90,18 @@
         = link_to '#', class: 'product-head' do
           %h3.title 新規投稿商品
       .product-box__lists
-        - @item.each do |item|
+        - @items.each do |item|
           .product-box__list
             = link_to item_path(item.id), class: 'new-product' do
               %figure.product-box__img
-                = image_tag item.image[0].image.url, size: "220x150"
+                = image_tag item.images.first.image_url, size: "220x150"
                 - if item.buyer_id.present?
                   .items-sold
                     .items-sold__inner
                       SOLD
               .product-box__body
                 %h3.name 
-                  = item.item_name
+                  = item.name
                 .detail
                   %ul.price-line
                     %li.price 
@@ -119,18 +119,18 @@
         = link_to'#', class: 'product-head' do
           %h3.title アーカイバ
       .product-box__lists
-        - @item.each do |item|
+        - @items.each do |item|
           .product-box__list
             = link_to item_path(item.id), class: 'new-product' do
               %figure.product-box__img
-                = image_tag item.image[0].image.url, size: "220x150"
+                = image_tag item.images.first.image_url, size: "220x150"
                 - if item.buyer_id.present? 
                   .items-sold
                     .items-sold__inner 
                       SOLD
               .product-box__body
                 %h3.name 
-                  = item.item_name
+                  = item.name
                 .detail
                   %ul.price-line
                     %li.price 

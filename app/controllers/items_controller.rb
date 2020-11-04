@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :set_current_user_items,only:[:edit, :update, :destroy]
 
   def index
-    @item = Item.all.includes(:image).limit(5)
+    @items = Item.includes(:images).order(created_at: "desc")
     @parents = Category.where(ancestry: nil)
   end
 
@@ -15,7 +15,7 @@ class ItemsController < ApplicationController
   def new
     if user_signed_in?
       @item = Item.new
-      @item.image.build
+      @item.images.build
       @parents = Category.where(ancestry: nil)
     else
       redirect_to root_path
@@ -39,7 +39,7 @@ class ItemsController < ApplicationController
     @parents = Category.where(ancestry: nil)
     if user_signed_in?
       @item = Item.new
-      @item.image.build
+      @item.images.build
     else
       redirect_to root_path, notice: 'ログインもしくはサインインしてください'
     end
@@ -50,7 +50,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :detail, :category_id, :condition_id, :delivery_days_id, :prefecture_id, :deliverycost_id, :price, item_images_attributes: [:image])
+    params.require(:item).permit(:name, :detail, :category_id, :condition_id, :delivery_days_id, :prefecture_id, :deliverycost_id, :price,images_attributes: [:image, :_destroy, :id])
   end
 
   def set_current_user_items

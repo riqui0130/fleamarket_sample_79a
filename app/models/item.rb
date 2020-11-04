@@ -15,8 +15,8 @@ class Item < ApplicationRecord
   validates :prefecture_id, presence: true
   validates :price, numericality: { only_integer: true,greater_than: 299, less_than: 9999999 }
 
-  has_many :image, dependent: :destroy
-  accepts_nested_attributes_for :image, allow_destroy: true
+  has_many :images, dependent: :destroy
+  accepts_nested_attributes_for :images, allow_destroy: true
   belongs_to :category
   belongs_to :seller, class_name: "User", optional: true,foreign_key: "seller_id"
   belongs_to :buyer, class_name: "User", optional: true,foreign_key: "buyer_id"
