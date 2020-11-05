@@ -9,6 +9,7 @@ class ItemsController < ApplicationController
 
   def show
     @parents = Category.where(ancestry: nil)
+    @item = Item.find(params[:id])
     @category = Category.find(@item.category_id)
   end
 

@@ -4,20 +4,22 @@
       .topContent
         .itemBox
           .itemBox__message
-            product2
+            = @item.name
           .itemBox__picture
-            = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png", class: 'mainPic'
+            = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/16/IMG_9072.JPG", class: 'mainPic'
+            -# = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png", 
             %ul
               %li
                 = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png", class: 'subPic'
                 = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png", class: 'subPic'
                 = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png", class: 'subPic'
           .itemBox__price
-            ￥20000
+            ¥ 
+            = @item.price
           .itemBox__terms
             (税込) 送料込み
           .itemBox__detail
-            親譲りの無鉄砲で小供の時から損ばかりしている。小学校に居る時分学校の二階から飛び降りて一週間ほど腰を抜かした事がある。なぜそんな無闇をしたと聞く人があるかも知れぬ。別段深い理由でもない。新築の二階から首を出していたら、同級生の一人が冗談に、いくら威張っても、そこから飛び降りる事は出来まい。弱虫やーい。と囃したからである。小使に負ぶさって帰って来た時、おやじが大きな眼をして二階ぐらいから飛び降りて腰
+            = @item.detail
           %table{ class: "tbody"}
             %tr{class: "tr"}
               %th{class: "th"}
@@ -28,14 +30,14 @@
               %th{class: "th"}
                 カテゴリー
               %td{class: "td"}
-                = link_to @category.parent.parent.name, item_path, class: ""
-                = link_to @category.parent.name, item_path, class: ""
+                -# = link_to @category.parent.parent.name, item_path, class: ""
+                -# = link_to @category.parent.name, item_path, class: ""
                 = link_to @category.name, item_path, class:""
             %tr{class: "tr"}
               %th{class: "th"}
                 ブランド
               %td{class: "td"}
-                ッグッチ
+                = @item.brand
             %tr{class: "tr"}
               %th{class: "th"}
                 商品のサイズ
@@ -45,7 +47,8 @@
               %th{class: "th"}
                 商品の状態
               %td{class: "td"}
-                新品/未使用
+                だいぶ古い
+                -# = @item.Condition.data.name
             %tr{class: "tr"}
               %th{class: "th"}
                 配送料の負担
