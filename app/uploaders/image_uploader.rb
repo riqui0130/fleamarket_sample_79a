@@ -5,7 +5,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Choose what kind of storage to use for this uploader:
   if Rails.env.development? || Rails.env.test?
-    storage :file
+    storage :fog
   else
     storage :fog
   end
