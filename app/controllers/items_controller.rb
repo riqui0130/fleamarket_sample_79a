@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :set_current_user_items,only:[:edit, :update, :destroy]
 
   def index
-    @items = Item.all.limit(5)
+    @items = Item.includes(:images).order(created_at: "desc")
     @parents = Category.where(ancestry: nil)
   end
 
@@ -26,8 +26,8 @@ class ItemsController < ApplicationController
   def create
     # binding.pry
     @item = Item.new(item_params)
-    if @item.save!
-      @parents = Category.where(ancestry: nil)
+    @parents = Category.where(ancestry: nil)
+    if @item.save
       render :sell
     else
       render :new
@@ -40,7 +40,7 @@ class ItemsController < ApplicationController
     @parents = Category.where(ancestry: nil)
     if user_signed_in?
       @item = Item.new
-      @item.item_images.build
+      @item.images.build
     else
       redirect_to root_path, notice: 'ログインもしくはサインインしてください'
     end
@@ -51,12 +51,12 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :detail, :category_id, :condition_id, :delivery_days_id, :prefecture_id, :deliverycost_id, :price, :images)  #後からつける:category_id,
+    params.require(:item).permit(:name, :detail, :category_id, :condition_id, :delivery_days_id, :prefecture_id, :deliverycost_id, :price,images_attributes: [:image, :_destroy, :id])
   end
 
   def set_current_user_items
     if user_signed_in? 
-      @items = current_user.items.includes(:seller,:buyer,:auction,:item_images)
+      @item = current_user.items.includes(:seller,:buyer,:auction,:item_images)
     else
       redirect_to root_path
     end
