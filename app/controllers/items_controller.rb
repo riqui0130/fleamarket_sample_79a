@@ -27,7 +27,7 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     @parents = Category.where(ancestry: nil)
     if @item.save
-      render :sell
+      redirect_to root_path
     else
       render :new
     end
