@@ -19,7 +19,14 @@ class ItemsController < ApplicationController
       @parents = Category.where(ancestry: nil)
     else
       redirect_to root_path
+    end
   end
+
+  def get_category_children
+    @category_children = Category.where('ancestry = ?', "#{params[:parent_name]}")
+  end
+  def get_category_grandchildren
+    @category_grandchildren = Category.find(params[:child_id]).children
   end
 
   def create

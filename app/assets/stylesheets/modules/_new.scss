@@ -5,6 +5,13 @@
   margin: 16px 0;
   box-sizing: border-box;
 }
+.listing-select-wrapper__box--select{
+  box-sizing: border-box;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  height: 48px;
+}
 .products__condition{
   display: inline-block;
   position: relative;
