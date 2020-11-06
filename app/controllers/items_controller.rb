@@ -34,7 +34,7 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     @parents = Category.where(ancestry: nil)
     if @item.save
-      render :sell and return
+      render '/items/sell'
     else
       render :new
     end
