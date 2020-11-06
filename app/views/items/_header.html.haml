@@ -16,18 +16,19 @@
       %ul.Header__left
         %li.Header__left--category
           = link_to 'カテゴリー', '#', class: "Header__naviBtn" 
-          %ul.category1
-            - @parents.each do |parent|
-              %li.parent__list
-                = link_to parent.name
-                %ul.category2
-                  - parent.children.each do |child|
-                    %li.child__list
-                      =link_to child.name
-                      %ul.category3
-                        - child.children.each do |grandchild|
-                          %li.grandchild__list
-                            = link_to grandchild.name
+          .tree
+            %ul.category1
+              - @parents.each do |parent|
+                %li.parent__list
+                  = link_to parent.name
+                  %ul.category2
+                    - parent.children.each do |child|
+                      %li.child__list
+                        =link_to child.name
+                        %ul.category3
+                          - child.children.each do |grandchild|
+                            %li.grandchild__list
+                              = link_to grandchild.name
         %li.Header__left--brand
           = link_to 'ブランド', '#', class: "Header__naviBtn"
       %ul.Header__right
