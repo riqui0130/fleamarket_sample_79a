@@ -23,11 +23,13 @@
       %div 支払い金額
       %div 〜〜円
     .Contents-buy__creditcard
+    
       - if @default_card_information.blank?
         .Contents-buy__creditcard--btn
           = link_to 'クレジットカードで支払う', new_creditcard_path, method: :get, class: "Header__naviBtn"
       - else
         .Contents-buy__creditcard--btn
+          =link_to "カード設定", "/creditcard/show" , method: :get, class: "Menulink"
           -#以下カード情報を表示
           %label 登録クレジットカード情報
           %br
