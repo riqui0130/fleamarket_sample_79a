@@ -1,5 +1,6 @@
 class BuyController < ApplicationController
   def index
+    @destination = Destination.find_by(id: current_user.id)
     card = Creditcard.where(user_id: current_user.id).first
     #Cardテーブルは前回記事で作成、テーブルからpayjpの顧客IDを検索
     if card.blank?
