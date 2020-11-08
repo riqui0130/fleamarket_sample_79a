@@ -1,0 +1,11 @@
+= render "/items/header"
+= render "showMain"
+= render "/items/banner"
+= render "/items/footer"
+
+.icon
+  = link_to "/items/new", class: "icon__link" do
+    .icon__title
+      出品する
+    .icon__image
+      = image_tag 'icon_camera.png', height:'54px', weight:'54px'

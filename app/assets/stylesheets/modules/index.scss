@@ -11,10 +11,12 @@
     color: #fff;
     display: block;
     font-size: 18px;
-    text-decoration: none;
     margin-bottom: 5px;
   }
   &__image {
     vertical-align: bottom;
+  }
+  a {
+    text-decoration: none;
   }
 }
