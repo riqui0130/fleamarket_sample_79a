@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       collection do
         get 'buy'
         get 'sell'
+        get 'update_done'
       end
     end
   resources :users, only: :show

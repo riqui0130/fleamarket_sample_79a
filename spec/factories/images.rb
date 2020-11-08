@@ -1,6 +1,6 @@
 FactoryBot.define do
 
-  factory :image do
+  factory :images do
     image       {File.open("#{Rails.root}/spec/fixtures/test.png")}
     association :item
   end
