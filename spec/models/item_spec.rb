@@ -2,76 +2,68 @@ require 'rails_helper'
 describe Item do
   describe '#create' do
 
-    it "image, name, detail, price, condition_id, deliverydays_id, delivery_id, prefecture_id, category_id, seller_idがあれば出品できること" do
-      user = create(:user)
-      item = build(:item, seller_id: user[:id])
+    it "image, name, detail, price, condition_id, delivery_days_id, delivery_id, prefecture_id, category_id, seller_idがあれば出品できること" do
+      item = build(:item)
       expect(item).to be_valid
     end
 
-    it 'brandがなくても出品できること' do
-      user = create(:user)
-      item = build(:item, seller_id: user[:id], brand: nil)
+    it 'is valid without brand' do
+      item = build(:item, brand: nil)
       expect(item).to be_valid
     end
 
-    it "imageが0枚だと出品できないこと" do
-      user = create(:user)
-      item = Item.new(name: "abc", detail: "abc", price: 1000, condition_id: 1, delivery_id: 1, deliverydays_id: 1, prefecture_id: 1, category_id: 1, seller_id: user[:id])
-      item.valid?
+    it "is invalid without image" do
+      item = build(:item, image: nil)
+      itme.valid?
+      expect(item.errors[:image]).to include("can't be blank")
     end
 
-    it 'nameがないと出品できないこと' do
-      user = create(:user)
-      item = build(:item, seller_id: user[:id], name: nil)
+    it "is invalid without name" do
+      item = build(:item, name: nil)
       item.valid?
+      expect(item.errors[:name]).to include("can't be blank")
     end
 
-    it 'nameが40字以上だと出品できないこと' do
-      user = create(:user)
-      item = build(:item, seller_id: user[:id], name: "123456789123456789123456789123456789123456789")
+    it "is invalid without detail" do
+      item = build(:item, name: nil)
       item.valid?
+      expect(item.errors[:detail]).to include("can't be blank")
     end
 
-    it 'detailがないと出品できないこと' do
-      user = create(:user)
-      item = build(:item, seller_id: user[:id], text: nil)
+    it "is invalid without price" do
+      item = build(:item, name: nil)
       item.valid?
+      expect(item.errors[:price]).to include("can't be blank")
     end
 
-    it 'priceがないと出品できないこと' do
-      user = create(:user)
-      item = build(:item, seller_id: user[:id], price: nil)
+    it "is invalid without condition_id" do
+      item = build(:item, name: nil)
       item.valid?
+      expect(item.errors[:condition_id]).to include("can't be blank")
     end
 
-    it 'condition_idがないと出品できないこと' do
-      user = create(:user)
-      item = build(:item, seller_id: user[:id], status_id: nil)
+    it "is invalid without delivery_id" do
+      item = build(:item, name: nil)
       item.valid?
+      expect(item.errors[:delivery_id]).to include("can't be blank")
     end
 
-    it 'delivery_idがないと出品できないこと' do
-      user = create(:user)
-      item = build(:item, seller_id: user[:id], postage_id: nil)
+    it "is invalid without delivery_days_id" do
+      item = build(:item, name: nil)
       item.valid?
+      expect(item.errors[:delivery_days_id]).to include("can't be blank")
     end
 
-    it 'deliverydays_idがないと出品できないこと' do
-      user = create(:user)
-      item = build(:item, seller_id: user[:id], days_id: nil)
+    it "is invalid without prefecture_id" do
+      item = build(:item, name: nil)
       item.valid?
+      expect(item.errors[:prefecture_id]).to include("can't be blank")
     end
 
-    it 'prefecture_idがないと出品できないこと' do
-      user = create(:user)
-      item = build(:item, seller_id: user[:id], prefecture_id: nil)
+    it "is invalid without category_id" do
+      item = build(:item, name: nil)
       item.valid?
-    end
-
-    it 'category_idがないと出品できないこと' do
-      user = create(:user)
-      item = build(:item, seller_id: user[:id], category_id: nil)
-      item.valid?
+      expect(item.errors[:category_id]).to include("can't be blank")
     end
 
   end
