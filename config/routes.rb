@@ -17,12 +17,18 @@ Rails.application.routes.draw do
     end
   end
   get 'users/logout'
-  resources :items
+  resources :items do
     resources :items do
       collection do
         get 'buy'
         get 'sell'
       end
     end
-  resources :users, only: :show
+  end
+  resources :users, only: [:show, :destroy] do
+    collection do
+      get 'get_category_children', defaults: { format: 'json' }
+      get 'get_category_grandchildren', defaults: { format: 'json' }
+    end
+  end
 end
