@@ -7,8 +7,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
-    @items = Item.includes(:images)
     @parents = Category.where(ancestry: nil)
     @category = Category.find(@item.category_id)
   end

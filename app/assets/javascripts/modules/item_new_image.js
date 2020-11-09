@@ -7,11 +7,6 @@ $(document).on('turbolinks:load', function(){
     $.each(files, function(index, file) {
       let reader = new FileReader();
 
-      //画像でない場合は処理終了
-      if(file.type.indexOf("image") < 0){
-        alert("画像ファイルを指定してください。");
-        return false;
-      }
       //アップロードした画像を設定する
       reader.onload = (function(file){
         return function(e){
@@ -27,7 +22,6 @@ $(document).on('turbolinks:load', function(){
                                         <img src='${e.target.result}' title='${file.name}' >
                                       </figure>
                                       <div class="preview-image__button">
-                                        <a class="preview-image__button__edit">編集</a>
                                         <a class="preview-image__button__delete" data-image-id="${labelLength}">削除</a>
                                       </div>
                                     </li>`);
@@ -61,37 +55,23 @@ $(document).on('turbolinks:load', function(){
       // 表示されているプレビューが９なら,#image-inputの子要素labelの中から最後の要素のカスタムデータidを取得
       $("#image-input").append(`<label for="item_images${labelLength+1}" class="sell-container__content__upload__items__box__label" data-label-id="${labelLength+1}">
                                   <input multiple="multiple" class="sell-container__content__upload__items__box__input" id="item_images${labelLength+1}" style="display: none;" type="file" name="item[images][]">
-                                  <i class="fas fa-camera fa-lg"></i>
                                 </label>`);
     };
   });
-});
-// 各フォームの入力チェック
-$(function(){
-  //画像
-  $('#image-input').on('focus',function(){
-    $('#error-image').text('');
-    $('#image-input').on('blur',function(){
+//エラーハンドリング 
+  $(document).on('click', function(){
+    let imageLength = $('#output-box').children('li').length;
+    if(imageLength ==''){
+      $('#error-image').text('*画像がありません');
+    }else if(imageLength >10){
+      $('#error-image').text('*画像を10枚以下にして下さい');
+    }else{
       $('#error-image').text('');
-      let imageLength = $('#output-box').children('li').length;
-      if(imageLength ==''){
-        $('#error-image').text('画像がありません');
-      }else if(imageLength >10){
-        $('#error-image').text('画像を10枚以下にして下さい');
-      }else{
-        $('#error-image').text('');
-      }
-    });
+    }
   });
 });
-//画像を削除した時
-$(document).on('click', function(){
-  let imageLength = $('#output-box').children('li').length;
-  if(imageLength ==''){
-    $('#error-image').text('*画像がありません');
-  }else if(imageLength >10){
-    $('#error-image').text('*画像を10枚以下にして下さい');
-  }else{
-    $('#error-image').text('');
-  }
+
+$(document).on("click", "#upload-image", function () {
+  $('#image-input').on('change', function(e){
+  });
 });

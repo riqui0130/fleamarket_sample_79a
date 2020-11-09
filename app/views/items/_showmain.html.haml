@@ -69,7 +69,7 @@
               %i{class: "fa fa-flag"}
               不適切な商品の通報
 
-      //marge時削除
+      //marge
       .editbtn
         - if user_signed_in? && current_user.id == @item.seller_id
           - if @item.buyer_id == nil
