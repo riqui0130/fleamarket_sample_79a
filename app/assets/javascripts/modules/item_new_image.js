@@ -70,8 +70,3 @@ $(document).on('turbolinks:load', function(){
     }
   });
 });
-
-$(document).on("click", "#upload-image", function () {
-  $('#image-input').on('change', function(e){
-  });
-});

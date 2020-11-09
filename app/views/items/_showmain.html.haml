@@ -80,7 +80,6 @@
               %i{class: "fa fa-flag"}
               不適切な商品の通報
 
-      //marge
       .editbtn
         - if user_signed_in? && current_user.id == @item.seller_id
           - if @item.buyer_id == nil
@@ -88,13 +87,6 @@
           - else
             .soldout
               売却済みのため編集できません
-        - elsif user_signed_in? && current_user.id != @item.seller_id && @item.buyer_id == nil
-          = link_to "購入画面に進む", item_purchase_index_path(@item.id), method: :get
-        - elsif @item.buyer_id != nil
-          .soldout
-            SOLD OUT
-        - else
-          = link_to "ログインして下さい", new_user_session_path
 
       .commentBox
         = form_with local: true do |f|
