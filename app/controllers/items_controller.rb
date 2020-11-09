@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :set_items, only: [:show, :edit, :update, :destroy, :set_currect_user_items]
+  before_action :set_items, only: [:show, :edit, :update, :destroy, :currect_user_item]
+  before_action :currect_user_item, only: [:edit, :update, :destroy]
 
   def index
     @items = Item.includes(:images).order(created_at: "desc")
@@ -21,6 +22,15 @@ class ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    if current_user.id == @item.seller_id && @item.destroy
+      redirect_to root_path, notice: "商品を削除しました"
+    else
+      flash.now[:alert] = '商品の削除に失敗しました'
+      redirect_to root_path
+    end
+  end
+
   def get_category_children
     @category_children = Category.where('ancestry = ?', "#{params[:parent_name]}")
   end
@@ -29,7 +39,6 @@ class ItemsController < ApplicationController
   end
 
   def create
-    # binding.pry
     @item = Item.new(item_params)
     @parents = Category.where(ancestry: nil)
     if @item.save
@@ -97,14 +106,13 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :detail, :category_id, :condition_id, :delivery_days_id, :prefecture_id, :deliverycost_id, :price,images_attributes: [:image, :_destroy, :id]).merge(seller_id: current_user.id)
+    params.require(:item).permit(:name, :detail, :category_id, :condition_id, :delivery_days_id, :prefecture_id, :deliverycost_id, :price, images_attributes: [:image, :_destroy, :id]).merge(seller_id: current_user.id)
   end
 
-  def set_current_user_items
-    if user_signed_in? 
-      @item = current_user.items.includes(:seller,:buyer,:auction,:item_images)
-    else
-      redirect_to root_path
+  def currect_user_item
+    if current_user.id != @item.seller_id
+      redirect_to item_path(params[:id])
     end
   end
 end
+

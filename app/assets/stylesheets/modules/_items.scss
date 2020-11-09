@@ -20,6 +20,30 @@
         background-color: #fff;
         .itemBox{
           padding: 24px 40px 40px;
+
+          &__purchase{
+            width: 100%;
+            margin: auto;
+    
+            &--btn{
+              background: red;
+              border: 1px solid black;
+              color: white;
+              width: 60%;
+              height: 100%;
+              font-size: 18px;
+              border-radius: 100px;
+              display: block;
+              text-decoration: none;
+              margin:  0 auto;
+              margin-bottom: 10px;
+              
+              a{
+                text-decoration: none;
+                color: #fff;
+              }
+            }
+          }
           .itemBox__message{
             font-weight: bold;
             font-size: 24px;
