@@ -2,7 +2,6 @@ class UsersController < ApplicationController
   before_action :set_parents, only: [:show, :destroy]
 
   def show
-    @parents = Category.where(ancestry: nil) 
   end
 
   def destroy
