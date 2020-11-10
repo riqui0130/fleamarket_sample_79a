@@ -4,14 +4,19 @@ class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
-  # def new
-  #   super
-  # end
+    def new
+      @user = User.new
+    end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+    def create
+        super
+    end
+
+    private
+    def log_in(user)
+      session[:user_id] = user.id
+    end
 
   # DELETE /resource/sign_out
   # def destroy
