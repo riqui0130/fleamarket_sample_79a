@@ -1,18 +1,4 @@
 Rails.application.routes.draw do
-  resources :buy, only: [:index] do
-    collection do
-      get 'index', to: 'buy#index'
-      post 'pay', to: 'buy#pay'
-      get 'done', to: 'buy#done'
-    end
-  end
-  resources :creditcard, only: [:new, :show] do
-    collection do
-      post 'show', to: 'creditcard#show'
-      post 'pay', to: 'creditcard#pay'
-      post 'delete', to: 'creditcard#delete'
-    end
-  end  
 
   devise_for :users, controllers:{
     registrations: 'users/registrations',
@@ -33,14 +19,25 @@ Rails.application.routes.draw do
     end
   end
   get 'users/logout'
-
-  resources :items, only: [:show, :new, :create]
+  resources :items, only: [:new, :create,:show, ]
     resources :items do
       member do
+        post 'pay'
         get 'buy'
         get 'sell'
         post 'buy'
+        get 'done'
       end
     end
+
   resources :users, only: :show
+
+  resources :creditcard, only: [:new, :show] do
+    collection do
+      post 'show', to: 'creditcard#show'
+      post 'pay', to: 'creditcard#pay'
+      post 'delete', to: 'creditcard#delete'
+    end
+  end  
+
 end
