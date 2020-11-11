@@ -45,10 +45,9 @@ $(document).on('turbolinks:load', function(){
     console.log(this)
     // イベント元のカスタムデータ属性の値を取得
     $(`#upload-image${targetImageId}`).remove();
-    //プレビューを削除
+    //プレビューを削jo
     $(`[for=item_images${targetImageId}]`).remove();
     //削除したプレビューに関連したinputを削除
-
     let imageLength = $('#output-box').children('li').length;
     // 表示されているプレビューの数を数える
     if (imageLength ==9) {

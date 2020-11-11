@@ -10,6 +10,7 @@ class ItemsController < ApplicationController
   def show
     @parents = Category.where(ancestry: nil)
     @category = Category.find(@item.category_id)
+    @items = Item.includes(:images)
   end
 
   def new
@@ -40,6 +41,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    @item.images.build
     @parents = Category.where(ancestry: nil)
     if @item.save
       render '/items/sell'
@@ -66,10 +68,11 @@ class ItemsController < ApplicationController
   end
 
   def update
+    # byning pry
     if @item.update(item_params)
-      redirect_to root_path
+      redirect_to item_path(params[:id]), notice: '更新しました'
     else
-      grandchild_category = @item.category
+      grandchild_category= @item.category
     child_category = grandchild_category.parent
     @parents = []
     Category.where(ancestry: nil).each do |parent|

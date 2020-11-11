@@ -23,11 +23,11 @@
                 #output-box
                   - if @item.persisted?
                     - @item.images.each_with_index do |image, i|
-                      %li{class: 'preview-image', id: 'upload-image'}
+                      %li{class: 'preview-image', id: 'upload-image', data:{image_id: ''}}
                         %figure.preview-image__figure
-                          = image_tag image.image.url, data: { index: i }, width: "100", height: '100'
+                          = image_tag(image.image.url,{width: "100", height: '100'})
                         .preview-image__button
-                          %a{class:'preview-image__button__delete', data: 'image-id'} 削除
+                          %a{class:'preview-image__button__delete', data:{image_id: ''}} 削除
                   #image-input
                     %label{class: "sell-container__content__upload__items__box__label", id: "image-label", for: "item_images_attributes_#{@item.images.count}_image"}
                       = f.fields_for :images do |image|
