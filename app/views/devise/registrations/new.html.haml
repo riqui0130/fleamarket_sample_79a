@@ -50,17 +50,14 @@
                 = f.label :生年月日
                 %span.FormField--require 必須
                 %br
-              .FormField__birthday
-                =f.text_field :birth_day, class: 'FormField__input', placeholder: "例）20201019"
+                =raw sprintf(f.date_select(:birth_day,  default: Time.now , start_year: 1960, end_year: Time.now.year, prompt:"--", use_month_numbers: true, date_separator: "%s", with_css_classes: "date"), "年 ", "月 ")+ "日"
             %p.info-text ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
           .AccountPage__content
-            = f.submit "次へ進む", class: "form-btn", url: "destinations_path"
+            = f.submit "次へ進む", class: "submit-btn", url: "destinations_path"
   .AccountPage__footer
     %ul.FooterLists
       %li.FooterList プライバシーポリシー
       %li.FooterList FURIMA利用規約
       %li.FooterList 特定商取引に関する表記
-    = link_to "#", class: "FooterLogo" do
+    = link_to "/", class: "FooterLogo" do
       = image_tag 'logo-white.png', class: 'app'
-    .actions
-      = render "devise/shared/links"

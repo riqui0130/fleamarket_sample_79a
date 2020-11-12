@@ -16,6 +16,17 @@
             = @item.price
           .itemBox__terms
             (税込) 送料込み
+          .itemBox__purchase
+            -if (user_signed_in? && @item.buyer_id == nil)
+              -if (current_user.id == @item.seller_id)
+                %button.itemBox__purchase--btn
+                  = link_to "商品情報を編集"
+                %button.itemBox__purchase--btn
+                  = link_to '商品を削除', item_path, method: :delete
+              - else
+                %button.itemBox__purchase--btn
+                  = link_to "購入に進む"
+
           .itemBox__detail
             = @item.detail
           %table{ class: "tbody"}
