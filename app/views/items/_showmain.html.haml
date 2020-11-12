@@ -6,13 +6,11 @@
           .itemBox__message
             = @item.name
           .itemBox__picture
-            = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/16/IMG_9072.JPG", class: 'mainPic'
-            -# = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png", 
+            = image_tag @item.images[0].image.url, class: 'mainPic'
             %ul
               %li
-                = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png", class: 'subPic'
-                = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png", class: 'subPic'
-                = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png", class: 'subPic'
+                - @item.images[1..-1].each do |image|
+                  = image_tag image.image.url, class: 'subPic'
           .itemBox__price
             ¥ 
             = @item.price
@@ -25,7 +23,7 @@
               %th{class: "th"}
                 出品者
               %td{class: "td"}
-                hoge
+                = @user.nickname
             %tr{class: "tr"}
               %th{class: "th"}
                 カテゴリー
@@ -37,33 +35,31 @@
               %th{class: "th"}
                 ブランド
               %td{class: "td"}
-                = @item.brand
-            %tr{class: "tr"}
-              %th{class: "th"}
-                商品のサイズ
-              %td{class: "td"}
-                ちいさめ
+                - if @item.brand.present?
+                  = @item.brand
+                - else
+                  登録なし
             %tr{class: "tr"}
               %th{class: "th"}
                 商品の状態
               %td{class: "td"}
-                だいぶ古い
-                -# = @item.Condition.data.name
+                -# だいぶ古い
+                = @condition.name 
             %tr{class: "tr"}
               %th{class: "th"}
                 配送料の負担
               %td{class: "td"}
-                着払い(購入者負担)
+                = @delivery_cost.name
             %tr{class: "tr"}
               %th{class: "th"}
                 発送元の地域
               %td{class: "td"}
-                青森県
+                = @prefecture.name
             %tr{class: "tr"}
               %th{class: "th"}
                 発送日の目安
               %td{class: "td"}
-                1−2日で発送
+                = @delivery_days.name
           .optionArea
             .optionArea__likebtn
               %i{class: "fa fa-star"}
@@ -86,6 +82,5 @@
         = link_to "< 前の商品", "", class: "link1"
         = link_to "後ろの商品 >", "", class: "link1"
       .relatedItems
-        = link_to "メンズをもっと見る", "", class: "link2"
-
+        = link_to "#{@category.name}をもっと見る", "", class: "link2"
 

@@ -94,14 +94,8 @@
           .product-box__list
             = link_to item_path(item.id), class: 'new-product' do
               %figure.product-box__img
-<<<<<<< HEAD
-                -# = image_tag item.images[0].image_url, size: "220x150"
-                = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/16/IMG_9072.JPG" , size: "220x150"
-                - if item.buyer_id.present? 
-=======
                 = image_tag item.images.first.image_url, size: "220x150"
                 - if item.buyer_id.present?
->>>>>>> master
                   .items-sold
                     .items-sold__inner
                       SOLD
@@ -129,12 +123,7 @@
           .product-box__list
             = link_to item_path(item.id), class: 'new-product' do
               %figure.product-box__img
-<<<<<<< HEAD
-                -# = image_tag item.images[0].image_url, size: "220x150"
-                = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/16/IMG_9072.JPG" , size: "220x150"
-=======
                 = image_tag item.images.first.image_url, size: "220x150"
->>>>>>> master
                 - if item.buyer_id.present? 
                   .items-sold
                     .items-sold__inner 
