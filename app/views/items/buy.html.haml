@@ -71,7 +71,7 @@
           %label 送付先電話番号
           = @destination.phone_number
     .Contents-buy__btn
-      = form_tag(pay_item_path(:id), method: :post) do
+      = form_tag(pay_item_path, method: :post) do
         %button 購入する
 
   .Footer-buy
