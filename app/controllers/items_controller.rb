@@ -41,7 +41,10 @@ class ItemsController < ApplicationController
   require 'payjp'
 
   def buy
+    #商品送付先情報の変数設定
     @destination = Destination.find_by(id: current_user.id)
+    #商品情報の変数設定
+    @item = Item.find(params[:id])
 
     card = Creditcard.where(user_id: current_user.id).first
     #Cardテーブルは前回記事で作成、テーブルからpayjpの顧客IDを検索

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     get 'destinations', to: 'users/registrations#new_destination'
     post 'destinations', to: 'users/registrations#create_destination'
   end
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'items#index'
   get 'items/sell'
@@ -16,21 +17,16 @@ Rails.application.routes.draw do
     collection do
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
+      get 'sell'
+    end
+    member do
+      get 'buy'
+      post 'pay'
+      get 'done'
     end
   end
-  get 'users/logout'
-  resources :items, only: [:new, :create,:show, ]
-    resources :items do
-      member do
-        post 'pay'
-        get 'buy'
-        get 'sell'
-        post 'buy'
-        get 'done'
-      end
-    end
 
-  resources :users, only: :show
+  get 'users/logout'
 
   resources :creditcard, only: [:new, :show] do
     collection do
@@ -39,5 +35,4 @@ Rails.application.routes.draw do
       post 'delete', to: 'creditcard#delete'
     end
   end  
-
 end

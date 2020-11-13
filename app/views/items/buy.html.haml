@@ -15,13 +15,16 @@
         %span.image
         = image_tag 'test/staff3.jpg', height:'150px', weight:'150px'
       .Contents-buy__items--introduction
-        %p 2020年モデル限定 スーパードライビッグブルーシャツ  新品
+        %p=@item.description
         .Price-block
           送料込み(税込み)
-          20,000円
+          =@item.price
+          円
     .Contents-buy__payment
       %div 支払い金額
-      %div 〜〜円
+      %div 
+        =@item.price
+        円
     .Contents-buy__creditcard
     
       - if @default_card_information.blank?
