@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     member do
       get 'buy'
       post 'pay'
+      get 'pay'
       get 'done'
     end
   end
