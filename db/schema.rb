@@ -12,7 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2020_11_02_101352) do
 
-
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "ancestry"
     t.string "name", null: false
