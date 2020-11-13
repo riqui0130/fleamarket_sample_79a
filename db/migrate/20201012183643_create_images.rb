@@ -1,8 +1,8 @@
 class CreateImages < ActiveRecord::Migration[6.0]
   def change
     create_table :images do |t|
-      t.text :image, null: false
-      t.references :item, null:false, foreign_key:true
+      t.integer :item_id, foreign_key: true, null: false
+      t.string :image, null: false
       t.timestamps
     end
   end

@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2020_11_02_101352) do
 
+
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "ancestry"
     t.string "name", null: false
@@ -43,16 +44,13 @@ ActiveRecord::Schema.define(version: 2020_11_02_101352) do
   end
 
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.text "image", null: false
-    t.bigint "item_id", null: false
+    t.integer "item_id", null: false
+    t.string "image", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["item_id"], name: "index_images_on_item_id"
   end
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "item_name", null: false
-    t.text "description", null: false
     t.integer "price", null: false
     t.string "name", null: false
     t.text "detail", null: false
@@ -61,19 +59,16 @@ ActiveRecord::Schema.define(version: 2020_11_02_101352) do
     t.integer "deliverycost_id", null: false
     t.integer "prefecture_id", null: false
     t.string "brand"
-    t.bigint "category_id", null: false
+    t.bigint "category_id"
+    t.bigint "seller_id"
+    t.bigint "buyer_id"
+    t.bigint "auction_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "buyer_id"
-    t.integer "seller_id", null: false
+    t.index ["auction_id"], name: "index_items_on_auction_id"
+    t.index ["buyer_id"], name: "index_items_on_buyer_id"
     t.index ["category_id"], name: "index_items_on_category_id"
-  end
-
-  create_table "pictures", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "item_id", null: false
-    t.string "picture_url", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.index ["seller_id"], name: "index_items_on_seller_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -96,5 +91,7 @@ ActiveRecord::Schema.define(version: 2020_11_02_101352) do
   end
 
   add_foreign_key "destinations", "users"
-  add_foreign_key "images", "items"
+  add_foreign_key "items", "users", column: "auction_id"
+  add_foreign_key "items", "users", column: "buyer_id"
+  add_foreign_key "items", "users", column: "seller_id"
 end

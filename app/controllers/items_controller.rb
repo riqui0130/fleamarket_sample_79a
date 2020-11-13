@@ -1,41 +1,51 @@
 class ItemsController < ApplicationController
-  before_action :set_current_user_items,only:[:i_transaction,:i_exhibiting,:i_soldout]
-  before_action :set_user,only:[:i_transaction,:i_exhibiting,:i_soldout]
+  before_action :set_items, only: [:show, :edit, :update, :destroy, :currect_user_item]
+  before_action :currect_user_item, only: [:edit, :update, :destroy]
 
   def index
-    @items = Item.all.limit(5)
+    @items = Item.includes(:images).order(created_at: "desc")
+    @parents = Category.where(ancestry: nil)
   end
 
   def show
+    @parents = Category.where(ancestry: nil)
+    @category = Category.find(@item.category_id)
   end
-
 
   def new
     if user_signed_in?
       @item = Item.new
-      # @item.item_pictures.build
-      @category_parent_array = Category.where(ancestry: nil)
+      @item.images.build
+      @parents = Category.where(ancestry: nil)
     else
-      redirect_to root_path, notice: 'ログインもしくはサインインしてください'
+      redirect_to root_path
     end
   end
 
+  def destroy
+    if current_user.id == @item.seller_id && @item.destroy
+      redirect_to root_path, notice: "商品を削除しました"
+    else
+      flash.now[:alert] = '商品の削除に失敗しました'
+      redirect_to root_path
+    end
+  end
+
+  def get_category_children
+    @category_children = Category.where('ancestry = ?', "#{params[:parent_name]}")
+  end
+  def get_category_grandchildren
+    @category_grandchildren = Category.find(params[:child_id]).children
+  end
+
   def create
-    @item = Item.new(@item_params)
-    # if @item.save
-      render :sell
-    # else
-    #   render :new
-    # end
-  end
-
-  def i_exhibiting #出品中のアクション
-  end
-
-  def i_transaction  #取引中のアクション
-  end
-
-  def i_soldout    #売却済みのアクション
+    @item = Item.new(item_params)
+    @parents = Category.where(ancestry: nil)
+    if @item.save
+      render '/items/sell'
+    else
+      render :new
+    end
   end
 
   require 'payjp'
@@ -75,22 +85,28 @@ class ItemsController < ApplicationController
 
   private
 
+  def set_categories
+    @parents = Category.where(ancestry: nil)
+    if user_signed_in?
+      @item = Item.new
+      @item.images.build
+    else
+      redirect_to root_path, notice: 'ログインもしくはサインインしてください'
+    end
+  end
+
   def set_items
     @item = Item.find(params[:id])
   end
 
   def item_params
-    params.require(:item).permit(:name, :text, :category_id, :status_id, :postage_id, :prefecture_id, :days_id, :price, :images[])
+    params.require(:item).permit(:name, :detail, :category_id, :condition_id, :delivery_days_id, :prefecture_id, :deliverycost_id, :price, images_attributes: [:image, :_destroy, :id]).merge(seller_id: current_user.id)
   end
 
-  def set_current_user_items
-    if user_signed_in? 
-      @items = current_user.items.includes(:seller,:buyer,:auction,:item_images)
-    else
-      redirect_to root_path
+  def currect_user_item
+    if current_user.id != @item.seller_id
+      redirect_to item_path(params[:id])
     end
   end
-
-  def set_user
-  end
 end
+

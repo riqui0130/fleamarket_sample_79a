@@ -36,11 +36,11 @@ Things you may want to cover:
 |first_name_kana|string|null: false|
 |birth_day|date|null: false|
 ### Association
-- has_many: creditcards
-- has_many: favorites
-- has_many: destinations
-- has_many: items
-- has_many: comments
+- has_many :creditcards
+- has_many :favorites
+- has_many :destinations
+- has_many :items
+- has_many :comments
 
 ## creditcards テーブル
 |Column|Type|Options|
@@ -49,7 +49,7 @@ Things you may want to cover:
 |card_id|string|null: false|
 |customer_id|string|null: false|
 ### Association
-- belongs_to: user
+- belongs_to :user
 
 ## destinations テーブル
 |Column|Type|Options|
@@ -64,7 +64,7 @@ Things you may want to cover:
 |block|string|
 |phone_number|string|
 ### Association
-- belongs_to: user
+- belongs_to :user
 
 ## items テーブル
 |Column|Type|Options|
@@ -74,11 +74,12 @@ Things you may want to cover:
 |item_name|string|null: false, add_index: true|
 |description|text|null: false|
 |price|integer|null: false|
+|category_id|integer|null: false, foreign_key: true|
 ### Association
-- has_many: favorites
-- belongs_to: brand 
-- belongs_to: category 
-- has_many: pictures
+- has_many :favorites
+- belongs_to :brand 
+- belongs_to :category 
+- has_many :pictures
 - belongs_to :seller, class_name: "User"
 - belongs_to :buyer, class_name: "User"
 - has_many: comments
@@ -86,24 +87,26 @@ Things you may want to cover:
 ## categories テーブル
 |Column|Type|Options|
 |------|----|-------|
-|category|string|null: false|
+|name|string|null: false|
+|ancestry|string|
 ### Association
-- has_many: items
+- has_many :items
+- has_ancestry
 
 ## brands テーブル
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
 ### Association
-- has_many: items
+- has_many :items
 
-## pictures テーブル
+## images テーブル
 |Column|Type|Options|
 |------|----|-------|
 |item_id|integer|null: false, foreign_key: true|
-|picture_url|string|null: false|
+|image|string|null: false|
 ### Association
-- belongs_to: item
+- belongs_to :item
 
 ## favorites テーブル
 |Column|Type|Options|
@@ -111,8 +114,8 @@ Things you may want to cover:
 |item_id|integer|null: false, foreign_key: true|
 |user_id|integer|null: false, foreign_key: true|
 ### Association
-- belongs_to: item
-- belongs_to: user
+- belongs_to :item
+- belongs_to :user
 
 ## comments テーブル
 |Column|Type|Options|
@@ -121,5 +124,5 @@ Things you may want to cover:
 |user_id|integer|null: false, foreign_key: true|
 |comment|text|null: false|
 ### Association
-- belongs_to: item
-- belongs_to: user
+- belongs_to :item
+- belongs_to :user

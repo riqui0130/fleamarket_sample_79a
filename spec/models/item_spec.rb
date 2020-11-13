@@ -2,7 +2,7 @@ require 'rails_helper'
 describe Item do
   describe '#create' do
 
-    it "image, name, text, price, status_id, days_id, postage_id, prefecture_id, category_id, seller_idがあれば出品できること" do
+    it "image, name, detail, price, status_id, days_id, postage_id, prefecture_id, category_id, seller_idがあれば出品できること" do
       user = create(:user)
       item = build(:item, seller_id: user[:id])
       expect(item).to be_valid
@@ -32,7 +32,7 @@ describe Item do
       item.valid?
     end
 
-    it 'textがないと出品できないこと' do
+    it 'detailがないと出品できないこと' do
       user = create(:user)
       item = build(:item, seller_id: user[:id], text: nil)
       item.valid?

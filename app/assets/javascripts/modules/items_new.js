@@ -40,7 +40,7 @@ $(document).on('click', function(){
 });
 $(document).on('click', function(){
   //状態
-  $('#status-select').on('blur',function(){
+  $('#condition-select').on('blur',function(){
     let value = $(this).val();
     if(value == ""){
       $('#error-status').text('*選択して下さい');
@@ -51,16 +51,18 @@ $(document).on('click', function(){
     }
   });
 });
+$(document).on('click', function(){
 //送料負担
-$('#postage-select').on('blur',function(){
-  let value = $(this).val();
-  if(value == ""){
-    $('#error-postage').text('*選択して下さい');
-    $(this).css('border-color','red');
-  }else{
-    $('#error-postage').text('');
-    $(this).css('border-color','rgb(204, 204, 204)');
-  }
+  $('#deliverycost-select').on('blur',function(){
+    let value = $(this).val();
+    if(value == ""){
+      $('#error-postage').text('*選択して下さい');
+      $(this).css('border-color','red');
+    }else{
+      $('#error-postage').text('');
+      $(this).css('border-color','rgb(204, 204, 204)');
+    }
+  });
 });
 $(document).on('click', function(){
   //発送元
@@ -77,7 +79,7 @@ $(document).on('click', function(){
 });
 $(document).on('click', function(){
   //発送までの日数
-  $('#days-select').on('blur',function(){
+  $('#delivery_days-select').on('blur',function(){
     let value = $(this).val();
     if(value == ""){
       $('#error-days').text('*選択して下さい');
