@@ -7,6 +7,10 @@
             = @item.name
           .itemBox__picture
             = image_tag @item.images[0].image.url, class: 'mainPic'
+              - if @item.buyer_id.present? 
+              .items-sold
+                .items-sold__inner 
+                  SOLD
             %ul
               %li
                 - @item.images[1..-1].each do |image|

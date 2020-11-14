@@ -54,11 +54,37 @@
           .itemBox__picture{
             width: 560px;
             margin: 0 auto;
+
             .mainPic{
               margin-top: 16px;
               object-fit: cover;
               height: 346px;  
               width: 100%;
+            }
+            .items-sold{
+              margin-top: 16px;
+              width: 0;
+              height: 0;
+              border-width: 150px 150px 0 0;
+              border-color: #db2113 transparent transparent transparent;
+              display: block;
+              position: absolute;
+              top: 1;
+              left: 1;
+              z-index: 1;
+              border-style: solid;
+              &__inner {
+                margin-top: 16px;
+                top: -120px;
+                font-size: 35px;
+                position: absolute;
+                left: 0;
+                z-index: 2;
+                color: #fff;
+                transform: rotate(-45deg);
+                letter-spacing: 2px;
+                font-weight: 600;
+              }
             }
             .subPic{
               object-fit: cover;
