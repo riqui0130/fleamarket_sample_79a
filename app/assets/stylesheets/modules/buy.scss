@@ -115,17 +115,28 @@ body{
   }
   &__btn{
     border-top: 1px solid rgb(245, 245, 245);
-    display: block;
     height:50px;
     width:500px;
     background-color:#ccc;
     color:gray;
     font-size: 17px;
-    font-family: Arial, Helvetica, sans-serif;
     border-radius:4px;
     border:1px solid transparent;
     margin:0 auto;
     margin-top:100px;
+    &--down{
+      background-color:#ea352d;
+      color:white;
+      border-radius:4px;
+      border:none;
+      width:500px;
+      height:50px;
+      font-size: 20px;
+      font-family:Arial;
+      display:inline-block;
+      vertical-align:middle;
+      text-align: center;
+    }
   }
 }
 .Footer-buy{
