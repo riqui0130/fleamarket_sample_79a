@@ -1,0 +1,29 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      destination: 商品送付先住所情報
+    attributes:
+      user: 
+        family_name: 名字
+        nickname: ニックネーム
+        family_name_kana: 名字 
+        first_name: 名前
+        first_name_kana: 名前
+        birth_day: 生年月日
+      destination: 
+        family_name: 名字
+        first_name: 名前
+        post_code: 郵便番号
+        prefecture: 都道府県
+        city: 市町村
+        town: 番地
+
+
+
+
+
+
+
+
+ 

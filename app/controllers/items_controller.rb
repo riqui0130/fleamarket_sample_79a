@@ -9,8 +9,13 @@ class ItemsController < ApplicationController
 
   def show
     @parents = Category.where(ancestry: nil)
+    @item = Item.find(params[:id])
     @category = Category.find(@item.category_id)
-    @items = Item.includes(:images)
+    @user = User.find(@item.seller_id)
+    @condition = Condition.find(@item.condition_id)
+    @prefecture = Prefecture.find(@item.prefecture_id)
+    @delivery_days = DeliveryDays.find(@item.delivery_days_id)
+    @delivery_cost = Deliverycost.find(@item.deliverycost_id)
   end
 
   def new

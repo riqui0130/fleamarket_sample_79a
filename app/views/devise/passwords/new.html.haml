@@ -1,10 +1,27 @@
-%h2 Forgot your password?
-= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .actions
-    = f.submit "Send me reset password instructions"
-= render "devise/shared/links"
+.AccountPage
+  .AccountPage__header
+    %h1
+      = link_to "/" do
+        = image_tag 'logo.png', class: 'app'
+  .AccountPage__main
+    .AccountPage__container
+      %h2.AccountPage__title メールアドレスを入力
+      .AccountPage__form__sessions
+      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+        = render "devise/shared/error_messages", resource: resource
+        .AccountPage__content
+          .FormField
+            .FormField__label
+              = f.label :登録されたメールアドレス
+              = f.email_field :email, autofocus: true, autocomplete: "email", class: 'FormField__input', placeholder: "メールアドレス"
+          .actions
+            = f.submit "送信する", class: "submit-btn"
+          = render "devise/shared/links"
+  .AccountPage__footer
+    %ul.FooterLists
+      %li.FooterList プライバシーポリシー
+      %li.FooterList FURIMA利用規約
+      %li.FooterList 特定商取引に関する表記
+    = link_to "/", class: "FooterLogo" do
+      = image_tag 'logo-white.png', class: 'app'
+      
