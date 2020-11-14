@@ -79,7 +79,7 @@ Things you may want to cover:
 - has_many :favorites
 - belongs_to :brand 
 - belongs_to :category 
-- has_many :pictures
+- has_many :images
 - belongs_to :seller, class_name: "User"
 - belongs_to :buyer, class_name: "User"
 - has_many: comments
