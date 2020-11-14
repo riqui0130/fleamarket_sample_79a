@@ -27,14 +27,14 @@
         円
     .Contents-buy__creditcard
       - if @default_card_information.blank?
-        .Contents-buy__creditcard--btn
+        .Contents-buy__creditcard--upper
           = link_to 'クレジットカードで支払う', new_creditcard_path, method: :get, class: "Header__naviBtn"
+        .Contents-buy__creditcard--lower
       - else
-        .Contents-buy__creditcard--btn
-          =link_to "カード設定", "/creditcard/show" , method: :get, class: "Menulink"
-          -#以下カード情報を表示
+        .Contents-buy__creditcard--upper
           %label 登録クレジットカード情報
-          %br
+          =link_to "変更する", "/creditcard/show" , method: :get, class: "Menulink"
+        .Contents-buy__creditcard--lower
           %label カード番号：
           = "**** **** **** " + @default_card_information.last4
           %br
@@ -44,31 +44,20 @@
           = exp_month + " / " + exp_year
 
     .Contents-buy__distination
-      =form_with local: true do |f|
-        .Contents-buy__distination--block
-          %label 送付先名字
-          = @destination.family_name
-        .Contents-buy__distination--block
-          %label 送付先名前
-          = @destination.first_name
-        .Contents-buy__distination--block
-          %label 郵便番号
-          = @destination.post_code
-        .Contents-buy__distination--block
-          %label 都道府県
-          = @destination.prefecture
-        .Contents-buy__distination--block
-          %label 市区町村
-          = @destination.city
-        .Contents-buy__distination--block
-          %label 番地
-          = @destination.town
-        .Contents-buy__distination--block
-          %label マンション名、部屋番号
-          = @destination.block
-        .Contents-buy__distination--block
-          %label 送付先電話番号
-          = @destination.phone_number
+      .Contents-buy__distination--upper
+        %label 配送先
+      .Contents-buy__distination--lower
+        〒
+        = @destination.post_code
+        %br
+        = @destination.prefecture
+        = @destination.city
+        = @destination.town
+        = @destination.block
+        %br
+        = @destination.family_name
+        = @destination.first_name
+
     .Contents-buy__btn
       = form_tag(pay_item_path, method: :post) do
         - if @default_card_information.blank?
