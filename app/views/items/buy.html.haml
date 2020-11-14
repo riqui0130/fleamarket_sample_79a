@@ -13,7 +13,7 @@
     .Contents-buy__items
       .Contents-buy__items--image
         %span.image
-        = image_tag 'test/staff3.jpg', height:'150px', weight:'150px'
+        = image_tag @item.images[0].image.url, height:'200px', weight:'200px'
       .Contents-buy__items--introduction
         %p=@item.detail
         .Price-block
