@@ -1,12 +1,36 @@
+%head
+%meta{"charset":"UTF-8"}
+%link{"href": "style.css", "rel": "stylesheet"}
+%title Sample
+%body
+  .Header-buy
+    .Header-buy__logo
+      %span.image
+      = image_tag 'payment_front/logo.png', height:'40px', weight:'100px'
+  .Contents-credit__main
+    .Contents-credit__main--card-info
+      %label 登録クレジットカード情報
+      %br
+      %label カード番号
+      = "**** **** **** " + @default_card_information.last4
+      %br
+      %label 有効期限
+      - exp_month = @default_card_information.exp_month.to_s
+      - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+      = exp_month + " / " + exp_year
+      = form_tag(delete_creditcard_index_path, method: :post, id: 'charge-form',  name: "inputForm") do
+        %input{ type: "hidden", name: "card_id", value: "" }
+        %button 削除する
+        = link_to "トップページへ" , '/'
+        = link_to "マイページへ", '/users/show'
 
-%label 登録クレジットカード情報
-%br
-= "**** **** **** " + @default_card_information.last4
-%br
-- exp_month = @default_card_information.exp_month.to_s
-- exp_year = @default_card_information.exp_year.to_s.slice(2,3)
-= exp_month + " / " + exp_year
-= form_tag(delete_creditcard_index_path, method: :post, id: 'charge-form',  name: "inputForm") do
-  %input{ type: "hidden", name: "card_id", value: "" }
-  %button 削除する
-= link_to "マイページに戻る", '/users/show' # マイページにリン
+
+  .Footer-buy
+    %ul.Footer-buy__ul-box
+      %li プライバシーポリシー
+      %li フリマアプリ基本条約
+      %li 特定商取引に関する表記
+    .Footer-buy__logo
+      %span.image
+      = image_tag 'payment_front/logo-white.png', height:'40px', weight:'100px'
+      %p @Frima,inc
