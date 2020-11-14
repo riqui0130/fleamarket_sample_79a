@@ -40,8 +40,8 @@ class ItemsController < ApplicationController
   end
 
   def create
+    # binding.pry
     @item = Item.new(item_params)
-    @item.images.build
     @parents = Category.where(ancestry: nil)
     if @item.save
       render '/items/sell'
@@ -68,9 +68,9 @@ class ItemsController < ApplicationController
   end
 
   def update
-    # byning pry
+    # binding.pry
     if @item.update(item_params)
-      redirect_to item_path(params[:id]), notice: '更新しました'
+      redirect_to item_path(@item), notice: '更新しました'
     else
       grandchild_category= @item.category
     child_category = grandchild_category.parent
@@ -109,7 +109,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :detail, :category_id, :condition_id, :delivery_days_id, :prefecture_id, :deliverycost_id, :price, images_attributes: [:image, :_destroy, :id]).merge(seller_id: current_user.id)
+    params.require(:item).permit(:name, :detail, :category_id, :condition_id, :delivery_days_id, :prefecture_id, :deliverycost_id, :price, images_attributes: {image: [],id: [],_destroy: []}).merge(seller_id: current_user.id)
   end
 
   def currect_user_item
