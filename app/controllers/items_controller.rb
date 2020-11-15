@@ -59,7 +59,6 @@ class ItemsController < ApplicationController
   end
 
   def update
-
   end
 
   private
