@@ -1,0 +1,19 @@
+.breadcrumbs-list {
+  width: 100%;
+  font-size: 16px;
+  background-color: #fff;
+  padding: 0 60px;
+  border-top: 1px solid rgb(223, 223, 223);
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16);
+  border-bottom:  3px groove rgb(239, 239, 239);
+
+  .current{
+    font-weight: bold;
+  }
+  a {
+    padding: 17px 0 16px;
+    width: 100%;
+    max-width: 1040px;
+    font-size: 14px;
+    margin: 0 auto;  }
+}
