@@ -28,7 +28,7 @@
     .Contents-buy__creditcard
       - if @default_card_information.blank?
         .Contents-buy__creditcard--upper
-          = link_to 'クレジットカードで支払う', new_creditcard_path, method: :get, class: "Header__naviBtn"
+          = link_to '＞クレジットカードを登録する', new_creditcard_path, method: :get, class: "Header__naviBtn"
         .Contents-buy__creditcard--lower
       - else
         .Contents-buy__creditcard--upper
