@@ -20,7 +20,7 @@
             -if (user_signed_in? && @item.buyer_id == nil)
               -if (current_user.id == @item.seller_id)
                 %button.itemBox__purchase--btn
-                  = link_to "商品情報を編集"
+                  = link_to "商品情報を編集", edit_item_url
                 %button.itemBox__purchase--btn
                   = link_to '商品を削除', item_path, method: :delete
               - else
