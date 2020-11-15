@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_items, only: [:show, :edit, :update, :destroy, :currect_user_item]
+  before_action :set_item, only: [:show, :edit, :update, :destroy, :currect_user_item]
   before_action :currect_user_item, only: [:edit, :update, :destroy]
 
   def index
@@ -55,7 +55,22 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @parents = Category.where(ancestry: nil)
+    grandchild_category = @item.category
+    child_category = grandchild_category.parent
+    @category_parent = []
+    Category.where(ancestry: nil).each do |parent|
+      @category_parent << parent.name
+    end
+    @category_children = []
+    Category.where(ancestry: child_category.ancestry).each do |children|
+      @category_children << children
+    end
+    @category_grandchildren = []
+    Category.where(ancestry: grandchild_category.ancestry).each do |grandchildren|
+      @category_grandchildren << grandchildren
+    end
+    # @parents = Category.where(ancestry: nil)
+    # @category = Category.find(@item.category_id)
   end
 
   def update
@@ -76,7 +91,7 @@ class ItemsController < ApplicationController
     end
   end
 
-  def set_items
+  def set_item
     @item = Item.find(params[:id])
   end
 
