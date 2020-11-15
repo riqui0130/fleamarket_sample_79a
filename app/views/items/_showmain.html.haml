@@ -20,7 +20,7 @@
             -if (user_signed_in? && @item.buyer_id == nil)
               -if (current_user.id == @item.seller_id)
                 %button.itemBox__purchase--btn
-                  = link_to "商品情報を編集"
+                  = link_to "商品情報を編集", item_path, method: :delete
                 %button.itemBox__purchase--btn
                   = link_to '商品を削除', item_path, method: :delete
               - else
@@ -39,8 +39,8 @@
               %th{class: "th"}
                 カテゴリー
               %td{class: "td"}
-                -# = link_to @category.parent.parent.name, item_path, class: ""
-                -# = link_to @category.parent.name, item_path, class: ""
+                = link_to @category.parent.parent.name, item_path, class: ""
+                = link_to @category.parent.name, item_path, class: ""
                 = link_to @category.name, item_path, class:""
             %tr{class: "tr"}
               %th{class: "th"}

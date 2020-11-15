@@ -361,7 +361,7 @@ DEPENDENCIES
   devise
   devise-i18n
   devise-i18n-views
-  factory_bot_rails
+  factory_bot_rails (~> 5.0)
   fog-aws
   font-awesome-sass
   haml-rails (>= 1.0, <= 2.0.1)
@@ -373,7 +373,7 @@ DEPENDENCIES
   puma (~> 3.11)
   rails (~> 6.0.0)
   rails-i18n
-  rspec-rails (~> 4.0.0.beta2)
+  rspec-rails (~> 3.8)
   sass-rails (~> 5)
   selenium-webdriver
   spring
