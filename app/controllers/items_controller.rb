@@ -61,11 +61,9 @@ class ItemsController < ApplicationController
     @destination = Destination.find_by(id: current_user.id)
     #商品情報の変数設定
     @item = Item.find(params[:id])
-
-    card = Creditcard.where(user_id: current_user.id).first
     #Cardテーブルは前回記事で作成、テーブルからpayjpの顧客IDを検索
+    card = Creditcard.where(user_id: current_user.id).first
     if card.blank?
-      #登録された情報がない場合にカード登録画面に移動
     else
       Payjp.api_key = ENV["PAYJP_ACCESS_KEY"]
       #保管した顧客IDでpayjpから情報取得
@@ -73,6 +71,8 @@ class ItemsController < ApplicationController
       #保管したカードIDでpayjpから情報取得、カード情報表示のためインスタンス変数に代入
       @default_card_information = customer.cards.retrieve(card.card_id)
     end
+
+
   end
   
   def pay
@@ -84,11 +84,10 @@ class ItemsController < ApplicationController
     :customer => card.customer_id, #顧客ID
     :currency => 'jpy', #日本円
     )
-  @item_buyer= Item.find(params[:id])
-  @item_buyer.update( buyer_id: current_user.id)
+    @item_buyer= Item.find(params[:id])
+    @item_buyer.update( buyer_id: current_user.id)
   
-  redirect_to action: 'done' #完了画面に移動
-
+    redirect_to action: 'done' #完了画面に移動
   end
 
   def done

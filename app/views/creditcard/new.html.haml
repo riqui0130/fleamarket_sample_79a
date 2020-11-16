@@ -12,6 +12,7 @@
       = form_tag( pay_creditcard_index_path, method: :post, id: 'charge-form',  name: "inputForm") do
         %label カード番号
         = text_field_tag "number", "", class: "number", placeholder: "半角数字のみ" ,maxlength: "16", type: "text", id: "card_number"
+        %span.error-messages#error-number
         %br
         %label 有効期限
         %select#exp_month{name: "exp_month", type: "text"}
@@ -29,6 +30,7 @@
           %option{value: "11"}11
           %option{value: "12"}12
         %span 月/
+        %span.error-messages#error-exp_month
         %select#exp_year{name: "exp_year", type: "text"}
           %option{value: ""} --
           %option{value: "2019"}19
@@ -43,9 +45,11 @@
           %option{value: "2028"}28
           %option{value: "2029"}29
         %span 年
+        %span.error-messages#error-exp_year
         %br
         %label セキュリティコード
         = text_field_tag "cvc", "", class: "cvc", placeholder: "カード背面3~4桁の番号", maxlength: "4", id: "cvc"
+        %span.error-messages#error-cvc
         #card_token
         = submit_tag "追加する", id: "token_submit"
         = link_to "トップページへ" , '/'
