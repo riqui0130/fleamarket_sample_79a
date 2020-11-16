@@ -6,7 +6,8 @@
   .Header-buy
     .Header-buy__logo
       %span.image
-      = image_tag 'payment_front/logo.png', height:'40px', weight:'100px'
+      = link_to "/" do
+        = image_tag 'payment_front/logo.png', height:'40px', weight:'100px'
   .Contents-buy
     .Contents-buy__title
       購入内容の確認
