@@ -77,9 +77,9 @@
                 %span.sell-title__require
                   必須
               .sell-collection_select__category
-                = f.collection_select :parent_name, @category_parent, {selected: @item.category.parent.parent.name}, {class:"products__condition", id:"parent_category"}
-                = f.collection_select :child_id, options_for_select(@category_children.map{(b) [b.name, b.id,{data:{category: b.id}}]}, {prompt: "指定なし", selected: @item.category.parent.id}), {class:"listing-select-wrapper__box--select", id:"child_category"}
-                = f.collection_select :category_id, options_for_select(@category_grandchildren.map{(b) [b.name, b.id,{data:{category: b.id}}]}, {prompt: "指定なし", selected: @item.category.id}), {class:"listing-select-wrapper__box--select", id:"grandchild_category"}
+                = f.collection_select :category_id, Category.roots, :id , :name, {include_blank: "---", selected: @item.category&.root_id}, {class:"listing-select-wrapper__box--select", id:"parent_category"}
+                = f.collection_select :category_id, @item.category.parent.parent.children, :id , :name, {include_blank: '---', selected: @item.category.parent_id}, {class:"listing-select-wrapper__box--select", id:"child_category"}
+                = f.collection_select :category_id, @item.category.parent.children, :id , :name, {include_blank: '---', selected: @item.category.id}, {class:"listing-select-wrapper__box--select", id:"grandchild_category"}
                 .error-messages#error-category
 
           .sell-container__content__brand
