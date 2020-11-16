@@ -27,7 +27,6 @@ $(document).on('turbolinks:load', function(){
                                         <img src='${e.target.result}' title='${file.name}' >
                                       </figure>
                                       <div class="preview-image__button">
-                                        <a class="preview-image__button__edit">編集</a>
                                         <a class="preview-image__button__delete" data-image-id="${labelLength}">削除</a>
                                       </div>
                                     </li>`);

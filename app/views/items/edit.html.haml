@@ -77,9 +77,10 @@
                 %span.sell-title__require
                   必須
               .sell-collection_select__category
-                = f.select :parent_name, @category_parent, {selected:@category.parent.parent.name}, {class:"products__condition", id:"parent_category"}
-                = f.select :child_id, options_for_select(@category_children.map{[b] [b.name, b.id, {data:{category: b.id}}]}, {prompt: "指定なし", selected: @category.parent.name}), {class:"products__condition", id:"child_category"}
-                = f.select :category_id, options_for_select(@category_grandchildren.map{[b] [b.name, b.id, {data:{category: b.id}}]}, {prompt: "指定なし", selected: @category.name}), {class:"products__condition", id:"grandchild_category"}
+                = f.collection_select :category_id, @parents, :id, :name, {prompt:"選択してください"}, {class:"products__condition", id:"parent_category"}
+                -# = f.select :parent_name, @category_parent, {selected:@category.parent.parent.name}, {class:"products__condition", id:"parent_category"}
+                -# = f.select :child_id, options_for_select(@category_children.map{[b] [b.name, b.id, {data:{category: b.id}}]}, {prompt: "指定なし", selected: @category.parent.name}), {class:"products__condition", id:"child_category"}
+                -# = f.select :category_id, options_for_select(@category_grandchildren.map{[b] [b.name, b.id, {data:{category: b.id}}]}, {prompt: "指定なし", selected: @category.name}), {class:"products__condition", id:"grandchild_category"}
                 .error-messages#error-category
 
           .sell-container__content__brand
