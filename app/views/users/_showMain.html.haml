@@ -4,22 +4,25 @@
       .Menu1
         マイページ
       .Menu2
-        =link_to "出品する", "/items/new" , method: :get, class: "Menulink"
+        =link_to "出品する", new_item_path , method: :get, class: "Menulink"
       .Menu2
         =link_to "本人情報編集", "#" , method: :get, class: "Menulink"
       .Menu2
         =link_to "カード設定", "/creditcard/new" , method: :get, class: "Menulink"
       .Menu2
-        =link_to "ログアウト", users_logout_path, method: :get, class: "Menulink"
+        =link_to "ログアウト", destroy_user_session_path, method: :delete, class: "Menulink"
   .myPageRight
     .myPageShow
       .userIcon
         .userName
-          大日向 俊樹
+          = current_user.family_name
+          = current_user.first_name
       .userStatus
         .userSell
-          出品数 0
+          出品数 
+          = @items_sell_count
         .userBuy
-          購入数 0
+          購入数
+          = @items_buy_count
         .userLike
           いいねの数 10000
