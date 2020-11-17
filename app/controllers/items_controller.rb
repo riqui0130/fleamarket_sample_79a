@@ -45,6 +45,7 @@ class ItemsController < ApplicationController
   end
 
   def create
+    # binding.pry
     @item = Item.new(item_params)
     @parents = Category.where(ancestry: nil)
     if @item.save
