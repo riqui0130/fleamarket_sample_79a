@@ -1,96 +1,65 @@
-$(document).on('turbolinks:load', function(){
-  // 画像が選択された時プレビュー表示、inputの親要素のdivをイベント元に指定
-  $('#image-input').on('change', function(e){
-
-    //ファイルオブジェクトを取得する
-    let files = e.target.files;
-    $.each(files, function(index, file) {
-      let reader = new FileReader();
-
-      //画像でない場合は処理終了
-      if(file.type.indexOf("image") < 0){
-        alert("画像ファイルを指定してください。");
-        return false;
-      }
-      //アップロードした画像を設定する
-      reader.onload = (function(file){
-        return function(e){
-          let imageLength = $('#output-box').children('li').length;
-          // 表示されているプレビューの数を数える
-
-          let labelLength = $("#image-input>label").eq(-1).data('label-id');
-          // #image-inputの子要素labelの中から最後の要素のカスタムデータidを取得
-
-          // プレビュー表示
-          $('#image-input').before(`<li class="preview-image" id="upload-image${labelLength}" data-image-id="${labelLength}">
-                                      <figure class="preview-image__figure">
-                                        <img src='${e.target.result}' title='${file.name}' >
-                                      </figure>
-                                      <div class="preview-image__button">
-                                        <a class="preview-image__button__delete" data-image-id="${labelLength}">削除</a>
-                                      </div>
-                                    </li>`);
-          $("#image-input>label").eq(-1).css('display','none');
-          // 入力されたlabelを見えなくする
-
-          if (imageLength < 9) {
-            // 表示されているプレビューが９以下なら、新たにinputを生成する
-            $("#image-input").append(`<label for="item_images${labelLength+1}" class="sell-container__content__upload__items__box__label" data-label-id="${labelLength+1}">
-                                        <input multiple="multiple" class="sell-container__content__upload__items__box__input" id="item_images${labelLength+1}" style="display: block;" type="file" name="item[images][]">
-                                      </label>`);
-          };
-        };
-      })(file);
-      reader.readAsDataURL(file);
-    });
-  });
-  //削除ボタンが押された時
-  $(document).on('click', '.preview-image__button__delete', function(){
-    let targetImageId = $(this).data('image-id');
-    // イベント元のカスタムデータ属性の値を取得
-    $(`#upload-image${targetImageId}`).remove();
-    //プレビューを削除
-    $(`[for=item_images${targetImageId}]`).remove();
-    //削除したプレビューに関連したinputを削除
-
-    let imageLength = $('#output-box').children('li').length;
-    // 表示されているプレビューの数を数える
-    if (imageLength ==9) {
-      let labelLength = $("#image-input>label").eq(-1).data('label-id');
-      // 表示されているプレビューが９なら,#image-inputの子要素labelの中から最後の要素のカスタムデータidを取得
-      $("#image-input").append(`<label for="item_images${labelLength+1}" class="sell-container__content__upload__items__box__label" data-label-id="${labelLength+1}">
-                                  <input multiple="multiple" class="sell-container__content__upload__items__box__input" id="item_images${labelLength+1}" style="display: block" type="file" name="item[images][]">
-                                  <i class="fas fa-camera fa-lg"></i>
-                                </label>`);
-    };
-  });
-});
-// 各フォームの入力チェック
 $(function(){
-  //画像
-  $('#image-input').on('focus',function(){
-    $('#error-image').text('');
-    $('#image-input').on('blur',function(){
-      $('#error-image').text('');
-      let imageLength = $('#output-box').children('li').length;
-      if(imageLength ==''){
-        $('#error-image').text('画像がありません');
-      }else if(imageLength >10){
-        $('#error-image').text('画像を10枚以下にして下さい');
-      }else{
-        $('#error-image').text('');
-      }
-    });
-  });
-});
-//画像を削除した時
-$(document).on('click', function(){
-  let imageLength = $('#output-box').children('li').length;
-  if(imageLength ==''){
-    $('#error-image').text('*画像がありません');
-  }else if(imageLength >10){
-    $('#error-image').text('*画像を10枚以下にして下さい');
-  }else{
-    $('#error-image').text('');
+  const buildFileField = (num)=> {
+    const html = `<div data-index="${num}" class="js-file_group">
+                    <input class="js-file" type="file"
+                    name="item[images_attributes][${num}][image]"
+                    id="item_images_attributes_${num}_image"><br>
+                  </div>`;
+    return html;
   }
+  const buildImg = (index, url)=> {
+    const html = `<div class="preview" data-index="${index}">
+                    <image src="${url}" width="100px" height="100px">
+                    <div class="js-remove">削除</div>
+                  </div>`;
+    return html;
+  }
+
+  let fileIndex = [1,2,3,4,5,6,7,8,9,10];
+  lastIndex = $('.js-file_group:last').data('index');
+  fileIndex.splice(0, lastIndex);
+
+    $('#image-box').on('change', '.js-file', function(e) {
+      const targetIndex = $(this).parent().data('index');
+      const file = e.target.files[0];
+      const blobUrl = window.URL.createObjectURL(file);
+
+    if (img = $('img[data-index="${targetIndex}"]')[0]) {
+      img.setAttribute('src', blobUrl);
+    }
+    else {
+      if ($(".preview").length >= 10){
+        alert('添付できる画像は10枚までです')
+        return false
+      }
+      else {
+        $('#previews').append(buildImg(targetIndex, blobUrl));
+        $('#image-box').append(buildFileField(fileIndex[0]));
+        $("#image-label").prop("for", `item_images_attributes_${fileIndex[0]}_image`)
+        fileIndex.shift();
+        fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
+      }
+    }
+    });
+    
+    $('.hidden-destroy').hide();
+    $('#data-index').on('click', function(){
+  })
+  $('#image-box').on('click', '.js-remove', function() {
+    const targetIndex = $(this).prev().data('index');
+    const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
+    if (hiddenCheck) hiddenCheck.prop('checked', true);
+    const fileinput =$(`#item_images_attributes_${targetIndex}_image`);
+    $(this).parent().remove();
+    $(`img[data-index="${targetIndex}"]`).remove();
+    fileinput.remove();
+    if ($('.js-file').length == 0) $('#image-box').append(buildFileField(fileIndex[0]));
+    $(`input[data-index= "${targetIndex}"]`).css({'display': `none`});
+  });
+
+  $('#image-box').on('click', '.preview-image', function() {
+    const index = $(this).data("index")
+    $(`#item_images_attributes_${index}_image`).click()
+  });
+
 });
