@@ -20,12 +20,29 @@
           .sell-container__content__upload
             .sell-container__content__upload__items
               .sell-container__content__upload__items__box
-                #image-box
-                  #previews
+                #output-box
+                  - if @item.persisted?
+                    - @item.images.each_with_index do |image, i|
+                      %li{class: 'preview-image', id: 'upload-image', data:{image_id: '1'}}
+                        %figure.preview-image__figure
+                          = image_tag(image.image_url,{width: "100", height: '100'})
+                        .preview-image__button
+                          %a{class:'preview-image__button__delete', data:{image_id: ''}} 削除
+                  #image-input
+                    -# - if @item.persisted?
+                    -#   - @item.images.each_with_index do |image, i|
+                    -#     .preview
+                    -#       = image_tag image.image.url, data: { index: i }, width: "100", height: '100', class: "preview-image"
+                    -#       .js-remove 削除
                     %label{class: "sell-container__content__upload__items__box__label", id: "image-label", for: "item_images_attributes_#{@item.images.count}_image"}
                       = f.fields_for :images do |image|
-                        .js-file_group{"data-index" => image.index}
-                          = image.file_field :image, class: 'js-file'
+                        .js-file_group{"data-index" => "#{image.index}"}
+                          = image.file_field :image, class: 'sell-container__content__upload__items__box__input', style: "display:block"
+                        - if @item.persisted?
+                          = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'
+                      - if @item.persisted?
+                        .js-file_group{"data-index": "#{@item.images.count}"}
+                          = file_field_tag :image, name: "item[images_attributes][#{@item.images.count}][image]", class: 'sell-container__content__upload__items__box__input', id: "item_images_attributes_#{@item.images.count}_image"
                       .icon-comment
                         %pre カメラをクリックしてファイルをアップロード
         .error-messages#error-image

@@ -48,7 +48,6 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     @parents = Category.where(ancestry: nil)
     if @item.save
-      @item.images.build
       render '/items/sell'
     else
       render :new
@@ -56,15 +55,26 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    # grandchild_category = @item.category
+    # child_category = grandchild_category.parent
+    # @category_parent = []
+    # Category.where(ancestry: nil).each do |parent|
+    #   @category_parent << parent.name
+    # end
+    # @category_children = []
+    # Category.where(ancestry: child_category.ancestry).each do |children|
+    #   @category_children << children
+    # end
+    # @category_grandchildren = []
+    # Category.where(ancestry: grandchild_category.ancestry).each do |grandchildren|
+    #   @category_grandchildren << grandchildren
+    # end
     @parents = Category.where(ancestry: nil)
-    @category = Category.find(@item.category_id)
   end
 
   def update
     if @item.update(item_params)
       redirect_to item_path(@item), notice: '更新しました'
-    else
-      render 'edit'
     end
   end
 

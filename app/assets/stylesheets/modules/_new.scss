@@ -146,34 +146,41 @@
             justify-content: center;
             position: relative;
             border-width: 1px;
-            #image-box{
+            #output-box{
               box-sizing: border-box;
               display: flex;
               flex-wrap: wrap;
               width: 100%;
               height: auto;
-              #previews{
-                display: flex;
-                width: 100%;
-                overflow-x:scroll;
+              .preview-image{
+                box-sizing: border-box;
+                height: 150px;
+                width: 20%;
+                padding: 0px 4px;
+                margin-top: 8px;
+                &__figure{
+                  margin:0 auto;
+                  height: 118px;
+                  background-color: rgb(245, 245, 245);
+                  img{
+                    box-sizing: border-box;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                  }
+                }
+                &__button{
+                  border-top-width: 1px;
+                  border-top-color: rgb(204, 204, 204);
+                  border-top-style: solid;
+                  background-color: rgb(245, 245, 245);
+                  justify-content: space-around;
+                  display: flex;
+                  align-items: center;
+                  height: 32px;
+                  color: rgb(0, 149, 238);
+                }
               }
-              .js-file{
-                display: none;
-              }
-              .check_box {
-                display: none;
-              }
-              .hidden-destroy {
-                display: none;
-              }
-              #image-label{
-                cursor: pointer;
-              }
-            }
-            .icon-comment{
-              text-align: center;
-              color: black;
-              font-size: 12px;
             }
             #image-input{
               box-sizing: border-box;
@@ -198,7 +205,6 @@
             &__label{
               box-sizing: border-box;
               background-color: rgb(245, 245, 245);
-              width: 100%;
               height: 150px;
               border-width: 1px;
               border-style: dashed;
@@ -207,6 +213,9 @@
               display: flex;
               align-items: center;
               justify-content: center;
+            }
+            &__input{
+              display: none;
             }
           }
         }
