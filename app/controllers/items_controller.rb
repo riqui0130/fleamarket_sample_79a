@@ -63,6 +63,8 @@ class ItemsController < ApplicationController
   def update
     if @item.update(item_params)
       redirect_to item_path(@item), notice: '更新しました'
+    else
+      render 'edit'
     end
   end
 
