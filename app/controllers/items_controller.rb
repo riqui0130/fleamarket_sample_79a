@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_items, only: [:show, :edit, :update, :destroy, :currect_user_item]
+  before_action :set_item, only: [:show, :edit, :update, :destroy, :currect_user_item]
   before_action :currect_user_item, only: [:edit, :update, :destroy]
 
   def index
@@ -48,9 +48,23 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     @parents = Category.where(ancestry: nil)
     if @item.save
+      @item.images.build
       render '/items/sell'
     else
       render :new
+    end
+  end
+
+  def edit
+    @parents = Category.where(ancestry: nil)
+    @category = Category.find(@item.category_id)
+  end
+
+  def update
+    if @item.update(item_params)
+      redirect_to item_path(@item), notice: '更新しました'
+    else
+      render 'edit'
     end
   end
 
@@ -66,7 +80,7 @@ class ItemsController < ApplicationController
     end
   end
 
-  def set_items
+  def set_item
     @item = Item.find(params[:id])
   end
 
