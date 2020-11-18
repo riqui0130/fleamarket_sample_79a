@@ -29,10 +29,13 @@
                   #previews
                     %label{class: "sell-container__content__upload__items__box__label", id: "image-label", for: "item_images_attributes_#{@item.images.count}_image"}
                       = f.fields_for :images do |image|
-                        .js-file_group{"data-index" => image.index}
+                        .js-file_group{"data-index" => "#{image.index}"}
                           = image.file_field :image, class: 'js-file'
                         - if @item.persisted?
                           = image.check_box :_destroy, data:{index: image.index}, class: 'hidden-destroy'
+                      - if @item.persisted?
+                        .js-file_group{"data-index": "#{@item.images.count}"}
+                          = file_field_tag :image, name: "item[images_attributes][#{@item.images.count}][image]", class: 'js-file', id: "item_images_attributes_#{@item.images.count}_image"
                       .icon-comment
                         %pre カメラをクリックしてファイルをアップロード
         .error-messages#error-image
