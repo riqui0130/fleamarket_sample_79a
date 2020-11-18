@@ -15,7 +15,10 @@
             ¥ 
             = @item.price
           .itemBox__terms
-            (税込) 送料込み
+            (税込) 
+            %span
+            %td 
+              = @delivery_cost.name
           .itemBox__purchase
             -if (user_signed_in? && @item.buyer_id == nil)
               -if (current_user.id == @item.seller_id)
