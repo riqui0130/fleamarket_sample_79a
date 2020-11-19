@@ -1,0 +1,24 @@
+// Place all the styles related to the creditcard controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.Contents-credit__main{
+  width:900px;
+  height:400px;
+  background-color: #fff;
+  margin:0 auto;
+    &--card-info{
+      height: 200px;
+      width:500px;
+      margin:0 auto;
+      margin-top:50px;
+      font-size: 18px;
+      font-family:inherit;
+      line-height:50px;
+      label{
+        font-weight: 600;
+      }
+      
+    }
+}
+  

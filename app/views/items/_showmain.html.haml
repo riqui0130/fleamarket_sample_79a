@@ -7,6 +7,10 @@
             = @item.name
           .itemBox__picture
             = image_tag @item.images[0].image.url, class: 'mainPic'
+              - if @item.buyer_id.present? 
+              .items-sold
+                .items-sold__inner 
+                  SOLD
             %ul
               %li
                 - @item.images[1..-1].each do |image|
@@ -15,7 +19,10 @@
             ¥ 
             = @item.price
           .itemBox__terms
-            (税込) 送料込み
+            (税込) 
+            %span
+            %td 
+              = @delivery_cost.name
           .itemBox__purchase
             -if (user_signed_in? && @item.buyer_id == nil)
               -if (current_user.id == @item.seller_id)
@@ -25,7 +32,7 @@
                   = link_to '商品を削除', item_path, method: :delete
               - else
                 %button.itemBox__purchase--btn
-                  = link_to "購入に進む"
+                  = link_to "購入に進む",buy_item_path 
 
           .itemBox__detail
             = @item.detail
