@@ -76,8 +76,9 @@
                 = @delivery_days.name
           .optionArea
             .optionArea__likebtn
-              %i{class: "fa fa-star"}
-              お気に入り 0
+              = render '/favorites/favorite'
+              -# %i{class: "fa fa-star"}
+              -# お気に入り 0
             .optionArea__alertbtn
               %i{class: "fa fa-flag"}
               不適切な商品の通報
