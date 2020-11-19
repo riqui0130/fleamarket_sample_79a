@@ -8,7 +8,7 @@ crumb :mypage do
 end
 # 商品出品ページ
 crumb :item_new do
-  link "出品する ", new_item_path
+  link "出品する ", items_sell_path
 end
 # カテゴリー一覧
 crumb :category do
@@ -40,10 +40,34 @@ crumb :grandchild do |category|
 end
 # アイテム
 crumb :item do |item|
-  item = Item.find(params[:id])
-  link "#{item.name}", item_path
-  parent :grandchild
+  link "商品の詳細", item_path
+  parent :mypage
 end
+
+crumb :edit_item do |item|
+  link "商品を編集する", edit_item_path
+  parent :item
+end
+
+crumb :buy_item do |item|
+  link "商品を購入する", buy_item_path
+  parent :item
+end
+
+crumb :sign_in do
+  link "ログイン", new_user_session_path
+  parent :root
+end
+
+crumb :registration do
+  link "新規会員登録", new_user_registration_path
+  parent :root
+end
+# crumb :item do |item|
+#   item = Item.find(params[:id])
+#   link "#{item.name}", item_path
+#   parent :grandchild
+# end
 
 # crumb :projects do
 #   link "Projects", projects_path
