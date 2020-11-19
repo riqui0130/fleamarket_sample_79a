@@ -26,4 +26,7 @@
           = @items_buy_count
         .userLike
           お気に入り
-          = @favorite_list_count
+          - if @favorite_list.present?
+            - @favorite_list.each do
+              = @item.name
+              = @item.price
