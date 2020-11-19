@@ -46,9 +46,9 @@
               %th{class: "th"}
                 カテゴリー
               %td{class: "td"}
-                = link_to @category.parent.parent.name, item_path, class: ""
-                = link_to @category.parent.name, item_path, class: ""
-                = link_to @category.name, item_path, class:""
+                = link_to @category.parent.parent.name, categories_path, class: ""
+                = link_to @category.parent.name, categories_path, class: ""
+                = link_to @category.name, categories_path, class:""
             %tr{class: "tr"}
               %th{class: "th"}
                 ブランド
