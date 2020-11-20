@@ -107,15 +107,6 @@
                 または
                 = link_to "ログイン", new_user_session_path
                 が必要です ※※※
-        -# = form_with local: true do |f|
-        -#   .commentBody
-        -#     = f.text_field :content, class: 'commentBody__input'
-        -#   .notification
-        -#     相手のことを考え丁寧なコメントを心がけましょう。
-        -#     不快な言葉遣いなどは利用制限や退会処分となることがあります。
-        -#   %button{name: "button", type:"submit", class:"button"}
-        -#     %i{class:"fa fa-comment"}
-        -#     コメントする
       .comments
       %h4 ＜コメント一覧＞
       - if @comments
