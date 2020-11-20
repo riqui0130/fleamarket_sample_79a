@@ -16,6 +16,8 @@ class ItemsController < ApplicationController
     @prefecture = Prefecture.find(@item.prefecture_id)
     @delivery_days = DeliveryDays.find(@item.delivery_days_id)
     @delivery_cost = Deliverycost.find(@item.deliverycost_id)
+    @comment = Comment.new
+    @comments = @item.comments.includes(:user)
   end
 
   def new

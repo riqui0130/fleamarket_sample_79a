@@ -87,15 +87,45 @@
               不適切な商品の通報
 
       .commentBox
-        = form_with local: true do |f|
-          .commentBody
-            = f.text_field :content, class: 'commentBody__input'
-          .notification
-            相手のことを考え丁寧なコメントを心がけましょう。
-            不快な言葉遣いなどは利用制限や退会処分となることがあります。
-          %button{name: "button", type:"submit", class:"button"}
-            %i{class:"fa fa-comment"}
-            コメントする
+        .commentBody
+          - if current_user
+            = form_with model: [@item, @comment], local: true do |f|
+              = f.text_area :content, class: 'commentBody__input', placeholder: ""
+              .notification
+                %p
+                相手のことを考え丁寧なコメントを心がけましょう。
+                %br/
+                不快な言葉遣いなどは利用制限や退会処分となることがあります。
+              %button{name: "button", type:"submit", class:"button"}
+                %i{class:"fa fa-comment"}
+                コメントする
+          - else
+            %strong
+              %p
+                ※※※ コメントの投稿には
+                = link_to "新規会員登録", new_user_registration_path
+                または
+                = link_to "ログイン", new_user_session_path
+                が必要です ※※※
+        -# = form_with local: true do |f|
+        -#   .commentBody
+        -#     = f.text_field :content, class: 'commentBody__input'
+        -#   .notification
+        -#     相手のことを考え丁寧なコメントを心がけましょう。
+        -#     不快な言葉遣いなどは利用制限や退会処分となることがあります。
+        -#   %button{name: "button", type:"submit", class:"button"}
+        -#     %i{class:"fa fa-comment"}
+        -#     コメントする
+      .comments
+      %h4 ＜コメント一覧＞
+      - if @comments
+        - @comments.each do |comment|
+          %p
+            %strong
+            = comment.user.nickname
+            ：
+            = comment.content
+
       .links
         = link_to "< 前の商品", "", class: "link1"
         = link_to "後ろの商品 >", "", class: "link1"
