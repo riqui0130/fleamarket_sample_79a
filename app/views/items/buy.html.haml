@@ -8,6 +8,8 @@
       %span.image
       = link_to "/" do
         = image_tag 'payment_front/logo.png', height:'40px', weight:'100px'
+  - breadcrumb :buy_item
+  = render "layouts/breadcrumbs"
   .Contents-buy
     .Contents-buy__title
       購入内容の確認

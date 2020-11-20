@@ -1,0 +1,40 @@
+= render 'items/header'
+.icon
+  = link_to new_item_path, class: "icon__link" do
+    .icon__title
+      出品する
+    .icon__image
+      = image_tag 'icon_camera.png', height:'54px', weight:'54px'
+- if @category.root?
+  - breadcrumb :parent
+- elsif @category.has_children?
+  - breadcrumb :child
+- else
+  - breadcrumb :grandchild
+= render "layouts/breadcrumbs"
+
+.category-lists
+  .category-body
+    .category-parents
+      - @parents.each do |parent|
+        = link_to anchor: "#{parent.id}" , class:'category-parents__index' do
+          .category-parents__index--name
+            = parent.name
+    .category-lists
+      - @parents.each do |parent|
+        = link_to category_path(parent.id) do
+          .category-lists__parent{id: "#{parent.id}"}
+            = parent.name
+        - parent.children.each do |child|
+          = link_to category_path(child.id), class:"category-lists__child" do
+            = child.name
+          .contents
+            - child.children.each do |grandchild|
+              = link_to category_path(grandchild.id), class:'contents__grand-child' do
+                = grandchild.name
+        = link_to "categories", class:'topBtn' do
+          .topBtn__text
+            %i.fa.fa-angle-double-up
+            ページトップへ
+= render 'items/banner'
+= render 'items/footer'

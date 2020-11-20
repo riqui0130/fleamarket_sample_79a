@@ -3,6 +3,8 @@
     %h1
       = link_to "/" do
         = image_tag 'logo.png', class: 'app'
+  - breadcrumb :sign_in
+  = render "layouts/breadcrumbs"
   .AccountPage__main
     .AccountPage__container
       %h2.AccountPage__title ログイン情報を入力
