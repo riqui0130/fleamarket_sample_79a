@@ -1,0 +1,23 @@
+.notification {
+  color: white;
+  text-align: center;  
+
+  .notice {
+    background-color: #38AEF0;
+    color: #fff;
+    text-align: center;
+  }
+
+  .alert {
+    background-color: #F35500;
+    color: #fff;
+    text-align: center;
+  }
+  
+  .error{
+    color: #fff;
+    background-color: #F35500;
+    text-align: center;
+    border-bottom: 1px solid lightslategray;
+  }
+}
