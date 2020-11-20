@@ -15,7 +15,7 @@
     %div.Header__navi
       %ul.Header__left
         %li.Header__left--category
-          = link_to 'カテゴリー', '/categories', class: "Header__naviBtn" 
+          = link_to 'カテゴリー', categories_path, class: "Header__naviBtn" 
           .tree
             %ul.category1
               - @parents.each do |parent|
