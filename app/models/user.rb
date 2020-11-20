@@ -19,7 +19,7 @@ class User < ApplicationRecord
   validates :nickname, :family_name, :first_name, :family_name_kana, :first_name_kana, :email, :birth_day, :password, presence: true
 
 
-  has_many :creditcards
+  has_one :creditcards
   has_many :favorites
   has_one :destination
   has_many :items
