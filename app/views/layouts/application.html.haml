@@ -10,7 +10,7 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     
   %body
-    .notification
+    .notifications
       - flash.each do |key, value|
         = content_tag :div, value, class: key
     = yield
