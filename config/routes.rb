@@ -28,6 +28,7 @@ Rails.application.routes.draw do
       get 'pay'
       get 'done'
     end
+    resources :comments,only: [:create] 
   end
 
   get 'users/logout'
