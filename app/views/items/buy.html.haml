@@ -51,15 +51,15 @@
         %label 配送先
       .Contents-buy__distination--lower
         〒
-        = @destination.post_code
-        %br
-        = @destination.prefecture.name
-        = @destination.city
-        = @destination.town
-        = @destination.block
-        %br
-        = @destination.family_name
-        = @destination.first_name
+        -# = @destination.post_code
+        -# %br
+        -# = @destination.prefecture.name
+        -# = @destination.city
+        -# = @destination.town
+        -# = @destination.block
+        -# %br
+        -# = @destination.family_name
+        -# = @destination.first_name
 
     .Contents-buy__btn
       = form_tag(pay_item_path, method: :post) do
