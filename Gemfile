@@ -65,15 +65,17 @@ group :production do
 end
 
 gem "haml-rails", ">= 1.0", '<= 2.0.1'
-gem 'font-awesome-sass'
 gem 'carrierwave'
 gem 'fog-aws'
 gem 'jquery-rails'
 gem 'active_hash'
 gem 'devise'
 gem 'ancestry'
+gem 'payjp'
+gem 'dotenv-rails'
 gem 'pry-rails'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'rails-i18n'
-gem 'turbolinks', '~> 5'
+gem 'font-awesome-sass'
+gem "gretel"

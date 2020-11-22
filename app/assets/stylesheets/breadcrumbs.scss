@@ -1,0 +1,22 @@
+.breadcrumbs-list {
+  width: 100%;
+  font-size: 16px;
+  background-color: #fff;
+  padding: 10px 0 10px 100px;
+  border-top: 1px solid rgb(223, 223, 223);
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16);
+  border-bottom:  3px groove rgb(239, 239, 239);
+
+  .current{
+    font-weight: bold;
+    &:hover {
+      color: #3CCACE;
+    }
+  }
+  a {
+    margin: 0 10px;
+    &:hover {
+      color: #3CCACE;
+    }
+  }
+}

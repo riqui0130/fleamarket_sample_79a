@@ -7,6 +7,10 @@
             = @item.name
           .itemBox__picture
             = image_tag @item.images[0].image.url, class: 'mainPic'
+              - if @item.buyer_id.present? 
+              .items-sold
+                .items-sold__inner 
+                  SOLD
             %ul
               %li
                 - @item.images[1..-1].each do |image|
@@ -28,7 +32,7 @@
                   = link_to '商品を削除', item_path, method: :delete
               - else
                 %button.itemBox__purchase--btn
-                  = link_to "購入に進む"
+                  = link_to "購入に進む",buy_item_path 
 
           .itemBox__detail
             = @item.detail
@@ -42,9 +46,9 @@
               %th{class: "th"}
                 カテゴリー
               %td{class: "td"}
-                = link_to @category.parent.parent.name, item_path, class: ""
-                = link_to @category.parent.name, item_path, class: ""
-                = link_to @category.name, item_path, class:""
+                = link_to @category.parent.parent.name, categories_path, class: ""
+                = link_to @category.parent.name, categories_path, class: ""
+                = link_to @category.name, categories_path, class:""
             %tr{class: "tr"}
               %th{class: "th"}
                 ブランド
@@ -84,15 +88,36 @@
               不適切な商品の通報
 
       .commentBox
-        = form_with local: true do |f|
-          .commentBody
-            = f.text_field :content, class: 'commentBody__input'
-          .notification
-            相手のことを考え丁寧なコメントを心がけましょう。
-            不快な言葉遣いなどは利用制限や退会処分となることがあります。
-          %button{name: "button", type:"submit", class:"button"}
-            %i{class:"fa fa-comment"}
-            コメントする
+        .commentBody
+          - if current_user
+            = form_with model: [@item, @comment], local: true do |f|
+              = f.text_area :content, class: 'commentBody__input', placeholder: ""
+              .notification
+                %p
+                相手のことを考え丁寧なコメントを心がけましょう。
+                %br/
+                不快な言葉遣いなどは利用制限や退会処分となることがあります。
+              %button{name: "button", type:"submit", class:"button"}
+                %i{class:"fa fa-comment"}
+                コメントする
+          - else
+            %strong
+              %p
+                ※※※ コメントの投稿には
+                = link_to "新規会員登録", new_user_registration_path
+                または
+                = link_to "ログイン", new_user_session_path
+                が必要です ※※※
+      .comments
+      %h4 ＜コメント一覧＞
+      - if @comments
+        - @comments.each do |comment|
+          %p
+            %strong
+            = comment.user.nickname
+            ：
+            = comment.content
+
       .links
         = link_to "< 前の商品", "", class: "link1"
         = link_to "後ろの商品 >", "", class: "link1"

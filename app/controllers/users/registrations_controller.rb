@@ -9,6 +9,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user = User.new
   end
 
+  def show
+    @prefecture = Prefecture.find(@destination.prefecture_id)
+  end
+
   def create
     @user = User.new(sign_up_params)
     unless @user.valid?
@@ -75,7 +79,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def destination_params
-    params.require(:destination).permit(:family_name, :first_name, :post_code, :prefecture, :city, :town, :block, :phone_number)
+    params.require(:destination).permit(:family_name, :first_name, :post_code, :prefecture_id, :city, :town, :block, :phone_number)
   end
 
   # If you have extra params to permit, append them to the sanitizer.

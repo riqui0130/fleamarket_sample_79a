@@ -122,7 +122,7 @@ Things you may want to cover:
 |------|----|-------|
 |item_id|integer|null: false, foreign_key: true|
 |user_id|integer|null: false, foreign_key: true|
-|comment|text|null: false|
+|content|text|null: false|
 ### Association
 - belongs_to :item
 - belongs_to :user

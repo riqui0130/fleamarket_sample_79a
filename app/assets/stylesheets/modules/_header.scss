@@ -81,6 +81,11 @@
     
     &--category {
       position: relative;
+      &:hover {
+        a {
+          color:#ffb340;
+        }
+      }
     }
 
     &--brand {

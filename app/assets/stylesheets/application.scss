@@ -1,4 +1,5 @@
 @import "reset";
+@import "flash";
 @import "modules/banner";
 @import "modules/header";
 @import "modules/footer";
@@ -6,6 +7,13 @@
 @import "modules/maintop";
 @import "modules/new";
 @import "modules/buy";
+@import "modules/creditcard";
 @import "modules/index";
 @import "modules/sell";
+@import "modules/done";
 @import "users";
+@import "categories";
+@import "breadcrumbs";
+@import 'font-awesome-sprockets';
+@import "font-awesome";
+// @import '~@fortawesome/fontawesome-free/scss/fontawesome';
