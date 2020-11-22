@@ -33,6 +33,19 @@ Rails.application.routes.draw do
 
   get 'users/logout'
 
+  resources :items do
+    resource :favorites, only: [:create, :destroy]
+    resources :items do
+      collection do
+        get 'buy'
+        get 'sell'
+      end
+    end
+  end
+  resources :users, only: [:show, :destroy, :edit, :update] do
+    get :favorites, on: :collection
+
+
   resources :creditcard, only: [:new, :show] do
     collection do
       post 'show', to: 'creditcard#show'
@@ -42,6 +55,7 @@ Rails.application.routes.draw do
   end  
 
   resources :users, only: [:show, :destroy] do
+
     collection do
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }

@@ -25,4 +25,8 @@
           購入数
           = @items_buy_count
         .userLike
-          いいねの数 10000
+          お気に入り
+          - if @favorite_list.present?
+            - @favorite_list.each do
+              = @item.name
+              = @item.price

@@ -22,6 +22,6 @@ class User < ApplicationRecord
   has_one :creditcards
   has_many :favorites
   has_one :destination
-  has_many :items
+  has_many :items, through: :favorites
   has_many :comments
 end
