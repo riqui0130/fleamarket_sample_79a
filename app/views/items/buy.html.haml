@@ -51,23 +51,23 @@
         %label 配送先
       .Contents-buy__distination--lower
         〒
-        = @destination.post_code
-        %br
-        = @destination.prefecture.name
-        = @destination.city
-        = @destination.town
-        = @destination.block
-        %br
-        = @destination.family_name
-        = @destination.first_name
+        -# = @destination.post_code
+        -# %br
+        -# = @destination.prefecture.name
+        -# = @destination.city
+        -# = @destination.town
+        -# = @destination.block
+        -# %br
+        -# = @destination.family_name
+        -# = @destination.first_name
 
     .Contents-buy__btn
       = form_tag(pay_item_path, method: :post) do
-        - if @default_card_information.blank?
-          .Contents-buy__btn--down
-            %p クレジットカードを登録してください
-        - else
-          %button.Contents-buy__btn--down 購入する
+        -# - if @default_card_information.blank?
+        -#   .Contents-buy__btn--down
+        -#     %p クレジットカードを登録してください
+        -# - else
+        %button.Contents-buy__btn--down 購入する
 
   .Footer-buy
     %ul.Footer-buy__ul-box
