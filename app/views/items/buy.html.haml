@@ -63,11 +63,11 @@
 
     .Contents-buy__btn
       = form_tag(pay_item_path, method: :post) do
-        -# - if @default_card_information.blank?
-        -#   .Contents-buy__btn--down
-        -#     %p クレジットカードを登録してください
-        -# - else
-        %button.Contents-buy__btn--down 購入する
+        - if @default_card_information.blank?
+          .Contents-buy__btn--down
+            %p クレジットカードを登録してください
+        - else
+          %button.Contents-buy__btn--down 購入する
 
   .Footer-buy
     %ul.Footer-buy__ul-box
