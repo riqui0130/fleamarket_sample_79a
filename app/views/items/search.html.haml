@@ -1,0 +1,10 @@
+.Header__search
+  %form.Header__form{action: "#", method: "get", "accept-charset" => "UTF-8"}
+    %input{name: "utf-8", type: "hidden", value: "✓"}
+    %input#searchText.Header__text{name: "keyword", placeholder: "キーワードから探す"}
+    %button.Header__search-btn{type: "submit"}
+      %div
+        = image_tag "search.png", class: "Header__search__icon"
+%div.contents_row
+  = @items.each do |tweet|
+    = render partial: "item", locals: { item: item }
