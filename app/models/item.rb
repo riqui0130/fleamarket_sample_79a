@@ -26,7 +26,7 @@ class Item < ApplicationRecord
   belongs_to :auction, class_name: "User", optional: true,foreign_key: "auction_id"
   def self.search(search)
     if search != ""
-      Item.where('text LIKE(?)', "%#{search}%")
+      Item.where('name LIKE(?)', "%#{search}%")
     else
       Item.all
     end

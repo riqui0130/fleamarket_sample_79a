@@ -108,6 +108,7 @@ class ItemsController < ApplicationController
   end
 
   def search
+    @parents = Category.where(ancestry: nil)
     @items = Item.search(params[:keyword])
   end
 
@@ -128,7 +129,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :detail, :category_id, :condition_id, :delivery_days_id, :prefecture_id, :deliverycost_id, :price, images_attributes: [:image, :_destroy, :id]).merge(seller_id: current_user.id)
+    params.require(:item).permit(:name, :detail, :category_id, :condition_id, :delivery_days_id, :prefecture_id, :deliverycost_id, :price,:keyword, images_attributes: [:image, :_destroy, :id]).merge(seller_id: current_user.id)
   end
 
   def currect_user_item
