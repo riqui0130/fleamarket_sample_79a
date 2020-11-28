@@ -1,6 +1,10 @@
 *{
   box-sizing: border-box;
 }
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
 
 .Header {
   padding: 0 60px;
@@ -35,39 +39,36 @@
     width: 100%;
     margin-left: auto;
 
-    form {
+    &__form {
       width: 100%;
-      display: flex;
       margin-bottom: 5px;
     }
+
+  }
+  &__form-box{
+    display:flex;
   }
 
-  &__form {
-    display: flex;
-    width: 100%;
-    margin-bottom: 5px;
-  }
-
-  &__text {
+  &__search-input {
     height: 36px;
-    width: calc(100% - 26px);
+    width: calc(100% - 40px);
     padding: 0 0 0 5px;
     font-size: inherit;
     font-weight: inherit;
     font-family: inherit;
+    display:block;
   }
-
-  &__search__icon {
-    width: 19.52px;
-    height: 19.52px;
-  }
-
   &__search-btn {
+    display:block;
     width: 36px;
     background-color: #3CCACE;
     border: 0;
+    border-radius:2px;  
   }
-
+  &__search--icon {
+    width: 19.52px;
+    height: 19.52px;
+  }
   &__navi {
     display: flex;
     padding-bottom: 10px;

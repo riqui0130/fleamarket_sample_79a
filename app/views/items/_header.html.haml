@@ -5,12 +5,13 @@
         = link_to '/' do
           = image_tag "logo.png", class: "Header__logo"
       .Header__search
-        = form_with(url: search_items_path, local: true, method: :get, class: "search-form") do |f|
-          = f.text_field :keyword, placeholder: "検索する", class: "search-input"
-          %label{for: "search-icon", class: "search-label"}
-            %i.fas.fa-search
-          .search-icon
-            = f.submit "検索", class: "search-btn", id: "search-icon"
+        .Header__form
+          = form_with(url: search_items_path, local: true, method: :get) do |f|
+            .Header__form-box
+              = f.text_field :keyword, placeholder: "検索する", class: "Header__search-input"
+              %button.Header__search-btn{type: "submit"}
+                = image_tag "search.png", class: "Header__search--icon"
+
     %div.Header__navi
       %ul.Header__left
         %li.Header__left--category
