@@ -5,12 +5,12 @@
         = link_to '/' do
           = image_tag "logo.png", class: "Header__logo"
       .Header__search
-        %form.Header__form{action: "#", method: "get", "accept-charset" => "UTF-8"}
-          %input{name: "utf-8", type: "hidden", value: "✓"}
-          %input#searchText.Header__text{name: "keyword", placeholder: "キーワードから探す"}
-          %button.Header__search-btn{type: "submit"}
-            %div
-              = image_tag "search.png", class: "Header__search__icon"
+        .Header__form
+          = form_with(url: search_items_path, local: true, method: :get) do |f|
+            .Header__form-box
+              = f.text_field :keyword, placeholder: "検索する", class: "Header__search-input"
+              %button.Header__search-btn{type: "submit"}
+                = image_tag "search.png", class: "Header__search--icon"
 
     %div.Header__navi
       %ul.Header__left
