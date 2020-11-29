@@ -1,14 +1,14 @@
 // エラーハンドリング
-$(document).on('click', function(){
-  let imageLength = $('#image-box').children('li').length;
-  if(imageLength ==''){
-    $('#error-image').text('*画像がありません');
-  }else if(imageLength >10){
-    $('#error-image').text('*画像を10枚以下にして下さい');
-  }else{
-    $('#error-image').text('');
-  }
-});
+// $(document).on('click', function(){
+//   let imageLength = $('#image-box').children('li').length;
+//   if(imageLength ==''){
+//     $('#error-image').text('*画像がありません');
+//   }else if(imageLength >10){
+//     $('#error-image').text('*画像を10枚以下にして下さい');
+//   }else{
+//     $('#error-image').text('');
+//   }
+// });
 $(document).on('click', function(){
   //商品名
   $('.sell-container__content__name').on('blur',function(){

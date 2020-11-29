@@ -61,6 +61,7 @@ $(document).on('turbolinks:load', function(){
     $('#image-box').on('click', '.preview-image', function() {
       const index = $(this).data("index")
       $(`#item_images_attributes_${index}_image`).click()
+      $(this).parent().remove();
     });
 
   });
