@@ -3,7 +3,9 @@ class CreateDestinations < ActiveRecord::Migration[6.0]
     create_table :destinations do |t|
       t.references :user, index: true, foreign_key: true
       t.string :family_name, null: false
+      t.string :family_name_kana,   null: false, add_index: true
       t.string :first_name,  null: false
+      t.string :first_name_kana,    null: false
       t.string :post_code,   null: false
       t.string :prefecture_id,  null: false
       t.string :city,        null: false
