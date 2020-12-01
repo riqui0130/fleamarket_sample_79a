@@ -11,4 +11,6 @@ class Destination < ApplicationRecord
     format: { with: /\A([ァ-ン]|ー)+\z/, message: 'を全角カタカナで入力してください' }
   validates :post_code,
     format: { with: /\A\d{7}\z/, message: "をハイフン(-)無しで７桁の半角数字で入力してください" }
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :prefecture
 end

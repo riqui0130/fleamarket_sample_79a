@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
       get 'sell'
+      get 'search'
     end
     member do
       get 'buy'
@@ -28,6 +29,7 @@ Rails.application.routes.draw do
       get 'pay'
       get 'done'
     end
+    resources :comments,only: [:create] 
   end
 
   get 'users/logout'

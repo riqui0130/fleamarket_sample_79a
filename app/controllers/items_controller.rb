@@ -16,6 +16,8 @@ class ItemsController < ApplicationController
     @prefecture = Prefecture.find(@item.prefecture_id)
     @delivery_days = DeliveryDays.find(@item.delivery_days_id)
     @delivery_cost = Deliverycost.find(@item.deliverycost_id)
+    @comment = Comment.new
+    @comments = @item.comments.includes(:user)
   end
 
   def new
@@ -105,6 +107,11 @@ class ItemsController < ApplicationController
     end
   end
 
+  def search
+    @parents = Category.where(ancestry: nil)
+    @items = Item.search(params[:keyword])
+  end
+
   private
 
   def set_categories
@@ -122,7 +129,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :detail, :category_id, :condition_id, :delivery_days_id, :prefecture_id, :deliverycost_id, :price, images_attributes: [:image, :_destroy, :id]).merge(seller_id: current_user.id)
+    params.require(:item).permit(:name, :detail, :category_id, :condition_id, :delivery_days_id, :prefecture_id, :deliverycost_id, :price,:keyword, images_attributes: [:image, :_destroy, :id]).merge(seller_id: current_user.id)
   end
 
   def currect_user_item
