@@ -18,6 +18,12 @@
               = f.text_field :first_name, class: 'FormField__input FormField__input--half', placeholder: "例）彩"
             .FormField
               .FormField__label
+                = f.label :お名前カナ（全角）
+                %span.FormField--require 必須
+              = f.text_field :family_name_kana, class: 'FormField__input FormField__input--half FormField__input--half--first', placeholder: "例）ヤマダ"
+              = f.text_field :first_name_kana, class: 'FormField__input FormField__input--half', placeholder: "例）アヤ"
+            .FormField
+              .FormField__label
                 = f.label :郵便番号
                 %span.FormField--require 必須
                 = f.text_field :post_code, class: 'FormField__input', placeholder: "郵便番号をハイフン(-)無しで７桁の半角数字で入力してください"

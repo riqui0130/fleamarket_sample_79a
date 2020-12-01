@@ -79,3 +79,5 @@ gem 'devise-i18n-views'
 gem 'rails-i18n'
 gem 'font-awesome-sass'
 gem "gretel"
+gem 'omniauth-twitter'
+gem "omniauth-rails_csrf_protection"
